@@ -1,12 +1,17 @@
 <template>
-    <div class="watching my-4" v-if="mediaStore.media != null">
-        <div class="container">
+    <div class="watching my-4" v-if="mediaStore.media">
+        <div class="container-fluid">
             <div class="player">
                 <div class="embed">
                     <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
+                        allowfullscreen style="border:none;" v-if="!display">
+                    </iframe>
+
+                    <video class="video border-0" width="1280" height="720"
+                        :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" controls v-else>
+                    </video>
                 </div>
             </div>
 
@@ -54,7 +59,8 @@ export default {
 
     data() {
         return {
-            curNoEp: 1
+            curNoEp: 1,
+            display: false
         }
     },
 
@@ -67,6 +73,13 @@ export default {
             const reqId = this.$route.params.id;
             this.mediaStore.media = await mediaService.getDetail(reqId);
             this.reviewStore.reviewsMedia = await reviewService.getReviewsMedia(this.mediaStore.media._id);
+
+            if (this.mediaStore.media.eppisodes[this.curNoEp - 1].videoUrl.includes('.mp4')) {
+                this.display = true
+            }
+            else {
+                this.display = false
+            }
         }
     },
 
