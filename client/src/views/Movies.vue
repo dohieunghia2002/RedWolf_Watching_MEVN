@@ -74,21 +74,13 @@
 import MovieIntro from '@/components/MovieIntro.vue';
 
 import mediaService from '@/services/media.service.js';
-// import favoritesService from '@/services/favorites.service.js';
-
 import { useMediaStore } from '@/stores/media.js';
-// import { useUserStore } from '@/stores/user.js';
-// import { useFavoritesStore } from '@/stores/favorites.js';
 
 export default {
     components: { MovieIntro },
     setup() {
         const mediaStore = useMediaStore();
-        //         const favoritesStore = useFavoritesStore();
-        //         const userStore = useUserStore();
         return {
-            //             userStore,
-            //             favoritesStore,
             mediaStore
         }
     },
@@ -105,12 +97,6 @@ export default {
 
     async created() {
         await this.handleSetData();
-
-        //         if (this.userStore.isLoggedin) {
-        //             const token = await this.userStore.account.token;
-        //             this.favoritesStore.favorites = await favoritesService.getList(token);
-        //             this.favoritesStore.detailMedia(token);
-        //         }
     },
 }
 </script>

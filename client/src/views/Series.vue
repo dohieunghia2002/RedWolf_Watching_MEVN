@@ -75,26 +75,17 @@
 </template>
 
 <script>
-// import SeriesIntro from '@/components/SeriesIntro.vue';
 import MovieIntro from '@/components/MovieIntro.vue';
 
-// import favoritesService from '@/services/favorites.service.js';
 import mediaService from '@/services/media.service.js';
-
 import { useMediaStore } from '@/stores/media.js';
-// import { useUserStore } from '@/stores/user.js';
-// import { useFavoritesStore } from '@/stores/favorites.js';
 
 export default {
     components: { MovieIntro },
 
     setup() {
         const mediaStore = useMediaStore();
-        //         const favoritesStore = useFavoritesStore();
-        //         const userStore = useUserStore();
         return {
-            //             userStore,
-            //             favoritesStore,
             mediaStore
         }
     },
@@ -111,16 +102,7 @@ export default {
 
     async created() {
         await this.handleSetData();
-        //         this.mediaStore.popularTVSeries = await MediaService.popularTVSeries();
-        //         this.mediaStore.ratedSeries = await MediaService.ratedTVSeries();
-
-        //         if (this.userStore.isLoggedin) {
-        //             const token = await this.userStore.account.token;
-        //             this.favoritesStore.favorites = await favoritesService.getList(token);
-        //             this.favoritesStore.detailMedia(token);
-        //         }
-    },
-
+    }
 }
 
 </script>
