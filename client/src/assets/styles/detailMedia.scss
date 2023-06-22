@@ -1,0 +1,189 @@
+@import './globalStyle.scss';
+
+.media-intro {
+    display: block;
+    position: relative;
+}
+
+.media-desc {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    top: 12%;
+    left: 10%;
+    z-index: 2;
+    color: $white-color;
+
+    .media-side-right {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        justify-content: space-between;
+        width: 50%;
+
+        .genre {
+            background-color: $primary-color;
+            padding: 8px;
+            border-radius: 16px;
+            transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            cursor: default;
+            outline: 0px;
+            box-sizing: border-box;
+            font-size: 0.8125rem;
+        }
+
+        .desc-film {
+            font-weight: 400;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            letter-spacing: 0.00938em;
+            text-align: justify;
+            word-wrap: break-word;
+        }
+
+        button {
+            font-weight: 500;
+            font-size: 0.9375rem;
+            line-height: 1.75;
+            letter-spacing: 0.02857em;
+            text-transform: uppercase;
+            min-width: 64px;
+            padding: 8px 22px;
+            border-radius: 4px;
+            border: 0;
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            color: $white-color;
+            background-color: $primary-color;
+            box-shadow: none;
+            width: max-content;
+    
+            &:hover {
+                background-color: rgb(178, 0, 0);
+            }
+        }
+    }
+
+    .media-poster {
+        margin: auto 0;
+        width: 344px;
+        height: 524px;
+        z-index: 1;
+    }
+
+    .media-name {
+        font-weight: 900;
+    }
+}
+
+.background-img-intro {
+    background-image: url('');
+}
+
+.casts-item {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: flex-start;
+    margin-left: 0;
+}
+
+.card {
+    width: $width-img-casts;
+    transform: none !important;
+    cursor: default;
+    margin-right: 4px;
+    pointer-events: none;
+
+    .card-img-top {
+        height: $height-img-casts;
+        object-fit: cover;
+    }
+
+    .card-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: $white-color;
+        font-size: 14px;
+        background-color: #444;
+        border-radius: 0;
+
+        .card-title {
+            font-weight: 650;
+        }
+
+        .card-text {
+            font-weight: 300;
+            height: 16%;
+        }
+    }
+}
+
+// Part of review
+.media-review {
+    min-height: 400px;
+    background-color: #15223a;
+}
+
+.avatar-user {
+    width: 80px;
+    height: 80px;
+}
+
+.name-user {
+    font-weight: 600;
+    color: #fff;
+}
+
+.evaluation,
+.evaluation-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: #0b162a;
+    padding: 12px 16px;
+    border-radius: 4px;
+
+    .comment {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .comment-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+
+            .date {
+                color: #aaa;
+            }
+        }
+
+        .comment-content {
+            font-size: 1.2rem;
+            color: #e1e1e1;
+        }
+    }
+}
+
+.comment-input {
+    font-size: 1.13rem;
+    outline: 0;
+    border: 0;
+    border-radius: 3px;
+}
+
+.btn-delete {
+    &:hover {
+        background: none;
+    }
+}

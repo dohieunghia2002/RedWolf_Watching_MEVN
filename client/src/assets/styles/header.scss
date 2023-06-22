@@ -1,0 +1,114 @@
+@import './globalStyle.scss';
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100%;
+    padding: 16px 24px;
+    background-color: $black-color;
+
+    .logo {
+        width: $width-logo;
+        margin-right: 20px;
+    }
+}
+
+.navbar-nav {
+    .nav-item {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 80px;
+        padding: 0 8px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: rgba(255, 0, 0, 0.08);
+        }
+        
+        .btn-control-mode {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            color: $white-color;
+        }
+
+        .button {
+            text-decoration: none;
+            color: $white-color;
+            background-color: transparent;
+            font-size: 600;
+            border: none;
+            
+            &:focus, :active {
+                border: none;
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
+
+    .nav-item.active {
+        background-color: $primary-color;
+
+        &:hover {
+            background-color: rgb(178, 0, 0);
+        }
+    }
+
+    .nav-item.nav-icon {
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .btn-auth {
+        display: flex;
+        justify-content: space-evenly;
+        
+        button {
+            padding: 6px 12px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .nav-item:first-child {
+            margin-right: 4px;
+        }
+    }
+}
+
+.dropdown-menu {
+    background-color: $background-color-dropdown-menu; 
+    padding: 8px 0px;
+    outline: 0px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12));
+    min-width: 240px;
+    
+    .dropdown-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: $white-color;
+        padding: 12px 28px;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        letter-spacing: 0.00938em;
+        text-transform: uppercase;
+
+        &:hover {        
+            background-color: rgba(255, 255, 255, 0.08);
+            font-weight: 600;
+        }
+
+        .content {
+            margin-left: 10%;
+        }
+    }
+}

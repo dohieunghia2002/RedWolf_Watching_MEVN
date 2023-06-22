@@ -1,0 +1,39 @@
+@import '@/assets/styles/home.scss';
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.list-favorites-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    margin-right: 8px;
+}
+
+.card {
+    background: transparent;
+    border: 1px solid $white-color;
+    width: 16.84rem;
+
+    .card-img-top {
+        height: 430px;
+    }
+}
+
+.remove {
+    background-color: $primary-color;
+    text-align: center;
+    margin-top: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary-color-impress;
+    }
+}

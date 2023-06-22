@@ -1,0 +1,13 @@
+@import "./globalStyle.scss";
+
+.card {
+    width: 222px;
+
+    .card-img-top {
+        height: $height-card-img;
+    }
+}
+
+.nav-tabs {
+    border: none;
+}

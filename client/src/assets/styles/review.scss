@@ -1,0 +1,37 @@
+@import './globalStyle.scss';
+
+.list-review {
+    background-color: $black-color;
+}
+
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    .review-poster-media {
+        width: 13%;
+    }
+
+    .btn-remove {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $primary-color;
+        width: 10%;
+        height: 12%;
+        box-shadow: none;
+        font-weight: lighter;
+
+        &:hover {
+            background-color: $primary-color-impress;
+        }
+    }
+}
+
+.appreciate {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+}

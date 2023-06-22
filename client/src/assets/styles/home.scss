@@ -1,0 +1,9 @@
+@import "./globalStyle.scss";
+
+.card {
+    width: $width-card-home;
+
+    .card-img-top {
+        height: $height-card-img-home;
+    }
+}
