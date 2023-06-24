@@ -1,5 +1,5 @@
 <template>
-    <div class="home-view">
+    <div class="home-view" v-if="userStore.isLoggedin == true">
         <div class="bg-image">
             <h2 class="title-welcome text-uppercase text-white">
                 Welcome to the Administration System
@@ -9,9 +9,21 @@
 </template>
 
 <script>
+import { useUserStore } from '@/stores/user.js';
 
 export default {
+    setup() {
+        const userStore = useUserStore();
+        return {
+            userStore
+        }
+    },
 
+    async created() {
+        if (this.userStore.isLoggedin) {
+            this.$router.push('admin/auth')
+        }
+    },
 }
 </script>
 

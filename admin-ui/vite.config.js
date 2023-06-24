@@ -13,23 +13,23 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    // proxy: {
-    //     '/media': {
-    //         target: url_local,
-    //         changeOrigin: true,
-    //     },
-    //     '/users': {
-    //         target: url_local,
-    //         changeOrigin: true,
-    //     },
-    //     '/favorites': {
-    //         target: url_local,
-    //         changeOrigin: true,
-    //     },
-    //     '/reviews': {
-    //         target: url_local,
-    //         changeOrigin: true,
-    //     }
-    // },
+    proxy: {
+      //     '/media': {
+      //         target: url_local,
+      //         changeOrigin: true,
+      //     },
+      '/users': {
+        target: url_local,
+        changeOrigin: true,
+      },
+      //     '/favorites': {
+      //         target: url_local,
+      //         changeOrigin: true,
+      //     },
+      //     '/reviews': {
+      //         target: url_local,
+      //         changeOrigin: true,
+      //     }
+    },
   },
 })

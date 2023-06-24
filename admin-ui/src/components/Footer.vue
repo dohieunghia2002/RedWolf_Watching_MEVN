@@ -21,7 +21,8 @@
                 </div>
                 <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
                     <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                        <img src="https://assets.stickpng.com/images/58483b7684e35b574e745382.png" class="w-100" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Logo-Cuulongfilms-2021.png"
+                            class="w-50" />
                         <a href="#!">
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
                         </a>
@@ -48,7 +49,7 @@
                 <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
                     <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
                         <img src="https://seeklogo.com/images/P/Phuong_Nam_Phim-logo-9F9F33AF47-seeklogo.com.png"
-                            class="w-100" />
+                            class="w-75" />
                         <a href="#!">
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
                         </a>
