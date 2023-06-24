@@ -2,7 +2,7 @@
     <div class="home" v-if="mediaStore.media &&
         mediaStore.popularMovies.length > 0 && mediaStore.ratedMovies.length > 0 &&
         mediaStore.popularTVSeries.length > 0 && mediaStore.ratedSeries.length > 0">
-        <MovieIntro :key="mediaStore.media._id" />
+        <MovieIntro :key="generateKey(mediaStore.media._id, userStore.isLoggedin)" />
 
         <div class="container mt-4 pt-4">
             <div class="row popular-movies">
@@ -133,20 +133,18 @@ import MovieIntro from '@/components/MovieIntro.vue';
 
 import { useMediaStore } from '@/stores/media.js';
 import { useUserStore } from '@/stores/user.js';
-// import { useFavoritesStore } from '@/stores/favorites.js';
+import { useFavoritesStore } from '@/stores/favorites.js';
 
 import mediaService from '@/services/media.service.js';
-// import favoritesService from '@/services/favorites.service.js';
 
 export default {
     setup() {
         const mediaStore = useMediaStore();
         const userStore = useUserStore();
-        //     const favoritesStore = useFavoritesStore();
+        const favoritesStore = useFavoritesStore();
         return {
             userStore,
             mediaStore
-            //         favoritesStore,
         }
     },
 
@@ -159,19 +157,16 @@ export default {
                 this.mediaStore.media = await mediaService.getDetail(reqId);
             }
             else this.mediaStore.media = await mediaService.getRandMovie();
+        },
+
+        generateKey(item, index) {
+            const uniqueKey = `${item}-${index}`;
+            return uniqueKey;
         }
     },
 
     async created() {
         await this.handleSetData();
-
-        //     if (this.userStore.isLoggedin) {
-        //         const token = await this.userStore.account.token;
-        //         this.favoritesStore.favorites = await favoritesService.getList(token);
-
-        //         if (this.favoritesStore.favorites !== null)
-        //             this.favoritesStore.detailMedia(token);
-        //     }
     },
 };
 </script>
