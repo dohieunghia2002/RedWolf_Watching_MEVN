@@ -137,6 +137,7 @@ import { useFavoritesStore } from '@/stores/favorites.js';
 
 import mediaService from '@/services/media.service.js';
 
+
 export default {
     setup() {
         const mediaStore = useMediaStore();
@@ -162,7 +163,7 @@ export default {
         generateKey(item, index) {
             const uniqueKey = `${item}-${index}`;
             return uniqueKey;
-        }
+        },
     },
 
     async created() {
