@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia';
 
-import { pathImgMedia, pathImgCast } from '@/assets/staticPath/index.js';
-
 
 export const useMediaStore = defineStore('media', {
     state: () => {
@@ -20,14 +18,6 @@ export const useMediaStore = defineStore('media', {
                 return Math.round(this.media.rate / this.media.numberRater);
             }
             return 0;
-        },
-
-        pathImageMedia() {
-            return pathImgMedia();
-        },
-
-        pathCast() {
-            return pathImgCast();
         },
     },
 })

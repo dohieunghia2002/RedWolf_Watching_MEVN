@@ -14,7 +14,7 @@
         <!--Slides-->
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item" v-for="(img, index) in mediaStore.media.posters.slice(2)" :key="index">
-                <img class="d-block w-100 carousel-item-slide" :src="'/src/assets/images/media/' + img" alt="slide item" />
+                <img class="d-block w-100 carousel-item-slide" :src="img" alt="slide item" />
             </div>
         </div>
         <!--/.Slides-->

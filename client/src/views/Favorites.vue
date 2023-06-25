@@ -18,8 +18,7 @@
                     <div class="list-favorites-item">
                         <router-link :to="{ name: 'detail', params: { id: media._id } }">
                             <div class="card mt-2">
-                                <img class="card-img-top" :src="favoritesStore.pathImageMedia + media.posters[1]"
-                                    alt="Poster" />
+                                <img class="card-img-top" :src="media.posters[1]" alt="Poster" />
 
                                 <div class="card-body">
                                     <div class="empty-space"></div>

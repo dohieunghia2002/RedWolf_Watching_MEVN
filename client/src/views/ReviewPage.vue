@@ -11,7 +11,7 @@
 
             <div class="row list-review" v-for="(review, index) in reviewStore.reviewsUser" :key="index">
                 <div class="review-item">
-                    <img :src="reviewStore.pathImageMedia + review.poster" class="review-poster-media" alt="poster media">
+                    <img :src="review.poster" class="review-poster-media" alt="poster media">
                     <div class="review-detail flex-grow-1 text-light mx-3">
                         <h4 class="my-2">{{ review.nameMedia }}</h4>
                         <p>{{ review.date.split('T')[0] }}</p>

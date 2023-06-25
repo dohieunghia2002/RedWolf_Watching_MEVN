@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import reviewService from '@/services/review.service.js';
 
-import { pathImgMedia } from '@/assets/staticPath/index.js';
 
 export const useReviewStore = defineStore('review', {
     state: () => {
@@ -9,12 +8,6 @@ export const useReviewStore = defineStore('review', {
             reviewsMedia: [],
             formComment: {},
             reviewsUser: []
-        }
-    },
-
-    getters: {
-        pathImageMedia() {
-            return pathImgMedia()
         }
     },
 

@@ -16,7 +16,7 @@
                     <div v-for="(item, index) in filtersMedia" :key="index">
                         <router-link :to="{ name: 'detail', params: { id: item._id } }">
                             <div class="card">
-                                <img class="card-img-top" :src="mediaStore.pathImageMedia + item.posters[1]" alt="Poster" />
+                                <img class="card-img-top" :src="item.posters[1]" alt="Poster" />
 
                                 <div class="card-body">
                                     <div class="empty-space"></div>

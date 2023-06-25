@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 
-import { pathImgMedia } from '@/assets/staticPath/index.js';
 import favoritesService from '@/services/favorites.service.js';
 
 export const useFavoritesStore = defineStore('favorites', {
@@ -12,10 +11,6 @@ export const useFavoritesStore = defineStore('favorites', {
     },
 
     getters: {
-        pathImageMedia() {
-            return pathImgMedia();
-        },
-
         medias() {
             return this.favorites.mediaID;
         }

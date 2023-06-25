@@ -4,7 +4,7 @@
             <div class="background-img-intro"></div>
 
             <div class="media-desc">
-                <img class="media-poster" :src="mediaStore.pathImageMedia + mediaStore.media.posters[1]" alt="poster media">
+                <img class="media-poster" :src="mediaStore.media.posters[1]" alt="poster media">
 
                 <div class="media-side-right">
                     <h1 class="media-name text-uppercase">{{ mediaStore.media.name }}</h1>
@@ -54,7 +54,7 @@
                         <div v-for="(cast, index) in mediaStore.media.casts" :key="index">
                             <div class="card h-100">
                                 <div class="header-img">
-                                    <img class="card-img-top" :src="mediaStore.pathCast + cast.avatar" alt="casts-image" />
+                                    <img class="card-img-top" :src="cast.avatar" alt="casts-image" />
                                 </div>
 
                                 <div class="card-footer h-100">
@@ -129,7 +129,7 @@ export default {
     async created() {
         await this.handleSetValue();
         document.getElementsByClassName('background-img-intro')[0].style.backgroundImage =
-            'url(' + this.mediaStore.pathImageMedia + this.mediaStore.media.posters[0] + ')';
+            'url(' + this.mediaStore.media.posters[0] + ')';
     },
 }
 </script>

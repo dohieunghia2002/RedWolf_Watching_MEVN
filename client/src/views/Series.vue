@@ -31,8 +31,7 @@
                             <template v-for="(film, index) in mediaStore.popularTVSeries" :key="index">
                                 <router-link :to="{ name: 'detail', params: { id: film._id } }">
                                     <div class="card">
-                                        <img class="card-img-top" :src="mediaStore.pathImageMedia + film.posters[1]"
-                                            alt="Card image cap" />
+                                        <img class="card-img-top" :src="film.posters[1]" alt="Card image cap" />
 
                                         <div class="card-body">
                                             <div class="empty-space"></div>
@@ -52,8 +51,7 @@
                             <template v-for="(film, index) in mediaStore.ratedSeries" :key="index">
                                 <router-link :to="{ name: 'detail', params: { id: film._id } }">
                                     <div class="card">
-                                        <img class="card-img-top" :src="mediaStore.pathImageMedia + film.posters[1]"
-                                            alt="Card image cap" />
+                                        <img class="card-img-top" :src="film.posters[1]" alt="Card image cap" />
 
                                         <div class="card-body">
                                             <div class="empty-space"></div>

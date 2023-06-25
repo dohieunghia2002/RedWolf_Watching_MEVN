@@ -18,9 +18,7 @@
                     <div v-for="(item, index) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.popularMovies[index]._id } }">
                             <div class="card">
-                                <img class="card-img-top"
-                                    :src="mediaStore.pathImageMedia + mediaStore.popularMovies[index].posters[1]"
-                                    alt="Poster" />
+                                <img class="card-img-top" :src="mediaStore.popularMovies[index].posters[1]" alt="Poster" />
 
                                 <div class="card-body">
                                     <div class="empty-space"></div>
@@ -48,8 +46,7 @@
                     <div v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.popularTVSeries[index]._id } }">
                             <div class="card">
-                                <img class="card-img-top"
-                                    :src="mediaStore.pathImageMedia + mediaStore.popularTVSeries[index].posters[1]"
+                                <img class="card-img-top" :src="mediaStore.popularTVSeries[index].posters[1]"
                                     alt="Card image cap" />
 
                                 <div class="card-body">
@@ -78,8 +75,7 @@
                     <div v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.ratedMovies[index]._id } }">
                             <div class="card">
-                                <img class="card-img-top"
-                                    :src="mediaStore.pathImageMedia + mediaStore.ratedMovies[index].posters[1]"
+                                <img class="card-img-top" :src="mediaStore.ratedMovies[index].posters[1]"
                                     alt="Card image cap" />
 
                                 <div class="card-body">
@@ -108,8 +104,7 @@
                     <div v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.ratedSeries[index]._id } }">
                             <div class="card">
-                                <img class="card-img-top"
-                                    :src="mediaStore.pathImageMedia + mediaStore.ratedSeries[index].posters[1]"
+                                <img class="card-img-top" :src="mediaStore.ratedSeries[index].posters[1]"
                                     alt="Card image cap" />
 
                                 <div class="card-body">
@@ -133,7 +128,6 @@ import MovieIntro from '@/components/MovieIntro.vue';
 
 import { useMediaStore } from '@/stores/media.js';
 import { useUserStore } from '@/stores/user.js';
-import { useFavoritesStore } from '@/stores/favorites.js';
 
 import mediaService from '@/services/media.service.js';
 
@@ -142,7 +136,6 @@ export default {
     setup() {
         const mediaStore = useMediaStore();
         const userStore = useUserStore();
-        const favoritesStore = useFavoritesStore();
         return {
             userStore,
             mediaStore

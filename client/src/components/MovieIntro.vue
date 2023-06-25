@@ -75,7 +75,7 @@ export default {
 
     async mounted() {
         document.getElementsByClassName('background-img-intro')[0].style.backgroundImage =
-            'url(' + this.mediaStore.pathImageMedia + this.mediaStore.media.posters[0] + ')';
+            'url(' + this.mediaStore.media.posters[0] + ')';
     },
 }
 </script>
