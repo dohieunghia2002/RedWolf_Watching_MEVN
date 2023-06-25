@@ -19,8 +19,9 @@ export default {
         }
     },
 
-    async created() {
-        if (this.userStore.isLoggedin) {
+    async updated() {
+        console.log(this.userStore.isLoggedin);
+        if (this.userStore.isLoggedin === false) {
             this.$router.push('admin/auth')
         }
     },

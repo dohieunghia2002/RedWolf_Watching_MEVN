@@ -17,19 +17,19 @@ export const useUserStore = defineStore('user', {
         async loginUser() {
             try {
                 const res = await userService.login(this.formLogin);
+
                 if (res.status === 201) {
                     if (res.data.isAdmin === true) {
                         this.admin = res.data;
                         this.isLoggedin = true;
                         this.formLogin = {};
-                        location.reload();
                     }
                     else {
                         alert('You are unauthorized!')
                     }
                 }
 
-                else if (res.data.status === 400) {
+                else if (res.status === 400) {
                     alert("Sai tài khoản hoặc mật khẩu");
                 }
             } catch (error) {
@@ -40,7 +40,7 @@ export const useUserStore = defineStore('user', {
     },
 
     persist: {
-        key: 'admin',
+        key: 'ad',
         paths: ['admin', 'isLoggedin'],
         storage: sessionStorage
     }

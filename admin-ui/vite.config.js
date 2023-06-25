@@ -14,10 +14,10 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      //     '/media': {
-      //         target: url_local,
-      //         changeOrigin: true,
-      //     },
+      '/media': {
+        target: url_local,
+        changeOrigin: true,
+      },
       '/users': {
         target: url_local,
         changeOrigin: true,

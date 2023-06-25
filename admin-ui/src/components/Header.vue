@@ -16,32 +16,31 @@
                         </router-link>
                     </li>
                     <li class="nav-item navigate">
-                        <!-- <router-link class="nav-link" :to="{ name: 'home' }"> -->
-                        MOVIES
-                        <span class="sr-only">(current)</span>
-                        <!-- </router-link> -->
+                        <router-link class="nav-link" :to="{ name: 'movies' }">
+                            MOVIES
+                        </router-link>
                     </li>
                     <li class="nav-item navigate">
-                        <!-- <router-link class="nav-link" :to="{ name: 'series' }"> -->
-                        TV SERIES
-                        <!-- </router-link> -->
+                        <router-link class="nav-link" :to="{ name: 'series' }">
+                            TV SERIES
+                        </router-link>
                     </li>
-                    <li class="nav-item navigate">
+                    <li class="nav-item">
                         <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
                         MEMBERSHIP
                         <!-- </router-link> -->
                     </li>
-                    <li class="nav-item navigate">
+                    <li class="nav-item">
                         <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
                         FAVORITES
                         <!-- </router-link> -->
                     </li>
-                    <li class="nav-item navigate">
+                    <li class="nav-item">
                         <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
                         REVIEWS
                         <!-- </router-link> -->
                     </li>
-                    <li class="nav-item navigate">
+                    <li class="nav-item">
                         <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
                         LOGOUT
                         <!-- </router-link> -->
@@ -63,7 +62,6 @@ export default {
     },
 
     methods: {
-
         handleActiveNav() {
             const navigateEle = document.getElementsByClassName("navigate");
             for (let i = 0; i < navigateEle.length; i++) {
@@ -86,6 +84,7 @@ export default {
 
     async created() {
         this.active_curUrl = window.location.pathname;
+        console.log(this.active_curUrl);
     },
 
     async mounted() {
@@ -127,12 +126,14 @@ export default {
         }
 
         .nav-link {
-            font-size: 1.32rem;
+            font-size: 1.2rem;
             color: $white-color;
         }
 
         &.active {
             .nav-link {
+                font-weight: 700;
+                font-size: 1.3rem;
                 color: $primary-color;
             }
         }
