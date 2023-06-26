@@ -23,6 +23,7 @@ export const useUserStore = defineStore('user', {
                         this.admin = res.data;
                         this.isLoggedin = true;
                         this.formLogin = {};
+                        location.reload();
                     }
                     else {
                         alert('You are unauthorized!')

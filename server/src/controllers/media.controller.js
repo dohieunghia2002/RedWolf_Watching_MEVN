@@ -1,6 +1,5 @@
 import Media from '../models/media.model.js';
 import responseHandler from '../handlers/response.handler.js';
-import mongoose from 'mongoose';
 
 // Add media, route /media/add , access admin
 const addMedia = async (req, res) => {

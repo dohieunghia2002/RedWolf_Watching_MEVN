@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongooseDelete from 'mongoose-delete';
 
 const mediaSchema = new mongoose.Schema({
     userID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -23,8 +24,10 @@ const mediaSchema = new mongoose.Schema({
             character: { type: String },
             avatar: { type: String, required: true }
         }
-    ]
+    ],
 }, { collection: 'medias' })
+
+mediaSchema.plugin(mongooseDelete);
 
 const Media = mongoose.model('Media', mediaSchema);
 export default Media;
