@@ -84,7 +84,6 @@ export default {
 
     async created() {
         this.active_curUrl = window.location.pathname;
-        console.log(this.active_curUrl);
     },
 
     async mounted() {

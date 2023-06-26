@@ -19,7 +19,8 @@
                     <td class="text-info">{{ (movie.rate / movie.numberRater) || 0 }}</td>
                     <td>{{ movie.language }}</td>
                     <td colspan="2">
-                        <button class="btn btn-link" type="button">Edit</button>
+                        <router-link :to="{ name: 'edit', params: { id: movie._id } }" class="btn btn-link"
+                            type="button">Edit</router-link>
                         <button class="btn btn-link text-danger" type="button">Delete</button>
                     </td>
                 </tr>

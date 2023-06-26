@@ -7,6 +7,7 @@ import HomeView from '../views/HomeView.vue';
 import Login from '../views/Login.vue';
 import Movies from '../views/Movies.vue';
 import Series from '../views/Series.vue';
+import EditMedia from '../views/EditMedia.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,16 @@ const router = createRouter({
       name: 'series',
       components: {
         default: Series,
+        Header,
+        Footer
+      }
+    },
+    {
+      path: '/admin/media/edit/:id',
+      name: 'edit',
+      props: true,
+      components: {
+        default: EditMedia,
         Header,
         Footer
       }

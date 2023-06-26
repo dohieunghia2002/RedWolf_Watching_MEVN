@@ -12,6 +12,10 @@ class MediaService {
     async popularSeries() {
         return (await this.api.get('/tv-series/popular')).data;
     }
+
+    async getDetail(id) {
+        return (await this.api.get(`/detail/${id}`)).data;
+    }
 }
 
 export default new MediaService;
