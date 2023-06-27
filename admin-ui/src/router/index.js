@@ -8,6 +8,7 @@ import Login from '../views/Login.vue';
 import Movies from '../views/Movies.vue';
 import Series from '../views/Series.vue';
 import EditMedia from '../views/EditMedia.vue';
+import CreateMedia from '../views/CreateMedia.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,15 @@ const router = createRouter({
       props: true,
       components: {
         default: EditMedia,
+        Header,
+        Footer
+      }
+    },
+    {
+      path: '/admin/media/create',
+      name: 'create',
+      components: {
+        default: CreateMedia,
         Header,
         Footer
       }

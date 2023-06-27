@@ -1,5 +1,8 @@
 <template>
-    <div class="movies mt-4 container-fluid">
+    <div class="movies container-fluid">
+        <router-link :to="{ name: 'create' }" class="btn btn-success float-right my-2">
+            Create movie <font-awesome-icon :icon="['fas', 'plus']" />
+        </router-link>
         <table class="table table-bordered bg-light">
             <thead>
                 <tr class="text-center">
@@ -19,7 +22,9 @@
                     <td class="text-info">{{ (movie.rate / movie.numberRater) || 0 }}</td>
                     <td>{{ movie.language }}</td>
                     <td colspan="2">
-                        <button class="btn btn-link" type="button">Edit</button>
+                        <router-link :to="{ name: 'edit', params: { id: movie._id } }" class="btn btn-link">
+                            Edit
+                        </router-link>
                         <button class="btn btn-link text-danger" type="button">Delete</button>
                     </td>
                 </tr>

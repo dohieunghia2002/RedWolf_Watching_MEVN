@@ -1,5 +1,8 @@
 <template>
-    <div class="movies mt-4 container-fluid">
+    <div class="movies container-fluid">
+        <router-link :to="{ name: 'create' }" class="btn btn-success float-right my-2">
+            Create movie <font-awesome-icon :icon="['fas', 'plus']" />
+        </router-link>
         <table class="table table-bordered bg-light">
             <thead>
                 <tr class="text-center">

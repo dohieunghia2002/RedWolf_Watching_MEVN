@@ -17,14 +17,6 @@ export const useMediaStore = defineStore('media', {
             }
             return 0;
         },
-
-        numberCarousel() {
-            return this.media.posters.length - 2;
-        },
-
-        listCarousel() {
-            return this.media.posters.slice(2);
-        }
     },
 
     actions: {
