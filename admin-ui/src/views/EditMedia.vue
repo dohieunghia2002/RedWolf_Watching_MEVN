@@ -38,7 +38,7 @@
                 <div class="form-group row">
                     <label class="col-lg-1 col-form-label form-control-label">Year</label>
                     <div class="col-lg-2">
-                        <input class="form-control" type="text" v-model="mediaStore.media.year">
+                        <input class="form-control" type="number" v-model="mediaStore.media.year">
                     </div>
 
                     <div class="space-empty w-100"></div>

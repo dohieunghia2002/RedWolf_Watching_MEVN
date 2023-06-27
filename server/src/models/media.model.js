@@ -13,7 +13,7 @@ const mediaSchema = new mongoose.Schema({
     eppisodes: [
         {
             videoUrl: { type: String },
-            number: { type: Number }
+            number: { type: Number, default: 1 },
         }
     ],
     rate: { type: Number, default: 0 },

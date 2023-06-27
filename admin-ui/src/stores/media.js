@@ -5,6 +5,7 @@ export const useMediaStore = defineStore('media', {
     state: () => {
         return {
             media: null,
+            formAdd: {},
             listMovies: [],
             listSeries: []
         }
