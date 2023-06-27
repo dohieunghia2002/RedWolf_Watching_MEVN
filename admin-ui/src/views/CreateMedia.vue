@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row cast" v-for="index in  formCreate.casts.length " :key="index">
+                <div class="form-group row cast" v-for="index in formCreate.casts.length" :key="index">
                     <label class="col-lg-1 col-form-label form-control-label">Cast</label>
                     <div class="col-lg-3">
                         <input class="form-control" type="text" v-model="formCreate.casts[index - 1].name">
@@ -88,7 +88,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-lg-12 col-form-label form-control-label text-left">Images</label>
+                    <label class="col-lg-1 col-form-label form-control-label">
+                        Images
+                    </label>
+                    <div class="d-flex col-lg-4 btn-add-episodes" @click="handleAddCarousel">
+                        <i class="fas fa-plus-circle h3 mt-1"></i>
+                        <span class="h5 mt-1 ml-2 text-primary">Add carousel</span>
+                    </div>
 
                     <div class="space-empty w-100"></div>
 
@@ -100,6 +106,13 @@
                     <label class="col-lg-1 col-form-label form-control-label">Poster</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="url" v-model="formCreate.posters[1]">
+                    </div>
+                </div>
+
+                <div class="form-group row carousel" v-for="img in (formCreate.posters.length - 2)">
+                    <label class="col-lg-1 col-form-label form-control-label">Carousel {{ img }}</label>
+                    <div class="col-lg-5">
+                        <input class="form-control" type="url" v-model="formCreate.posters[img + 1]">
                     </div>
                 </div>
 
@@ -167,6 +180,10 @@ export default {
                 number: number
             });
             console.log(this.formCreate.eppisodes);
+        },
+
+        handleAddCarousel() {
+            this.formCreate.posters.push("");
         },
 
         handleAddCast() {
