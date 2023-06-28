@@ -38,6 +38,12 @@ export const useUserStore = defineStore('user', {
                 alert("Sai tài khoản hoặc mật khẩu");
             }
         },
+
+        async logout() {
+            sessionStorage.clear();
+            this.admin = null;
+            this.isLoggedin = false;
+        }
     },
 
     persist: {

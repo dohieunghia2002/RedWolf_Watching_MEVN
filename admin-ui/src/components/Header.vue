@@ -25,25 +25,16 @@
                             TV SERIES
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
-                        MEMBERSHIP
-                        <!-- </router-link> -->
+                    <li class="nav-item navigate">
+                        <router-link class="nav-link" :to="{ name: 'member' }">
+                            MEMBERSHIP
+                        </router-link>
                     </li>
-                    <li class="nav-item">
-                        <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
-                        FAVORITES
-                        <!-- </router-link> -->
-                    </li>
-                    <li class="nav-item">
-                        <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
-                        REVIEWS
-                        <!-- </router-link> -->
-                    </li>
-                    <li class="nav-item">
-                        <!-- <router-link class="nav-link" :to="{ name: 'search' }"> -->
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item text-dark btn btn-lg btn-light py-1 px-3" @click="handleLogout">
                         LOGOUT
-                        <!-- </router-link> -->
                     </li>
                 </ul>
             </div>
@@ -52,8 +43,16 @@
 </template>
 
 <script>
+import { useUserStore } from '@/stores/user.js';
 
 export default {
+    setup() {
+        const userStore = useUserStore();
+        return {
+            userStore
+        }
+    },
+
     data() {
         return {
             active_curUrl: '',

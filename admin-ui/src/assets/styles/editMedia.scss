@@ -22,3 +22,16 @@
 .desc-content {
     border-radius: 0.25rem;
 }
+
+.btn-add-item,
+.btn-del-item {
+    cursor: pointer;
+}
+
+.btn-add-item {
+    color: $blue-color;
+}
+
+.btn-del-item {
+    color: $primary-color;
+}

@@ -7,6 +7,7 @@ import HomeView from '../views/HomeView.vue';
 import Login from '../views/Login.vue';
 import Movies from '../views/Movies.vue';
 import Series from '../views/Series.vue';
+import Membership from '../views/Membership.vue';
 import EditMedia from '../views/EditMedia.vue';
 import CreateMedia from '../views/CreateMedia.vue';
 
@@ -60,6 +61,15 @@ const router = createRouter({
       name: 'create',
       components: {
         default: CreateMedia,
+        Header,
+        Footer
+      }
+    },
+    {
+      path: '/admin/member',
+      name: 'member',
+      components: {
+        default: Membership,
         Header,
         Footer
       }

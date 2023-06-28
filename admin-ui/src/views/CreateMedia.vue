@@ -22,8 +22,12 @@
                     </div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Category</label>
+
                     <div class="col-lg-2">
-                        <input class="form-control" type="text" placeholder="movie/tv series" v-model="formCreate.category">
+                        <select name="category" class="form-control" v-model="formCreate.category">
+                            <option>movie</option>
+                            <option>tv series</option>
+                        </select>
                     </div>
 
                     <div class="space-empty w-100"></div>
@@ -46,13 +50,20 @@
                     <div class="col-lg-2">
                         <input class="form-control" type="text" v-model="formCreate.language">
                     </div>
+                </div>
 
-                    <div class="col-lg-1"></div>
-
+                <div class="form-group row genre" v-for="index in  formCreate.genre.length ">
                     <label class="col-lg-1 col-form-label form-control-label">Genre</label>
-                    <div class="col-lg-4">
-                        <input class="form-control" type="text" placeholder="Ex: Romance, Drama, Sci-Fi"
-                            v-model="textInputGenre">
+                    <div class="col-lg-2">
+                        <select name="genre" class="form-control" v-model="formCreate.genre[index - 1]">
+                            <option v-for="opt in optionGenre">{{ opt }}</option>
+                        </select>
+                    </div>
+                    <div class="d-flex col-lg-1 text-center" v-if="index == 1">
+                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
+                            @click="handleAddGenre" />
+                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
+                            @click="handleDelGenre" />
                     </div>
                 </div>
 
@@ -62,9 +73,11 @@
                         <input class="form-control" type="url" v-model="formCreate.eppisodes[index - 1].videoUrl">
                         <label class="col-form-label form-control-label text-secondary">Video url</label>
                     </div>
-                    <div class="d-flex col-lg-4 btn-add-episodes" @click="handleAddEp" v-if="index == 1">
-                        <i class="fas fa-plus-circle h3 mt-1"></i>
-                        <span class="h5 mt-1 ml-2 text-primary">Add episodes</span>
+                    <div class="d-flex col-lg-1 text-center" v-if="index == 1">
+                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
+                            @click="handleAddEp" />
+                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
+                            @click="handleDelEp" />
                     </div>
                 </div>
 
@@ -82,8 +95,11 @@
                         <input class="form-control" type="url" v-model="formCreate.casts[index - 1].avatar">
                         <label class="col-form-label form-control-label text-secondary">Image url</label>
                     </div>
-                    <div class="d-flex col-lg-1 btn-add-episodes" @click="handleAddCast" v-if="index == 1">
-                        <i class="fas fa-plus-circle h3 mt-1"></i>
+                    <div class="d-flex col-lg-1 text-center" v-if="index == 1">
+                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
+                            @click="handleAddCast" />
+                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
+                            @click="handleDelCast" />
                     </div>
                 </div>
 
@@ -91,9 +107,11 @@
                     <label class="col-lg-1 col-form-label form-control-label">
                         Images
                     </label>
-                    <div class="d-flex col-lg-4 btn-add-episodes" @click="handleAddCarousel">
-                        <i class="fas fa-plus-circle h3 mt-1"></i>
-                        <span class="h5 mt-1 ml-2 text-primary">Add carousel</span>
+                    <div class="d-flex col-lg-1 text-center">
+                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
+                            @click="handleAddCarousel" />
+                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
+                            @click="handleDelCarousel" />
                     </div>
 
                     <div class="space-empty w-100"></div>
@@ -145,29 +163,49 @@ export default {
 
     data() {
         return {
-            textInputGenre: '',
+            optionGenre: [
+                'Action',
+                'Adventure',
+                'Music',
+                'Crime',
+                'Mystery',
+                'Thriller',
+                'Drama',
+                'Family',
+                'History',
+                'Sci-Fi',
+                'Comedy',
+                'Romance',
+                'Biography',
+                'Fantasy'
+            ],
             formCreate: {
                 userID: this.userStore.admin._id,
                 name: '',
                 description: '',
                 posters: [
-                    'background',
-                    'poster'
+                    '',
+                    '',
                 ],
                 category: '',
-                genre: [],
+                genre: [
+                    ''
+                ],
                 language: '',
-                year: 1989,
+                year: 1999,
                 eppisodes: [
-                    { videoUrl: '', number: 1 }
+                    {
+                        videoUrl: '',
+                        number: 1
+                    }
                 ],
                 rate: 0,
                 numberOfReviews: 0,
                 casts: [
                     {
-                        name: '',
-                        character: '',
-                        avatar: ''
+                        "name": "",
+                        "character": "",
+                        "avatar": ""
                     }
                 ]
             }
@@ -181,11 +219,23 @@ export default {
                 videoUrl: '',
                 number: number
             });
-            console.log(this.formCreate.eppisodes);
+        },
+        handleDelEp() {
+            this.formCreate.eppisodes.pop();
+        },
+
+        handleAddGenre() {
+            this.formCreate.genre.push("");
+        },
+        handleDelGenre() {
+            this.formCreate.genre.pop();
         },
 
         handleAddCarousel() {
             this.formCreate.posters.push("");
+        },
+        handleDelCarousel() {
+            this.formCreate.posters.pop();
         },
 
         handleAddCast() {
@@ -195,34 +245,23 @@ export default {
                 avatar: ''
             });
         },
-
-        handleTextInputGenre() {
-            const trim = this.textInputChange.replace(/\s+/g, '');
-            this.textInputChange = trim.split(",");
-
-            const result = [];
-
-            for (let i = 0; i < this.textInputGenre.length; i++) {
-                this.textInputGenre[i] = this.textInputGenre[i].charAt(0).toUpperCase() + this.textInputGenre[i].slice(1);
-            }
-
-            result.push(this.textInputGenre);
-            this.formCreate.genre = result;
+        handleDelCast() {
+            this.formCreate.casts.pop();
         },
 
-        handleSubmitMedia() {
-            this.handleTextInputGenre();
-            const res = mediaService.create(this.formCreate, this.userStore.admin.token);
-            console.log(this.formCreate);
-            console.log(res);
+        async handleSubmitMedia() {
+            const res = await mediaService.create(this.formCreate, this.userStore.admin.token);
+            if (res.status == 201) {
+                window.alert('Add movie successfully!');
+                this.formCreate = {}
+            }
+            else {
+                window.alert('Oops! Something wrong');
+            }
         }
     },
 }
 </script>
 <style lang="scss" scoped>
 @import '@/assets/styles/editMedia.scss';
-
-.btn-add-episodes {
-    cursor: pointer;
-}
 </style>
