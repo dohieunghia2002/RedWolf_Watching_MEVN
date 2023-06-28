@@ -7,13 +7,13 @@ const addMedia = async (req, res) => {
         const {
             userID, name, description, posters,
             category, genre, language, year,
-            eppisodes, rate, numberOfReviews, casts
+            eppisodes, rate, numberRater, casts
         } = req.body;
 
         const media = new Media({
             userID, name, description, posters,
             category, genre, language, year,
-            eppisodes, rate, numberOfReviews, casts,
+            eppisodes, rate, numberRater, casts,
         });
 
         if (media) {

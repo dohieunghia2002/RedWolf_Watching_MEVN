@@ -13,6 +13,13 @@ class MediaService {
         return (await this.api.get('/tv-series/popular')).data;
     }
 
+    async create(formData, tokenVal) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.post('/add', formData, header));
+    }
+
     async getDetail(id) {
         return (await this.api.get(`/detail/${id}`)).data;
     }

@@ -131,6 +131,8 @@
 import { useMediaStore } from '@/stores/media.js';
 import { useUserStore } from '@/stores/user.js';
 
+import mediaService from '@/services/media.service.js';
+
 export default {
     setup() {
         const mediaStore = useMediaStore();
@@ -194,14 +196,26 @@ export default {
             });
         },
 
-        handleSubmitMedia() {
-            this.mediaStore.formAdd = this.formCreate;
-            console.log(this.mediaStore.formAdd);
-        }
-    },
+        handleTextInputGenre() {
+            const trim = this.textInputChange.replace(/\s+/g, '');
+            this.textInputChange = trim.split(",");
 
-    async created() {
-        console.log(this.formCreate.eppisodes[0].videoUrl);
+            const result = [];
+
+            for (let i = 0; i < this.textInputGenre.length; i++) {
+                this.textInputGenre[i] = this.textInputGenre[i].charAt(0).toUpperCase() + this.textInputGenre[i].slice(1);
+            }
+
+            result.push(this.textInputGenre);
+            this.formCreate.genre = result;
+        },
+
+        handleSubmitMedia() {
+            this.handleTextInputGenre();
+            const res = mediaService.create(this.formCreate, this.userStore.admin.token);
+            console.log(this.formCreate);
+            console.log(res);
+        }
     },
 }
 </script>

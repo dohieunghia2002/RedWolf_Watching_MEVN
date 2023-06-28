@@ -20,7 +20,6 @@ export default {
     },
 
     async updated() {
-        console.log(this.userStore.isLoggedin);
         if (this.userStore.isLoggedin === false) {
             this.$router.push('admin/auth')
         }
