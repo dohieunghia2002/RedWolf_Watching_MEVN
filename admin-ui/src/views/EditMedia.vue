@@ -9,6 +9,20 @@
             </div>
 
             <form method="POST" class="text-light">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#update" data-toggle="tab" class="nav-link">Episodes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#update" data-toggle="tab" class="nav-link">Images</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#update" data-toggle="tab" class="nav-link">Cast</a>
+                    </li>
+                </ul>
                 <!-- Info general for movie -->
                 <div class="form-group row">
                     <label class="col-lg-1 col-form-label form-control-label">Creator</label>

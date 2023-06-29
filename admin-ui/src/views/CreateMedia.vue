@@ -1,5 +1,5 @@
 <template>
-    <div class="create-media" :key="formCreate">
+    <div class="create-media">
         <div class="container my-4">
             <div class="categories">
                 <h4 class="col-md-12 title-menu text-uppercase">
@@ -9,22 +9,21 @@
             </div>
 
             <form method="POST" class="text-light" @submit.prevent="handleSubmitMedia">
-                <!-- Info general for movie -->
                 <div class="form-group row">
                     <label class="col-lg-1 col-form-label form-control-label">Creator</label>
                     <div class="col-lg-3">
-                        <input class="form-control" type="text" v-model="formCreate.userID" disabled>
+                        <input class="form-control" type="text" v-model="mediaStore.formCreate.userID" disabled>
                     </div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Name</label>
                     <div class="col-lg-4">
-                        <input class="form-control" type="text" v-model="formCreate.name">
+                        <input class="form-control" type="text" v-model="mediaStore.formCreate.name">
                     </div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Category</label>
 
                     <div class="col-lg-2">
-                        <select name="category" class="form-control" v-model="formCreate.category">
+                        <select name="category" class="form-control" v-model="mediaStore.formCreate.category">
                             <option>movie</option>
                             <option>tv series</option>
                         </select>
@@ -34,103 +33,87 @@
 
                     <label class="col-lg-1 col-form-label form-control-label">Description</label>
                     <div class="col-lg-11">
-                        <textarea class="desc-content w-100" v-model="formCreate.description"> </textarea>
+                        <textarea class="desc-content w-100" v-model="mediaStore.formCreate.description"> </textarea>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-lg-1 col-form-label form-control-label">Year</label>
                     <div class="col-lg-2">
-                        <input class="form-control" type="number" v-model="formCreate.year">
+                        <input class="form-control" type="number" v-model="mediaStore.formCreate.year">
                     </div>
 
                     <div class="space-empty w-100"></div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Language</label>
                     <div class="col-lg-2">
-                        <input class="form-control" type="text" v-model="formCreate.language">
+                        <input class="form-control" type="text" v-model="mediaStore.formCreate.language">
                     </div>
                 </div>
 
-                <div class="form-group row genre" v-for="index in  formCreate.genre.length ">
+                <div class="form-group row genre" v-for="index in mediaStore.formCreate.genre.length ">
                     <label class="col-lg-1 col-form-label form-control-label">Genre</label>
                     <div class="col-lg-2">
-                        <select name="genre" class="form-control" v-model="formCreate.genre[index - 1]">
+                        <select name="genre" class="form-control" v-model="mediaStore.formCreate.genre[index - 1]">
                             <option v-for="opt in optionGenre">{{ opt }}</option>
                         </select>
                     </div>
-                    <div class="d-flex col-lg-1 text-center" v-if="index == 1">
-                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
-                            @click="handleAddGenre" />
-                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
-                            @click="handleDelGenre" />
-                    </div>
+                    <BtnAddRemoveItem :msg="msgIdentifyAddDelItem[0]" v-if="index == 1" />
                 </div>
 
-                <div class="form-group row episodes" v-for="index in  formCreate.eppisodes.length " :key="index">
+                <div class="form-group row episodes" v-for="index in mediaStore.formCreate.eppisodes.length " :key="index">
                     <label class="col-lg-1 col-form-label form-control-label">Ep {{ index }}</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url" v-model="formCreate.eppisodes[index - 1].videoUrl">
+                        <input class="form-control" type="url"
+                            v-model="mediaStore.formCreate.eppisodes[index - 1].videoUrl">
                         <label class="col-form-label form-control-label text-secondary">Video url</label>
                     </div>
-                    <div class="d-flex col-lg-1 text-center" v-if="index == 1">
-                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
-                            @click="handleAddEp" />
-                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
-                            @click="handleDelEp" />
-                    </div>
+
+                    <BtnAddRemoveItem :msg="msgIdentifyAddDelItem[1]" v-if="index == 1" />
                 </div>
 
-                <div class="form-group row cast" v-for="index in formCreate.casts.length" :key="index">
+                <div class="form-group row cast" v-for="index in mediaStore.formCreate.casts.length" :key="index">
                     <label class="col-lg-1 col-form-label form-control-label">Cast</label>
                     <div class="col-lg-3">
-                        <input class="form-control" type="text" v-model="formCreate.casts[index - 1].name">
+                        <input class="form-control" type="text" v-model="mediaStore.formCreate.casts[index - 1].name">
                         <label class="col-form-label form-control-label text-secondary">Name</label>
                     </div>
                     <div class="col-lg-3">
-                        <input class="form-control" type="text" v-model="formCreate.casts[index - 1].character">
+                        <input class="form-control" type="text" v-model="mediaStore.formCreate.casts[index - 1].character">
                         <label class="col-form-label form-control-label text-secondary">Portray</label>
                     </div>
                     <div class="col-lg-4">
-                        <input class="form-control" type="url" v-model="formCreate.casts[index - 1].avatar">
+                        <input class="form-control" type="url" v-model="mediaStore.formCreate.casts[index - 1].avatar">
                         <label class="col-form-label form-control-label text-secondary">Image url</label>
                     </div>
-                    <div class="d-flex col-lg-1 text-center" v-if="index == 1">
-                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
-                            @click="handleAddCast" />
-                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
-                            @click="handleDelCast" />
-                    </div>
+
+                    <BtnAddRemoveItem :msg="msgIdentifyAddDelItem[2]" v-if="index == 1" />
                 </div>
 
                 <div class="form-group row">
                     <label class="col-lg-1 col-form-label form-control-label">
                         Images
                     </label>
-                    <div class="d-flex col-lg-1 text-center">
-                        <font-awesome-icon :icon="['fas', 'plus-circle']" class="btn-add-item h3 mt-1"
-                            @click="handleAddCarousel" />
-                        <font-awesome-icon :icon="['fas', 'minus-circle']" class="btn-del-item h3 mt-1 ml-3"
-                            @click="handleDelCarousel" />
-                    </div>
+
+                    <BtnAddRemoveItem :msg="msgIdentifyAddDelItem[3]" />
 
                     <div class="space-empty w-100"></div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Background</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url" v-model="formCreate.posters[0]">
+                        <input class="form-control" type="url" v-model="mediaStore.formCreate.posters[0]">
                     </div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Poster</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url" v-model="formCreate.posters[1]">
+                        <input class="form-control" type="url" v-model="mediaStore.formCreate.posters[1]">
                     </div>
                 </div>
 
-                <div class="form-group row carousel" v-for="img in (formCreate.posters.length - 2)">
+                <div class="form-group row carousel" v-for="img in (mediaStore.formCreate.posters.length - 2)">
                     <label class="col-lg-1 col-form-label form-control-label">Carousel {{ img }}</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url" v-model="formCreate.posters[img + 1]">
+                        <input class="form-control" type="url" v-model="mediaStore.formCreate.posters[img + 1]">
                     </div>
                 </div>
 
@@ -146,6 +129,8 @@
     </div>
 </template>
 <script>
+import BtnAddRemoveItem from '@/components/BtnAddRemoveItem.vue';
+
 import { useMediaStore } from '@/stores/media.js';
 import { useUserStore } from '@/stores/user.js';
 
@@ -160,6 +145,7 @@ export default {
             userStore
         }
     },
+    components: { BtnAddRemoveItem },
 
     data() {
         return {
@@ -179,87 +165,52 @@ export default {
                 'Biography',
                 'Fantasy'
             ],
-            formCreate: {
-                userID: this.userStore.admin._id,
-                name: '',
-                description: '',
-                posters: [
-                    '',
-                    '',
-                ],
-                category: '',
-                genre: [
-                    ''
-                ],
-                language: '',
-                year: 1999,
-                eppisodes: [
-                    {
-                        videoUrl: '',
-                        number: 1
-                    }
-                ],
-                rate: 0,
-                numberOfReviews: 0,
-                casts: [
-                    {
-                        "name": "",
-                        "character": "",
-                        "avatar": ""
-                    }
-                ]
-            }
+
+            msgIdentifyAddDelItem: ['genre', 'ep', 'cast', 'img'],
         }
     },
 
     methods: {
-        handleAddEp() {
-            const number = this.formCreate.eppisodes.length + 1;
-            this.formCreate.eppisodes.push({
-                videoUrl: '',
-                number: number
-            });
-        },
-        handleDelEp() {
-            this.formCreate.eppisodes.pop();
-        },
-
-        handleAddGenre() {
-            this.formCreate.genre.push("");
-        },
-        handleDelGenre() {
-            this.formCreate.genre.pop();
-        },
-
-        handleAddCarousel() {
-            this.formCreate.posters.push("");
-        },
-        handleDelCarousel() {
-            this.formCreate.posters.pop();
-        },
-
-        handleAddCast() {
-            this.formCreate.casts.push({
-                name: '',
-                character: '',
-                avatar: ''
-            });
-        },
-        handleDelCast() {
-            this.formCreate.casts.pop();
-        },
-
         async handleSubmitMedia() {
-            const res = await mediaService.create(this.formCreate, this.userStore.admin.token);
+            const res = await mediaService.create(this.mediaStore.formCreate, this.userStore.admin.token);
             if (res.status == 201) {
                 window.alert('Add movie successfully!');
-                this.formCreate = {}
+                this.mediaStore.formCreate = {
+                    userID: '', name: '', description: '',
+                    posters: [
+                        '',
+                        '',
+                    ],
+                    category: '',
+                    genre: [
+                        ''
+                    ],
+                    language: '', year: 1999,
+                    eppisodes: [
+                        {
+                            videoUrl: '',
+                            number: 1
+                        }
+                    ],
+                    rate: 0, numberRater: 0,
+                    casts: [
+                        {
+                            "name": "",
+                            "character": "",
+                            "avatar": ""
+                        }
+                    ]
+                }
             }
             else {
                 window.alert('Oops! Something wrong');
             }
         }
     },
+
+    async created() {
+        this.mediaStore.formCreate.userID = this.userStore.admin._id;
+    }
 }
 </script>
 <style lang="scss" scoped>

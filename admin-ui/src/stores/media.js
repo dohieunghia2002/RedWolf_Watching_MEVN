@@ -5,7 +5,36 @@ export const useMediaStore = defineStore('media', {
     state: () => {
         return {
             media: null,
-            formAdd: {},
+            formCreate: {
+                userID: '',
+                name: '',
+                description: '',
+                posters: [
+                    '',
+                    '',
+                ],
+                category: '',
+                genre: [
+                    ''
+                ],
+                language: '',
+                year: 1999,
+                eppisodes: [
+                    {
+                        videoUrl: '',
+                        number: 1
+                    }
+                ],
+                rate: 0,
+                numberOfReviews: 0,
+                casts: [
+                    {
+                        "name": "",
+                        "character": "",
+                        "avatar": ""
+                    }
+                ]
+            },
             listMovies: [],
             listSeries: []
         }
