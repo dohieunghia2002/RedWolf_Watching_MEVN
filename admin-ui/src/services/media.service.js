@@ -20,6 +20,13 @@ class MediaService {
         return (await this.api.post('/add', formData, header));
     }
 
+    async edit(formData, tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.put(`/update/${id}`, formData, header));
+    }
+
     async getDetail(id) {
         return (await this.api.get(`/detail/${id}`)).data;
     }

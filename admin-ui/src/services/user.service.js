@@ -11,6 +11,10 @@ class UserService {
             password: formData.password
         });
     }
+
+    async list() {
+        return (await this.api.get('/stored')).data;
+    }
 }
 
 export default new UserService;

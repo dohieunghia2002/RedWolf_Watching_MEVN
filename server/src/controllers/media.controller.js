@@ -31,10 +31,17 @@ const addMedia = async (req, res) => {
 // update info media, route PUT /media/update
 const updateMedia = async (req, res) => {
     try {
-        const media = await Media.findOneAndUpdate({ _id: req.params.id }, req.body, {
-            new: true
-        });
-        responseHandler.ok(res, media);
+        const media = await Media.findOneAndUpdate(
+            { _id: req.params.id },
+            req.body,
+            { new: true }
+        );
+        if (media) {
+            responseHandler.ok(res, media);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
     } catch {
         responseHandler.error(res);
     }

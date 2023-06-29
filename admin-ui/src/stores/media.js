@@ -42,7 +42,7 @@ export const useMediaStore = defineStore('media', {
                     }
                 ],
                 rate: 0,
-                numberOfReviews: 0,
+                numberRater: 0,
                 casts: [
                     {
                         "name": "",

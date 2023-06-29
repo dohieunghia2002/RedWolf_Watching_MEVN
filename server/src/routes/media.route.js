@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post('/add', tokenMiddleware.auth, mediaController.addMedia);
 
-router.put('/update', tokenMiddleware.auth, mediaController.updateMedia);
+router.put('/update/:id', tokenMiddleware.auth, mediaController.updateMedia);
 
 router.get('/movies/intro', mediaController.getRandMovie);
 
