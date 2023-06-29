@@ -1,5 +1,7 @@
 <template>
     <div class="movies container-fluid">
+        import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';
+        import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';
         <router-link :to="{ name: 'create' }" class="btn btn-success float-right my-2">
             Create movie <font-awesome-icon :icon="['fas', 'plus']" />
         </router-link>
@@ -24,14 +26,19 @@
                     <td colspan="2">
                         <router-link :to="{ name: 'edit', params: { id: movie._id } }" class="btn btn-link"
                             type="button">Edit</router-link>
-                        <button class="btn btn-link text-danger" type="button">Delete</button>
+                        <a href="" class="btn btn-link text-danger" data-toggle="modal"
+                            data-target="#remove-media-modal">Remove</a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <ModalRemoveMedia />
 </template>
 <script>
+import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';
+
 import { useMediaStore } from '@/stores/media.js';
 
 export default {
@@ -41,6 +48,8 @@ export default {
             mediaStore
         }
     },
+
+    components: { ModalRemoveMedia, ModalRemoveMedia, ModalRemoveMedia },
 
     async created() {
         await this.mediaStore.getList();
