@@ -1,7 +1,7 @@
 import Media from '../models/media.model.js';
 import responseHandler from '../handlers/response.handler.js';
 
-// Add media, route /media/add , access admin
+// Add media, route /media/add
 const addMedia = async (req, res) => {
     try {
         const {
@@ -27,6 +27,18 @@ const addMedia = async (req, res) => {
         responseHandler.error(res);
     }
 };
+
+// update info media, route PUT /media/update
+const updateMedia = async (req, res) => {
+    try {
+        const media = await Media.findOneAndUpdate({ _id: req.params.id }, req.body, {
+            new: true
+        });
+        responseHandler.ok(res, media);
+    } catch {
+        responseHandler.error(res);
+    }
+}
 
 
 // All media, route /media , access public
@@ -146,6 +158,7 @@ const show = async (req, res) => {
 
 export default {
     addMedia,
+    updateMedia,
     storeMedia,
     randomMedia,
     popularMovies,

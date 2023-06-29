@@ -5,7 +5,23 @@ export const useMediaStore = defineStore('media', {
     state: () => {
         return {
             media: null,
-            formCreate: {
+            optionGenre: [
+                'Action',
+                'Adventure',
+                'Music',
+                'Crime',
+                'Mystery',
+                'Thriller',
+                'Drama',
+                'Family',
+                'History',
+                'Sci-Fi',
+                'Comedy',
+                'Romance',
+                'Biography',
+                'Fantasy'
+            ],
+            formMedia: {
                 userID: '',
                 name: '',
                 description: '',
@@ -41,9 +57,9 @@ export const useMediaStore = defineStore('media', {
     },
 
     getters: {
-        score() {
-            if (this.media.numberRater > 0) {
-                return Math.round(this.media.rate / this.media.numberRater);
+        scoreInEditView() {
+            if (this.formMedia.numberRater > 0) {
+                return Math.round(this.formMedia.rate / this.formMedia.numberRater);
             }
             return 0;
         },

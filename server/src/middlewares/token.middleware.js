@@ -35,16 +35,5 @@ const auth = async (req, res, next) => {
     next();
 }
 
-const verifyTokenAndAdmin = async (req, res, next) => {
-    const tokenDecoded = tokenDecode(req, () => {
-        if (req.user.isAdmin) {
-            next()
-        }
-        else {
-            res.status(403).json('You are not allowed');
-        }
-    });
-}
-
 
 export default { auth, tokenDecode, verifyTokenAndAdmin };

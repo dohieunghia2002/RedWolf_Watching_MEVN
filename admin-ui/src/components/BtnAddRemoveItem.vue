@@ -19,39 +19,39 @@ export default {
     methods: {
         handleAdd() {
             if (this.msg === 'genre') {
-                this.mediaStore.formCreate.genre.push("");
+                this.mediaStore.formMedia.genre.push("");
             }
             else if (this.msg === 'ep') {
-                const number = this.mediaStore.formCreate.eppisodes.length + 1;
-                this.mediaStore.formCreate.eppisodes.push({
+                const number = this.mediaStore.formMedia.eppisodes.length + 1;
+                this.mediaStore.formMedia.eppisodes.push({
                     videoUrl: '',
                     number: number
                 });
             }
             else if (this.msg === 'cast') {
-                this.mediaStore.formCreate.casts.push({
+                this.mediaStore.formMedia.casts.push({
                     name: '',
                     character: '',
                     avatar: ''
                 });
             }
             else {
-                this.mediaStore.formCreate.posters.push("");
+                this.mediaStore.formMedia.posters.push("");
             }
         },
 
         handleDel() {
             if (this.msg === 'genre') {
-                this.mediaStore.formCreate.genre.pop();
+                this.mediaStore.formMedia.genre.pop();
             }
             else if (this.msg === 'ep') {
-                this.mediaStore.formCreate.eppisodes.pop();
+                this.mediaStore.formMedia.eppisodes.pop();
             }
             else if (this.msg === 'cast') {
-                this.mediaStore.formCreate.casts.pop();
+                this.mediaStore.formMedia.casts.pop();
             }
             else {
-                this.mediaStore.formCreate.posters.pop();
+                this.mediaStore.formMedia.posters.pop();
             }
         }
     }

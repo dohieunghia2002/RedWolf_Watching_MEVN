@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.post('/add', tokenMiddleware.auth, mediaController.addMedia);
 
+router.put('/update', tokenMiddleware.auth, mediaController.updateMedia);
+
 router.get('/movies/intro', mediaController.getRandMovie);
 
 router.get('/rand', mediaController.randomMedia);

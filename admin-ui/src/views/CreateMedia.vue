@@ -12,18 +12,18 @@
                 <div class="form-group row">
                     <label class="col-lg-1 col-form-label form-control-label">Creator</label>
                     <div class="col-lg-3">
-                        <input class="form-control" type="text" v-model="mediaStore.formCreate.userID" disabled>
+                        <input class="form-control" type="text" v-model="mediaStore.formMedia.userID" disabled>
                     </div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Name</label>
                     <div class="col-lg-4">
-                        <input class="form-control" type="text" v-model="mediaStore.formCreate.name">
+                        <input class="form-control" type="text" v-model="mediaStore.formMedia.name">
                     </div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Category</label>
 
                     <div class="col-lg-2">
-                        <select name="category" class="form-control" v-model="mediaStore.formCreate.category">
+                        <select name="category" class="form-control" v-model="mediaStore.formMedia.category">
                             <option>movie</option>
                             <option>tv series</option>
                         </select>
@@ -33,57 +33,56 @@
 
                     <label class="col-lg-1 col-form-label form-control-label">Description</label>
                     <div class="col-lg-11">
-                        <textarea class="desc-content w-100" v-model="mediaStore.formCreate.description"> </textarea>
+                        <textarea class="desc-content w-100" v-model="mediaStore.formMedia.description"> </textarea>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-lg-1 col-form-label form-control-label">Year</label>
                     <div class="col-lg-2">
-                        <input class="form-control" type="number" v-model="mediaStore.formCreate.year">
+                        <input class="form-control" type="number" v-model="mediaStore.formMedia.year">
                     </div>
 
                     <div class="space-empty w-100"></div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Language</label>
                     <div class="col-lg-2">
-                        <input class="form-control" type="text" v-model="mediaStore.formCreate.language">
+                        <input class="form-control" type="text" v-model="mediaStore.formMedia.language">
                     </div>
                 </div>
 
-                <div class="form-group row genre" v-for="index in mediaStore.formCreate.genre.length ">
+                <div class="form-group row genre" v-for="index in mediaStore.formMedia.genre.length ">
                     <label class="col-lg-1 col-form-label form-control-label">Genre</label>
                     <div class="col-lg-2">
-                        <select name="genre" class="form-control" v-model="mediaStore.formCreate.genre[index - 1]">
-                            <option v-for="opt in optionGenre">{{ opt }}</option>
+                        <select name="genre" class="form-control" v-model="mediaStore.formMedia.genre[index - 1]">
+                            <option v-for="opt in mediaStore.optionGenre">{{ opt }}</option>
                         </select>
                     </div>
                     <BtnAddRemoveItem :msg="msgIdentifyAddDelItem[0]" v-if="index == 1" />
                 </div>
 
-                <div class="form-group row episodes" v-for="index in mediaStore.formCreate.eppisodes.length " :key="index">
+                <div class="form-group row episodes" v-for="index in mediaStore.formMedia.eppisodes.length " :key="index">
                     <label class="col-lg-1 col-form-label form-control-label">Ep {{ index }}</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url"
-                            v-model="mediaStore.formCreate.eppisodes[index - 1].videoUrl">
+                        <input class="form-control" type="url" v-model="mediaStore.formMedia.eppisodes[index - 1].videoUrl">
                         <label class="col-form-label form-control-label text-secondary">Video url</label>
                     </div>
 
                     <BtnAddRemoveItem :msg="msgIdentifyAddDelItem[1]" v-if="index == 1" />
                 </div>
 
-                <div class="form-group row cast" v-for="index in mediaStore.formCreate.casts.length" :key="index">
+                <div class="form-group row cast" v-for="index in mediaStore.formMedia.casts.length" :key="index">
                     <label class="col-lg-1 col-form-label form-control-label">Cast</label>
                     <div class="col-lg-3">
-                        <input class="form-control" type="text" v-model="mediaStore.formCreate.casts[index - 1].name">
+                        <input class="form-control" type="text" v-model="mediaStore.formMedia.casts[index - 1].name">
                         <label class="col-form-label form-control-label text-secondary">Name</label>
                     </div>
                     <div class="col-lg-3">
-                        <input class="form-control" type="text" v-model="mediaStore.formCreate.casts[index - 1].character">
+                        <input class="form-control" type="text" v-model="mediaStore.formMedia.casts[index - 1].character">
                         <label class="col-form-label form-control-label text-secondary">Portray</label>
                     </div>
                     <div class="col-lg-4">
-                        <input class="form-control" type="url" v-model="mediaStore.formCreate.casts[index - 1].avatar">
+                        <input class="form-control" type="url" v-model="mediaStore.formMedia.casts[index - 1].avatar">
                         <label class="col-form-label form-control-label text-secondary">Image url</label>
                     </div>
 
@@ -101,19 +100,19 @@
 
                     <label class="col-lg-1 col-form-label form-control-label">Background</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url" v-model="mediaStore.formCreate.posters[0]">
+                        <input class="form-control" type="url" v-model="mediaStore.formMedia.posters[0]">
                     </div>
 
                     <label class="col-lg-1 col-form-label form-control-label">Poster</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url" v-model="mediaStore.formCreate.posters[1]">
+                        <input class="form-control" type="url" v-model="mediaStore.formMedia.posters[1]">
                     </div>
                 </div>
 
-                <div class="form-group row carousel" v-for="img in (mediaStore.formCreate.posters.length - 2)">
+                <div class="form-group row carousel" v-for="img in (mediaStore.formMedia.posters.length - 2)">
                     <label class="col-lg-1 col-form-label form-control-label">Carousel {{ img }}</label>
                     <div class="col-lg-5">
-                        <input class="form-control" type="url" v-model="mediaStore.formCreate.posters[img + 1]">
+                        <input class="form-control" type="url" v-model="mediaStore.formMedia.posters[img + 1]">
                     </div>
                 </div>
 
@@ -149,33 +148,16 @@ export default {
 
     data() {
         return {
-            optionGenre: [
-                'Action',
-                'Adventure',
-                'Music',
-                'Crime',
-                'Mystery',
-                'Thriller',
-                'Drama',
-                'Family',
-                'History',
-                'Sci-Fi',
-                'Comedy',
-                'Romance',
-                'Biography',
-                'Fantasy'
-            ],
-
             msgIdentifyAddDelItem: ['genre', 'ep', 'cast', 'img'],
         }
     },
 
     methods: {
         async handleSubmitMedia() {
-            const res = await mediaService.create(this.mediaStore.formCreate, this.userStore.admin.token);
+            const res = await mediaService.create(this.mediaStore.formMedia, this.userStore.admin.token);
             if (res.status == 201) {
                 window.alert('Add movie successfully!');
-                this.mediaStore.formCreate = {
+                this.mediaStore.formMedia = {
                     userID: '', name: '', description: '',
                     posters: [
                         '',
@@ -209,7 +191,7 @@ export default {
     },
 
     async created() {
-        this.mediaStore.formCreate.userID = this.userStore.admin._id;
+        this.mediaStore.formMedia.userID = this.userStore.admin._id;
     }
 }
 </script>
