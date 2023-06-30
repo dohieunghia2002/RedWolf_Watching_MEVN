@@ -11,6 +11,10 @@ router.post('/add', tokenMiddleware.auth, mediaController.addMedia);
 
 router.put('/update/:id', tokenMiddleware.auth, mediaController.updateMedia);
 
+router.delete('/:id', tokenMiddleware.auth, mediaController.delMedia);
+
+router.get('/trash', tokenMiddleware.auth, mediaController.trashMedia);
+
 router.get('/movies/intro', mediaController.getRandMovie);
 
 router.get('/rand', mediaController.randomMedia);

@@ -1,10 +1,13 @@
 <template>
     <div class="movies container-fluid">
-        import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';
-        import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';
+
         <router-link :to="{ name: 'create' }" class="btn btn-success float-right my-2">
             Create movie <font-awesome-icon :icon="['fas', 'plus']" />
         </router-link>
+        <router-link :to="{ name: 'recycle' }" class="btn btn-danger float-right mr-2 my-2">
+            Trash <font-awesome-icon :icon="['fas', 'trash']" />
+        </router-link>
+
         <table class="table table-bordered bg-light">
             <thead>
                 <tr class="text-center">
@@ -26,15 +29,15 @@
                     <td colspan="2">
                         <router-link :to="{ name: 'edit', params: { id: movie._id } }" class="btn btn-link"
                             type="button">Edit</router-link>
-                        <a href="" class="btn btn-link text-danger" data-toggle="modal"
-                            data-target="#remove-media-modal">Remove</a>
+                        <a href="" class="btn btn-link btn-modal text-danger" data-toggle="modal" @click="getId(movie._id)"
+                            data-target="#remove-media-modal">Delete</a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <ModalRemoveMedia />
+    <ModalRemoveMedia :id="idMedia" />
 </template>
 <script>
 import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';
@@ -49,7 +52,19 @@ export default {
         }
     },
 
-    components: { ModalRemoveMedia, ModalRemoveMedia, ModalRemoveMedia },
+    components: { ModalRemoveMedia },
+
+    data() {
+        return {
+            idMedia: null
+        }
+    },
+
+    methods: {
+        getId(id) {
+            this.idMedia = id;
+        },
+    },
 
     async created() {
         await this.mediaStore.getList();
@@ -57,6 +72,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '@/assets/styles/globalStyle.scss';
+
 .items-movie {
     font-size: 1.2rem;
 

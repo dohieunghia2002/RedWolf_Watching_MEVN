@@ -10,6 +10,7 @@ import Series from '../views/Series.vue';
 import Membership from '../views/Membership.vue';
 import EditMedia from '../views/EditMedia.vue';
 import CreateMedia from '../views/CreateMedia.vue';
+import Trash from '../views/Trash.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -70,6 +71,15 @@ const router = createRouter({
       name: 'member',
       components: {
         default: Membership,
+        Header,
+        Footer
+      }
+    },
+    {
+      path: '/admin/media/recycle-bin',
+      name: 'recycle',
+      components: {
+        default: Trash,
         Header,
         Footer
       }

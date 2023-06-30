@@ -27,7 +27,7 @@ const mediaSchema = new mongoose.Schema({
     ],
 }, { collection: 'medias' })
 
-mediaSchema.plugin(mongooseDelete);
+mediaSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
 
 const Media = mongoose.model('Media', mediaSchema);
 export default Media;

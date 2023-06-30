@@ -47,6 +47,54 @@ const updateMedia = async (req, res) => {
     }
 }
 
+// Delete media, route DELETE /media/:id
+const delMedia = async (req, res) => {
+    try {
+        const resDel = await Media.delete(
+            { _id: req.params.id }
+        );
+        if (resDel) {
+            responseHandler.ok(res, resDel);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
+// Restore media, route PATCH /media/restore/:id
+const restoreMedia = async (req, res) => {
+    try {
+        const resDel = await Media.delete(
+            { _id: req.params.id }
+        );
+        if (resDel) {
+            responseHandler.ok(res, resDel);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
+// Deleted media, route GET /media/trash
+const trashMedia = async (req, res) => {
+    try {
+        const resDel = await Media.findDeleted();
+        if (resDel) {
+            responseHandler.ok(res, resDel);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
 
 // All media, route /media , access public
 const storeMedia = async (req, res) => {
@@ -164,8 +212,8 @@ const show = async (req, res) => {
 }
 
 export default {
-    addMedia,
-    updateMedia,
+    addMedia, updateMedia, delMedia,
+    trashMedia,
     storeMedia,
     randomMedia,
     popularMovies,

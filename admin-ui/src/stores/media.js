@@ -52,7 +52,8 @@ export const useMediaStore = defineStore('media', {
                 ]
             },
             listMovies: [],
-            listSeries: []
+            listSeries: [],
+            trash: []
         }
     },
 
@@ -69,6 +70,20 @@ export const useMediaStore = defineStore('media', {
         async getList() {
             this.listMovies = await mediaService.popularMovies();
             this.listSeries = await mediaService.popularSeries();
+        },
+
+        async getTrash(token) {
+            this.trash = await mediaService.trash(token);
+        },
+
+        async deleteMedia(token, id) {
+            const res = await mediaService.delete(token, id);
+            if (res.status == 200) {
+                window.alert('Delete successfully!');
+                $('#remove-media-modal').modal('toggle');
+                $('.modal-backdrop').remove();
+                await this.getList();
+            }
         }
     }
 });

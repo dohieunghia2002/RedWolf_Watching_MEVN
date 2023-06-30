@@ -13,7 +13,8 @@
                     Are you sure to remove this movie?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" @click="" class="btn btn-danger">
+                    <button type="button" @click="mediaStore.deleteMedia(userStore.admin.token, this.id)"
+                        class="btn btn-danger">
                         Remove
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -23,8 +24,19 @@
     </div>
 </template>
 <script>
-export default {
+import { useUserStore } from '@/stores/user.js';
+import { useMediaStore } from '@/stores/media.js';
 
+export default {
+    props: ['id'],
+    setup() {
+        const userStore = useUserStore();
+        const mediaStore = useMediaStore();
+        return {
+            userStore,
+            mediaStore
+        }
+    }
 }
 </script>
 <style lang="scss" scoped></style>

@@ -27,6 +27,20 @@ class MediaService {
         return (await this.api.put(`/update/${id}`, formData, header));
     }
 
+    async delete(tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.delete(`/${id}`, header));
+    }
+
+    async trash(tokenVal) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.get('/trash', header)).data;
+    }
+
     async getDetail(id) {
         return (await this.api.get(`/detail/${id}`)).data;
     }
