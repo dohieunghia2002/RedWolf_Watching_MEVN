@@ -1,10 +1,14 @@
 import { defineStore } from 'pinia';
 import mediaService from '@/services/media.service.js';
+import { NULL } from 'sass';
 
 export const useMediaStore = defineStore('media', {
     state: () => {
         return {
             media: null,
+            idRestore: {
+                "id": null
+            },
             optionGenre: [
                 'Action',
                 'Adventure',
@@ -83,6 +87,14 @@ export const useMediaStore = defineStore('media', {
                 $('#remove-media-modal').modal('toggle');
                 $('.modal-backdrop').remove();
                 await this.getList();
+            }
+        },
+
+        async restoreMedia(token, id) {
+            this.idRestore.id = await id;
+            const res = await mediaService.restore(token, this.idRestore);
+            if (res.status == 200) {
+                await this.getTrash(token);
             }
         }
     }

@@ -41,6 +41,13 @@ class MediaService {
         return (await this.api.get('/trash', header)).data;
     }
 
+    async restore(tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.put('/restore', id, header));
+    }
+
     async getDetail(id) {
         return (await this.api.get(`/detail/${id}`)).data;
     }

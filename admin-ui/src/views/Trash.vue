@@ -1,6 +1,7 @@
 <template>
     <div class="trash mt-4 container-fluid">
-        <table class="table table-bordered bg-light">
+        <h5 class="text-light text-center" v-if="mediaStore.trash.length === 0">No movies have been deleted</h5>
+        <table class="table table-bordered bg-light" v-else>
             <thead>
                 <tr class="text-center">
                     <th scope="col">#</th>
@@ -19,7 +20,10 @@
                     <td class="text-info">{{ (movie.rate / movie.numberRater) || 0 }}</td>
                     <td>{{ movie.language }}</td>
                     <td colspan="2">
-                        <button type="button" class="btn btn-link text-primary">Restore</button>
+                        <button type="button" class="btn btn-link text-primary"
+                            @click="mediaStore.restoreMedia(userStore.admin.token, movie._id)">
+                            Restore
+                        </button>
                         <button type="button" class="btn btn-link text-danger">Remove</button>
                     </td>
                 </tr>
@@ -42,12 +46,16 @@ export default {
     },
 
     async created() {
-        this.mediaStore.getTrash(this.userStore.admin.token);
+        await this.mediaStore.getTrash(this.userStore.admin.token);
     },
 }
 </script>
 <style lang="scss" scoped>
 .trash {
     min-height: 510px;
+}
+
+.btn.btn-link {
+    box-shadow: none;
 }
 </style>

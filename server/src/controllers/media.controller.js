@@ -64,14 +64,15 @@ const delMedia = async (req, res) => {
     }
 }
 
-// Restore media, route PATCH /media/restore/:id
+// Restore media, route PUT /media/restore
 const restoreMedia = async (req, res) => {
     try {
-        const resDel = await Media.delete(
-            { _id: req.params.id }
-        );
-        if (resDel) {
-            responseHandler.ok(res, resDel);
+        const { id } = await req.body;
+        const restore = await Media.restore({ _id: id });
+        const media = await Media.findById(id);
+        await media.save();
+        if (restore) {
+            responseHandler.ok(res, restore);
         }
         else {
             responseHandler.notFound(res);
@@ -213,7 +214,7 @@ const show = async (req, res) => {
 
 export default {
     addMedia, updateMedia, delMedia,
-    trashMedia,
+    trashMedia, restoreMedia,
     storeMedia,
     randomMedia,
     popularMovies,

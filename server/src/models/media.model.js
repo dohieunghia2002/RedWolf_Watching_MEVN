@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import mongooseDelete from 'mongoose-delete';
 
-const mediaSchema = new mongoose.Schema({
+var mediaSchema = new mongoose.Schema({
     userID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -24,10 +24,13 @@ const mediaSchema = new mongoose.Schema({
             character: { type: String },
             avatar: { type: String, required: true }
         }
-    ],
+    ]
 }, { collection: 'medias' })
 
-mediaSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
+mediaSchema.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: true
+});
 
 const Media = mongoose.model('Media', mediaSchema);
 export default Media;

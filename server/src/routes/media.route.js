@@ -15,6 +15,8 @@ router.delete('/:id', tokenMiddleware.auth, mediaController.delMedia);
 
 router.get('/trash', tokenMiddleware.auth, mediaController.trashMedia);
 
+router.put('/restore', tokenMiddleware.auth, mediaController.restoreMedia);
+
 router.get('/movies/intro', mediaController.getRandMovie);
 
 router.get('/rand', mediaController.randomMedia);
