@@ -3,6 +3,10 @@
         <router-link :to="{ name: 'create' }" class="btn btn-success float-right my-2">
             Create movie <font-awesome-icon :icon="['fas', 'plus']" />
         </router-link>
+        <router-link :to="{ name: 'recycle' }" class="btn btn-danger float-right mr-2 my-2">
+            Trash <font-awesome-icon :icon="['fas', 'trash']" />
+        </router-link>
+
         <table class="table table-bordered bg-light">
             <thead>
                 <tr class="text-center">
@@ -33,7 +37,7 @@
         </table>
     </div>
 
-    <ModalRemoveMedia :id="idMedia" />
+    <ModalRemoveMedia :id="idMedia" :key="idMedia" />
 </template>
 <script>
 import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';

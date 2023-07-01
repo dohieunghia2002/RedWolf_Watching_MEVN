@@ -34,6 +34,13 @@ class MediaService {
         return (await this.api.delete(`/${id}`, header));
     }
 
+    async realDelete(tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.delete(`/${id}/force`, header));
+    }
+
     async trash(tokenVal) {
         const header = {
             headers: { 'authorization': `Bearer ${tokenVal}` }

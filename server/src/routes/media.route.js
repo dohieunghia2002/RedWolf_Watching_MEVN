@@ -11,6 +11,8 @@ router.post('/add', tokenMiddleware.auth, mediaController.addMedia);
 
 router.put('/update/:id', tokenMiddleware.auth, mediaController.updateMedia);
 
+router.delete('/:id/force', tokenMiddleware.auth, mediaController.forceDel);
+
 router.delete('/:id', tokenMiddleware.auth, mediaController.delMedia);
 
 router.get('/trash', tokenMiddleware.auth, mediaController.trashMedia);

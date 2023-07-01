@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import mediaService from '@/services/media.service.js';
-import { NULL } from 'sass';
 
 export const useMediaStore = defineStore('media', {
     state: () => {
@@ -83,8 +82,7 @@ export const useMediaStore = defineStore('media', {
         async deleteMedia(token, id) {
             const res = await mediaService.delete(token, id);
             if (res.status == 200) {
-                window.alert('Delete successfully!');
-                $('#remove-media-modal').modal('toggle');
+                $('#remove-media-modal').modal('hide');
                 $('.modal-backdrop').remove();
                 await this.getList();
             }
@@ -93,6 +91,13 @@ export const useMediaStore = defineStore('media', {
         async restoreMedia(token, id) {
             this.idRestore.id = await id;
             const res = await mediaService.restore(token, this.idRestore);
+            if (res.status == 200) {
+                await this.getTrash(token);
+            }
+        },
+
+        async forceDelete(token, id) {
+            const res = await mediaService.realDelete(token, id);
             if (res.status == 200) {
                 await this.getTrash(token);
             }

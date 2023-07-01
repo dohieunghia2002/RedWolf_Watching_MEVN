@@ -97,6 +97,21 @@ const trashMedia = async (req, res) => {
     }
 }
 
+// Real delete media, route DELETE /media/:id/force
+const forceDel = async (req, res) => {
+    try {
+        const resDel = await Media.deleteOne({ _id: req.params.id });
+        if (resDel) {
+            responseHandler.ok(res, resDel);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
 // All media, route /media , access public
 const storeMedia = async (req, res) => {
     try {
@@ -214,7 +229,7 @@ const show = async (req, res) => {
 
 export default {
     addMedia, updateMedia, delMedia,
-    trashMedia, restoreMedia,
+    trashMedia, restoreMedia, forceDel,
     storeMedia,
     randomMedia,
     popularMovies,

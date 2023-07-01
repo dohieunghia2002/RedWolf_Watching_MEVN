@@ -37,7 +37,7 @@
         </table>
     </div>
 
-    <ModalRemoveMedia :id="idMedia" />
+    <ModalRemoveMedia :id="idMedia" :key="idMedia" />
 </template>
 <script>
 import ModalRemoveMedia from '@/components/ModalRemoveMedia.vue';

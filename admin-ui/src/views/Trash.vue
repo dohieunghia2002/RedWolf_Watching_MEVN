@@ -24,7 +24,10 @@
                             @click="mediaStore.restoreMedia(userStore.admin.token, movie._id)">
                             Restore
                         </button>
-                        <button type="button" class="btn btn-link text-danger">Remove</button>
+                        <button type="button" class="btn btn-link text-danger"
+                            @click="mediaStore.forceDelete(userStore.admin.token, movie._id)">
+                            Remove
+                        </button>
                     </td>
                 </tr>
             </tbody>

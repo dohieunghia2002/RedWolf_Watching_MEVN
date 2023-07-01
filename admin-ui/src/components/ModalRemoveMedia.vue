@@ -10,12 +10,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure to remove this movie?
+                    Are you sure to delete this movie?
                 </div>
                 <div class="modal-footer">
                     <button type="button" @click="mediaStore.deleteMedia(userStore.admin.token, this.id)"
                         class="btn btn-danger">
-                        Remove
+                        Delete
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
@@ -23,12 +23,14 @@
         </div>
     </div>
 </template>
+
 <script>
 import { useUserStore } from '@/stores/user.js';
 import { useMediaStore } from '@/stores/media.js';
 
 export default {
     props: ['id'],
+
     setup() {
         const userStore = useUserStore();
         const mediaStore = useMediaStore();
@@ -39,4 +41,5 @@ export default {
     }
 }
 </script>
+
 <style lang="scss" scoped></style>
