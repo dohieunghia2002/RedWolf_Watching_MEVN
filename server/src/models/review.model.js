@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongooseDelete from 'mongoose-delete';
 
 
 const reviewSchema = new mongoose.Schema({
@@ -22,6 +23,11 @@ const reviewSchema = new mongoose.Schema({
         default: 0
     }
 }, { collection: 'reviews' });
+
+reviewSchema.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: true
+});
 
 const Review = mongoose.model('Review', reviewSchema);
 export default Review;

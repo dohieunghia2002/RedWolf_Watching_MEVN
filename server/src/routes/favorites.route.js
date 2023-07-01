@@ -17,6 +17,8 @@ router.post('/detail-medias', tokenMiddleware.auth, favoriteController.details);
 
 router.delete('/:id', tokenMiddleware.auth, favoriteController.removeFavorite);
 
+router.get('/user', tokenMiddleware.auth, favoriteController.favoritesAllUser);
+
 router.get('/', tokenMiddleware.auth, favoriteController.getFavoritesOfUser);
 
 export default router;

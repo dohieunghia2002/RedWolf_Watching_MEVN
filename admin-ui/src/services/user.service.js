@@ -12,8 +12,11 @@ class UserService {
         });
     }
 
-    async list() {
-        return (await this.api.get('/stored')).data;
+    async list(tokenVal) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.get('/stored', header)).data;
     }
 }
 

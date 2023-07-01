@@ -2,7 +2,7 @@ import Favorite from '../models/favorite.model.js';
 import Media from '../models/media.model.js';
 import responseHandler from '../handlers/response.handler.js';
 
-// Add favorite, route POST /favorites/add , access public
+// Add favorite, route POST /favorites/add
 const addFavorite = async (req, res) => {
     try {
         const mediaId = await req.body.mediaID;
@@ -41,7 +41,7 @@ const addFavorite = async (req, res) => {
     }
 }
 
-// Remove favorite, route DELETE /favorites/:id , access public
+// Remove favorite, route DELETE /favorites/:id
 const removeFavorite = async (req, res) => {
     try {
         const favoriteID = await req.params.id;
@@ -66,10 +66,20 @@ const removeFavorite = async (req, res) => {
     }
 }
 
-// Get favorites of user, route GET /favorites , access private
+// Get favorites of user, route GET /favorites
 const getFavoritesOfUser = async (req, res) => {
     try {
         const favorite = await Favorite.findOne({ userID: req.user._id })
+        responseHandler.ok(res, favorite);
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
+// Admin get favorites all user, route GET /favorites/user
+const favoritesAllUser = async (req, res) => {
+    try {
+        const favorite = await Favorite.find({});
         responseHandler.ok(res, favorite);
     } catch {
         responseHandler.error(res);
@@ -93,5 +103,5 @@ const details = async (req, res) => {
 
 
 export default {
-    addFavorite, removeFavorite, getFavoritesOfUser, details
+    addFavorite, removeFavorite, getFavoritesOfUser, details, favoritesAllUser
 };

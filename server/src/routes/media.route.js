@@ -19,19 +19,19 @@ router.get('/trash', tokenMiddleware.auth, mediaController.trashMedia);
 
 router.put('/restore', tokenMiddleware.auth, mediaController.restoreMedia);
 
-router.get('/movies/intro', mediaController.getRandMovie);
-
 router.get('/rand', mediaController.randomMedia);
+
+router.get('/movies/intro', mediaController.getRandMovie);
 
 router.get('/movies/popular', mediaController.popularMovies);
 
 router.get('/movies/rated', mediaController.topRatedMovies);
 
+router.get('/tv-series/intro', mediaController.getRandSeries);
+
 router.get('/tv-series/popular', mediaController.popularTVSeries);
 
 router.get('/tv-series/rated', mediaController.topRatedSeries);
-
-router.get('/tv-series/intro', mediaController.getRandSeries);
 
 router.get('/detail/:id', mediaController.show);
 

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import mongooseDelete from 'mongoose-delete';
 
 const favoriteSchema = new mongoose.Schema({
     userID: {
@@ -13,6 +13,11 @@ const favoriteSchema = new mongoose.Schema({
         required: true
     }]
 }, { collection: 'favorites' });
+
+favoriteSchema.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: true
+});
 
 const Favorite = mongoose.model('Favorite', favoriteSchema);
 export default Favorite;

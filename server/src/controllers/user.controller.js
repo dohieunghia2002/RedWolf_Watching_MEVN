@@ -117,7 +117,22 @@ const changePassword = async (req, res) => {
     }
 }
 
-// Get info user, route GET /users/info , access private
+// List all user, GET /users/stored
+const stored = async (req, res) => {
+    try {
+        var users = await User.find({});
+        users = users.map(({ password, ...rest }) => {
+            const item = rest._doc;
+            item.password = undefined;
+            return item;
+        })
+        responseHandler.ok(res, users);
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
+// Get info user, route GET /users/info
 const getInfo = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
@@ -134,5 +149,5 @@ const getInfo = async (req, res) => {
 }
 
 export default {
-    registerUser, loginUser, changePassword, getInfo, updateInfo
+    registerUser, loginUser, stored, changePassword, getInfo, updateInfo
 };

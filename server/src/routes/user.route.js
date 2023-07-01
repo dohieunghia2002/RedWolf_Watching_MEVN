@@ -42,6 +42,8 @@ router.post(
     userController.loginUser
 );
 
+router.get('/stored', tokenMiddleware.auth, userController.stored);
+
 router.put('/add-info', tokenMiddleware.auth, userController.updateInfo);
 
 router.get('/info', tokenMiddleware.auth, userController.getInfo);
