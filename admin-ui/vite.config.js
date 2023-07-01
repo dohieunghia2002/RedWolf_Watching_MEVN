@@ -26,10 +26,10 @@ export default defineConfig({
         target: url_local,
         changeOrigin: true,
       },
-      //     '/reviews': {
-      //         target: url_local,
-      //         changeOrigin: true,
-      //     }
+      '/reviews': {
+        target: url_local,
+        changeOrigin: true,
+      }
     },
   },
 })

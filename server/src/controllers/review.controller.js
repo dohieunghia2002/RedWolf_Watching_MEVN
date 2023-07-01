@@ -71,6 +71,25 @@ const getReviewsOfUser = async (req, res) => {
     }
 }
 
+// Set of review each of user, route GET /reviews/users
+const eachOfReviewUser = async (req, res) => {
+    try {
+        var result = [];
+        var usersId = await Review.find({}).distinct('userID');
+        for (let i = 0; i < usersId.length; i++) {
+            var item = usersId[i];
+            var count = await Review.count({ userID: item });
+            result.push({
+                "userID": item,
+                "reviews": count
+            });
+        }
+        responseHandler.ok(res, result);
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
 //Get reviews of media, route GET /reviews/media/:id
 const reviewsMedia = async (req, res) => {
     try {
@@ -90,5 +109,5 @@ const reviewsMedia = async (req, res) => {
 
 
 export default {
-    create, remove, getReviewsOfUser, reviewsMedia
+    create, remove, getReviewsOfUser, reviewsMedia, eachOfReviewUser
 };

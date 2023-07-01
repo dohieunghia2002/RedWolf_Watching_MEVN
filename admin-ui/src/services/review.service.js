@@ -9,7 +9,7 @@ class ReviewService {
         const header = {
             headers: { 'authorization': `Bearer ${tokenVal}` }
         }
-        return (await this.api.get('/user', header)).data;
+        return (await this.api.get('/users', header)).data;
     }
 }
 

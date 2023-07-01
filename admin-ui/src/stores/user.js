@@ -44,6 +44,10 @@ export const useUserStore = defineStore('user', {
             sessionStorage.clear();
             this.admin = null;
             this.isLoggedin = false;
+        },
+
+        getTrash() {
+
         }
     },
 

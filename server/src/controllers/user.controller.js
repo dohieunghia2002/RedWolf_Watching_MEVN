@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import User from '../models/user.model.js';
 import responseHandler from '../handlers/response.handler.js';
 
-// Register user, route POST /users/auth/register , access public
+// Register user, route POST /users/auth/register
 const registerUser = async (req, res) => {
     const { fullName, username, password } = req.body;
     try {
@@ -35,7 +35,7 @@ const registerUser = async (req, res) => {
     }
 }
 
-// Login user, route POST /users/auth/login , access public
+// Login user, route POST /users/auth/login
 const loginUser = async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -91,7 +91,24 @@ const updateInfo = async (req, res) => {
     }
 }
 
-// Change user password, route PUT /users/password , access private
+// Soft delete user, route DELETE /users/:id
+const softDel = async (req, res) => {
+    try {
+        const resDel = await User.delete(
+            { _id: req.params.id }
+        );
+        if (resDel) {
+            responseHandler.ok(res, resDel);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
+// Change user password, route PUT /users/password
 const changePassword = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
     try {
@@ -149,5 +166,5 @@ const getInfo = async (req, res) => {
 }
 
 export default {
-    registerUser, loginUser, stored, changePassword, getInfo, updateInfo
+    registerUser, loginUser, stored, changePassword, getInfo, updateInfo, softDel
 };

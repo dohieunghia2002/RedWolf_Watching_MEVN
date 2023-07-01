@@ -19,6 +19,8 @@ router.delete('/:id', tokenMiddleware.auth, reviewController.remove);
 
 router.get('/media/:id', reviewController.reviewsMedia);
 
+router.get('/users', tokenMiddleware.auth, reviewController.eachOfReviewUser);
+
 router.get('/user/:id', tokenMiddleware.auth, reviewController.getReviewsOfUser);
 
 export default router;
