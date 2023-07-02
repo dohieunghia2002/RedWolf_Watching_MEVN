@@ -123,6 +123,21 @@ const deletedUsers = async (req, res) => {
     }
 }
 
+// Real delete user, route DELETE /users/:id/force
+const forceDelete = async (req, res) => {
+    try {
+        const resDel = await User.deleteOne({ _id: req.params.id });
+        if (resDel) {
+            responseHandler.ok(res, resDel);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
 // Restore user, route PUT /users/restore
 const restoreUser = async (req, res) => {
     try {
@@ -199,5 +214,5 @@ const getInfo = async (req, res) => {
 }
 
 export default {
-    registerUser, loginUser, stored, changePassword, getInfo, updateInfo, softDel, deletedUsers, restoreUser
+    registerUser, loginUser, stored, changePassword, getInfo, updateInfo, softDel, deletedUsers, restoreUser, forceDelete
 };

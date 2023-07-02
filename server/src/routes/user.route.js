@@ -46,6 +46,8 @@ router.get('/stored', tokenMiddleware.auth, userController.stored);
 
 router.put('/add-info', tokenMiddleware.auth, userController.updateInfo);
 
+router.delete('/:id/force', tokenMiddleware.auth, userController.forceDelete);
+
 router.delete('/:id', tokenMiddleware.auth, userController.softDel);
 
 router.put('/restore', tokenMiddleware.auth, userController.restoreUser);

@@ -58,6 +58,13 @@ export const useUserStore = defineStore('user', {
             return await userService.delete(token, id);
         },
 
+        async forceDel(token, id) {
+            const res = await userService.forceDelete(token, id);
+            if (res.status == 200) {
+                this.getTrash(token);
+            }
+        },
+
         async restoreMember(token, id) {
             this.idRestore.id = await id;
             const res = await userService.restore(token, this.idRestore);

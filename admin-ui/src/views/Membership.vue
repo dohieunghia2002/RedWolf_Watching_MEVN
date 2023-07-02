@@ -30,9 +30,9 @@
                         {{ user.isAdmin ? 'YES' : 'NO' }}
                     </td>
                     <td colspan="3">
-                        <a href="" class="btn btn-link text-warning">
+                        <router-link :to="{ name: 'favorites', params: { id: user._id } }" class="btn btn-link text-warning">
                             Favorites
-                        </a>
+                        </router-link>
                         <a href="" class="btn btn-link text-success">
                             Reviews
                         </a>

@@ -22,7 +22,8 @@
                             @click="userStore.restoreMember(userStore.admin.token, member._id)">
                             Restore
                         </button>
-                        <button type="button" class="btn btn-link text-danger">
+                        <button type="button" class="btn btn-link text-danger"
+                            @click="userStore.forceDel(userStore.admin.token, member._id)">
                             Remove
                         </button>
                     </td>

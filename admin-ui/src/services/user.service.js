@@ -26,6 +26,13 @@ class UserService {
         return (await this.api.delete(`/${id}`, header));
     }
 
+    async forceDelete(tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.delete(`/${id}/force`, header));
+    }
+
     async listDeleted(tokenVal) {
         const header = {
             headers: { 'authorization': `Bearer ${tokenVal}` }
