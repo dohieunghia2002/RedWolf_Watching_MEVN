@@ -1,5 +1,8 @@
 <template>
-    <div class="membership container-fluid mt-4" v-if="userStore.members.length > 0">
+    <div class="membership container-fluid" v-if="userStore.members.length > 0">
+        <router-link :to="{ name: 'deleted' }" class="btn btn-danger float-right my-2">
+            Trash <font-awesome-icon :icon="['fas', 'trash']" />
+        </router-link>
         <table class="table table-bordered bg-light">
             <thead>
                 <tr class="text-center">
@@ -41,7 +44,7 @@
         </table>
     </div>
 
-    <ModalRemoveUser />
+    <ModalRemoveUser :id="idMember" :key="idMember" />
 </template>
 <script>
 import ModalRemoveUser from '@/components/ModalRemoveUser.vue';
@@ -68,6 +71,12 @@ export default {
 
     components: { ModalRemoveUser },
 
+    data() {
+        return {
+            idMember: null
+        }
+    },
+
     methods: {
         async mergeByUserId() {
             return this.userStore.members.map(itm => ({
@@ -75,14 +84,22 @@ export default {
                 ...this.reviewStore.reviews.find((item) => (item.userID === itm._id) && item),
                 ...itm
             }));
-        }
+        },
+
+        getId(id) {
+            this.idMember = id;
+        },
+
+        async handleSetData() {
+            this.userStore.members = await userService.list(this.userStore.admin.token);
+            this.favoriteStore.favorites = await favoriteService.favorites(this.userStore.admin.token);
+            this.reviewStore.reviews = await reviewService.reviews(this.userStore.admin.token);
+            this.userStore.members = await this.mergeByUserId();
+        },
     },
 
     async created() {
-        this.userStore.members = await userService.list(this.userStore.admin.token);
-        this.favoriteStore.favorites = await favoriteService.favorites(this.userStore.admin.token);
-        this.reviewStore.reviews = await reviewService.reviews(this.userStore.admin.token);
-        this.userStore.members = await this.mergeByUserId();
+        await this.handleSetData();
     }
 }
 </script>

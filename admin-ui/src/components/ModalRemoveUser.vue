@@ -13,7 +13,7 @@
                     Are you sure to delete this member?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-danger" @click="handleDelete()">
                         Delete
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -24,21 +24,34 @@
 </template>
 
 <script>
-// import { useUserStore } from '@/stores/user.js';
-// import { useMediaStore } from '@/stores/media.js';
+import { useUserStore } from '@/stores/user.js';
+import userService from '@/services/user.service.js';
 
-// export default {
-//     props: ['id'],
+export default {
+    props: ['id'],
 
-//     setup() {
-//         const userStore = useUserStore();
-//         const mediaStore = useMediaStore();
-//         return {
-//             userStore,
-//             mediaStore
-//         }
-//     }
-// }
+    setup() {
+        const userStore = useUserStore();
+        return {
+            userStore,
+        }
+    },
+
+    methods: {
+        async handleSetData() {
+            this.userStore.members = await userService.list(this.userStore.admin.token);
+        },
+
+        async handleDelete() {
+            const res = await this.userStore.deleteMember(this.userStore.admin.token, this.id);
+            if (res.status == 200) {
+                $('#remove-user-modal').modal('hide');
+                $('.modal-backdrop').remove();
+                await this.handleSetData();
+            }
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped></style>

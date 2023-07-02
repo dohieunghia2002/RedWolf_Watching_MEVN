@@ -6,11 +6,15 @@ export const useUserStore = defineStore('user', {
         return {
             admin: null,
             isLoggedin: false,
+            idRestore: {
+                "id": null
+            },
             formLogin: {
                 username: '',
                 password: ''
             },
-            members: []
+            members: [],
+            deletedMembers: []
         }
     },
 
@@ -46,9 +50,21 @@ export const useUserStore = defineStore('user', {
             this.isLoggedin = false;
         },
 
-        getTrash() {
+        async getTrash(token) {
+            this.deletedMembers = await userService.listDeleted(token);
+        },
 
-        }
+        async deleteMember(token, id) {
+            return await userService.delete(token, id);
+        },
+
+        async restoreMember(token, id) {
+            this.idRestore.id = await id;
+            const res = await userService.restore(token, this.idRestore);
+            if (res.status == 200) {
+                await this.getTrash(token);
+            }
+        },
     },
 
     persist: {

@@ -108,6 +108,39 @@ const softDel = async (req, res) => {
     }
 }
 
+// List deleted user, route GET /users/trash
+const deletedUsers = async (req, res) => {
+    try {
+        const resDel = await User.findDeleted();
+        if (resDel) {
+            responseHandler.ok(res, resDel);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
+// Restore user, route PUT /users/restore
+const restoreUser = async (req, res) => {
+    try {
+        const { id } = await req.body;
+        const restore = await User.restore({ _id: id });
+        const user = await User.findById(id);
+        await user.save();
+        if (restore) {
+            responseHandler.ok(res, restore);
+        }
+        else {
+            responseHandler.notFound(res);
+        }
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
 // Change user password, route PUT /users/password
 const changePassword = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
@@ -166,5 +199,5 @@ const getInfo = async (req, res) => {
 }
 
 export default {
-    registerUser, loginUser, stored, changePassword, getInfo, updateInfo, softDel
+    registerUser, loginUser, stored, changePassword, getInfo, updateInfo, softDel, deletedUsers, restoreUser
 };

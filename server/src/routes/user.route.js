@@ -48,6 +48,10 @@ router.put('/add-info', tokenMiddleware.auth, userController.updateInfo);
 
 router.delete('/:id', tokenMiddleware.auth, userController.softDel);
 
+router.put('/restore', tokenMiddleware.auth, userController.restoreUser);
+
+router.get('/trash', tokenMiddleware.auth, userController.deletedUsers);
+
 router.get('/info', tokenMiddleware.auth, userController.getInfo);
 
 export default router;

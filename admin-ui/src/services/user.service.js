@@ -18,6 +18,27 @@ class UserService {
         }
         return (await this.api.get('/stored', header)).data;
     }
+
+    async delete(tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.delete(`/${id}`, header));
+    }
+
+    async listDeleted(tokenVal) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.get('/trash', header)).data;
+    }
+
+    async restore(tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.put('/restore', id, header));
+    }
 }
 
 export default new UserService;

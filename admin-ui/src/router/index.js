@@ -87,7 +87,7 @@ const router = createRouter({
     },
     {
       path: '/admin/member/recycle-bin',
-      name: 'recycle',
+      name: 'deleted',
       components: {
         default: MembershipTrash,
         Header,
