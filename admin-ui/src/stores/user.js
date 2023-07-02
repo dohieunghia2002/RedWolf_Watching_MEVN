@@ -50,6 +50,10 @@ export const useUserStore = defineStore('user', {
             this.isLoggedin = false;
         },
 
+        async idMember(member) {
+            return member._id;
+        },
+
         async getTrash(token) {
             this.deletedMembers = await userService.listDeleted(token);
         },

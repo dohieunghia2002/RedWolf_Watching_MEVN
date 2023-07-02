@@ -19,6 +19,8 @@ router.delete('/:id', tokenMiddleware.auth, favoriteController.removeFavorite);
 
 router.get('/user', tokenMiddleware.auth, favoriteController.favoritesAllUser);
 
+router.get('/:id', tokenMiddleware.auth, favoriteController.adminTrackFavoritesUser);
+
 router.get('/', tokenMiddleware.auth, favoriteController.getFavoritesOfUser);
 
 export default router;

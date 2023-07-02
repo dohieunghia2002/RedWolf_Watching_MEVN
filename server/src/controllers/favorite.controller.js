@@ -76,6 +76,16 @@ const getFavoritesOfUser = async (req, res) => {
     }
 }
 
+// Admin get favorites of user, route GET /favorites/:id
+const adminTrackFavoritesUser = async (req, res) => {
+    try {
+        const favorite = await Favorite.findOne({ userID: req.params.id })
+        responseHandler.ok(res, favorite);
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
 // Admin get favorites all user, route GET /favorites/user
 const favoritesAllUser = async (req, res) => {
     try {
@@ -103,5 +113,5 @@ const details = async (req, res) => {
 
 
 export default {
-    addFavorite, removeFavorite, getFavoritesOfUser, details, favoritesAllUser
+    addFavorite, removeFavorite, getFavoritesOfUser, details, favoritesAllUser, adminTrackFavoritesUser
 };

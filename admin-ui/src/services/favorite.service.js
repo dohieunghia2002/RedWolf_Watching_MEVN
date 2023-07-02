@@ -11,6 +11,13 @@ class FavoriteService {
         }
         return (await this.api.get('/user', header)).data;
     }
+
+    async detailFavoritesMember(tokenVal, id) {
+        const header = {
+            headers: { 'authorization': `Bearer ${tokenVal}` }
+        }
+        return (await this.api.get(`/${id}`, header)).data;
+    }
 }
 
 export default new FavoriteService;
