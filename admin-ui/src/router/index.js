@@ -13,6 +13,7 @@ import CreateMedia from '../views/CreateMedia.vue';
 import Trash from '../views/Trash.vue';
 import MembershipTrash from '../views/MembershipTrash.vue';
 import DetailFavorites from '../views/DetailFavorites.vue';
+import DetailReviews from '../views/DetailReviews.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -100,6 +101,15 @@ const router = createRouter({
       name: 'favorites',
       components: {
         default: DetailFavorites,
+        Header,
+        Footer
+      }
+    },
+    {
+      path: '/admin/member/:id/reviews',
+      name: 'reviews',
+      components: {
+        default: DetailReviews,
         Header,
         Footer
       }

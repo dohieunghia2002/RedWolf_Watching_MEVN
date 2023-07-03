@@ -71,6 +71,26 @@ const getReviewsOfUser = async (req, res) => {
     }
 }
 
+// Admin track reviews of user, route GET /reviews/:id
+const adminTrackReviewsUser = async (req, res) => {
+    try {
+        const reviews = await Review.find({ userID: req.params.id });
+        const result = [];
+        for (let i = 0; i < reviews.length; i++) {
+            const element = reviews[i];
+            const infoMedia = await Media.findById(element.mediaID);
+            result.push({
+                ...element._doc,
+                nameMedia: infoMedia.name,
+                poster: infoMedia.posters[1],
+            });
+        }
+        responseHandler.ok(res, result);
+    } catch {
+        responseHandler.error(res);
+    }
+}
+
 // Set of review each of user, route GET /reviews/users
 const eachOfReviewUser = async (req, res) => {
     try {
@@ -109,5 +129,5 @@ const reviewsMedia = async (req, res) => {
 
 
 export default {
-    create, remove, getReviewsOfUser, reviewsMedia, eachOfReviewUser
+    create, remove, getReviewsOfUser, reviewsMedia, eachOfReviewUser, adminTrackReviewsUser
 };

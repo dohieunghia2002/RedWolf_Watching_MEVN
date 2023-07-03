@@ -47,6 +47,7 @@
                     </div>
 
                     <li class="nav-item dropdown" v-else>
+                        <Avatar :name="userStore.account.fullName" />
                         <a class="nav-link dropdown-toggle mb-1 w-100 h-100" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" :aria-expanded="ariaExpended"
                             v-on:click="this.handleShowMenudropdown()">
@@ -87,6 +88,8 @@
 </template>
 
 <script>
+import Avatar from './Avatar.vue';
+
 import { useUserStore } from '@/stores/user.js';
 
 export default {
@@ -96,6 +99,8 @@ export default {
             userStore
         }
     },
+
+    components: { Avatar },
 
     data() {
         return {

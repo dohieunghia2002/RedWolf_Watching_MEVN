@@ -13,8 +13,9 @@
 
             <div class="row evaluation-input" v-if="userStore.isLoggedin">
                 <div class="col-lg-1">
-                    <img :src="userStore.pathImageUser + userStore.account.image" alt="avatar user"
-                        class="avatar-user rounded-circle" />
+                    <!-- <img :src="userStore.pathImageUser + userStore.account.image" alt="avatar user"
+                        class="avatar-user rounded-circle" /> -->
+                    <Avatar :name="userStore.account.fullName" />
                 </div>
 
                 <div class="col-lg-11">
@@ -50,8 +51,9 @@
             <div v-for="(review, index) in this.reviewStore.reviewsMedia" :key="index">
                 <div class="row evaluation" v-if="review.content">
                     <div class="col-lg-1">
-                        <img :src="userStore.pathImageUser + review.userImg" alt="avatar user"
-                            class="avatar-user rounded-circle" />
+                        <!-- <img :src="userStore.pathImageUser + review.userImg" alt="avatar user"
+                            class="avatar-user rounded-circle" /> -->
+                        <Avatar :name="review.name" :key="review.name" />
                     </div>
 
                     <div class="col-lg-11">
@@ -77,6 +79,8 @@
     </div>
 </template>
 <script>
+import Avatar from './Avatar.vue';
+
 import { useUserStore } from '@/stores/user.js';
 import { useReviewStore } from '@/stores/reviews.js';
 import { useMediaStore } from '@/stores/media.js';
@@ -95,6 +99,8 @@ export default {
             mediaStore
         }
     },
+
+    components: { Avatar },
 
     methods: {
         async postComment() {

@@ -30,12 +30,13 @@
                         {{ user.isAdmin ? 'YES' : 'NO' }}
                     </td>
                     <td colspan="3">
-                        <router-link :to="{ name: 'favorites', params: { id: user._id } }" class="btn btn-link text-warning">
+                        <router-link :to="{ name: 'favorites', params: { id: user._id } }"
+                            class="btn btn-link text-warning">
                             Favorites
                         </router-link>
-                        <a href="" class="btn btn-link text-success">
+                        <router-link :to="{ name: 'reviews', params: { id: user._id } }" class="btn btn-link text-success">
                             Reviews
-                        </a>
+                        </router-link>
                         <a href="" class="btn btn-link btn-modal text-danger" data-toggle="modal" @click="getId(user._id)"
                             data-target="#remove-user-modal">Delete</a>
                     </td>

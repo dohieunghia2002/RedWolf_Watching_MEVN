@@ -1,9 +1,9 @@
 <template>
     <div class="detail-favorites d-flex flex-wrap container mt-4" v-if="list.length">
         <div class="card mb-3 mr-3" style="max-width: calc(50% - 1rem);" v-for="(item, index) in list" :key="index">
-            <div class="row no-gutters">
+            <div class="row no-gutters h-100">
                 <div class="col-md-4">
-                    <img :src="item.posters[1]" alt="poster" class="w-100 h-100">
+                    <img :src="item.posters[1]" alt="poster" class="img-fluid h-100">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body d-flex flex-column justify-content-between h-100">
@@ -46,7 +46,6 @@ export default {
         const token = await this.userStore.admin.token;
         const userId = this.$route.params.id;
         this.list = await this.favoriteStore.detailFavoritesUser(token, userId);
-        console.log(this.list);
     },
 
 }

@@ -21,6 +21,8 @@ router.get('/media/:id', reviewController.reviewsMedia);
 
 router.get('/users', tokenMiddleware.auth, reviewController.eachOfReviewUser);
 
+router.get('/:id', tokenMiddleware.auth, reviewController.adminTrackReviewsUser);
+
 router.get('/user/:id', tokenMiddleware.auth, reviewController.getReviewsOfUser);
 
 export default router;

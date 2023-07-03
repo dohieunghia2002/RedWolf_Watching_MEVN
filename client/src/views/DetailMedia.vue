@@ -113,6 +113,14 @@ export default {
             else this.mediaStore.media = await mediaService.getRandMovie(reqId);
             this.reviewStore.reviewsMedia = await reviewService.getReviewsMedia(this.mediaStore.media._id);
 
+            for (let i = 0; i < this.reviewStore.reviewsMedia.length; i++) {
+                const element = this.reviewStore.reviewsMedia[i];
+                const trim = element.userFullName.split(' ');
+                const name = trim[trim.length - 1];
+                this.reviewStore.reviewsMedia[i].name = name;
+            }
+            console.log(this.reviewStore.reviewsMedia);
+
             if (this.userStore.isLoggedin) {
                 const token = await this.userStore.account.token;
                 this.favoritesStore.favorites = await favoritesService.getList(token);
