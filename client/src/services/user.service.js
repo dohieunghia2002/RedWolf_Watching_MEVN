@@ -16,18 +16,11 @@ class UserService {
         return await this.api.post('/auth/register', formData);
     }
 
-    async update(updateForm, tokenVal) {
+    async changePwd(formData, tokenVal) {
         const header = {
             headers: { 'authorization': `Bearer ${tokenVal}` }
         }
-        return (await this.api.put('/add-info', updateForm, header));
-    }
-
-    async profile(tokenVal) {
-        const header = {
-            headers: { 'authorization': `Bearer ${tokenVal}` }
-        }
-        return (await this.api.get('/info', header)).data;
+        return await this.api.patch('/password', formData, header);
     }
 }
 

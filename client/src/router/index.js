@@ -6,8 +6,8 @@ import Search from '@/views/Search.vue';
 import DetailMedia from '@/views/DetailMedia.vue';
 import Watching from '@/views/Watching.vue';
 import Favorites from '@/views/Favorites.vue';
-import MyProfile from '@/views/MyProfile.vue';
 import Review from '@/views/ReviewPage.vue';
+import ChangePassword from '@/views/ChangePassword.vue';
 
 
 const router = createRouter({
@@ -51,14 +51,14 @@ const router = createRouter({
       component: Favorites
     },
     {
-      path: '/profile',
-      name: 'profile',
-      component: MyProfile
-    },
-    {
       path: '/review',
       name: 'review',
       component: Review
+    },
+    {
+      path: '/password',
+      name: 'password',
+      component: ChangePassword
     }
   ],
   scrollBehavior() {

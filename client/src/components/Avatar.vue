@@ -1,12 +1,19 @@
 <template>
-    <VueAvatar :username="name" style="width: 70px; height: 100%; padding: 3px 2px;" />
+    <VueAvatar :username="getName" />
 </template>
 <script>
 export default {
-    props: ['name'],
+    props: ['fullName'],
+
+    computed: {
+        getName() {
+            const name = this.fullName.split(' ');
+            return name[name.length - 1];
+        }
+    },
 
     async created() {
-        console.log(this.name);
+        console.log(this.fullName);
     },
 }
 </script>

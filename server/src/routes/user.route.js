@@ -42,9 +42,9 @@ router.post(
     userController.loginUser
 );
 
-router.get('/stored', tokenMiddleware.auth, userController.stored);
+router.patch('/password', tokenMiddleware.auth, userController.changePassword);
 
-router.put('/add-info', tokenMiddleware.auth, userController.updateInfo);
+router.get('/stored', tokenMiddleware.auth, userController.stored);
 
 router.delete('/:id/force', tokenMiddleware.auth, userController.forceDelete);
 

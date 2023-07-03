@@ -47,7 +47,8 @@
                     </div>
 
                     <li class="nav-item dropdown" v-else>
-                        <Avatar :name="userStore.account.fullName" />
+                        <Avatar :fullName="userStore.account.fullName"
+                            style="width: 70px; height: 100%; padding: 3px 2px;" />
                         <a class="nav-link dropdown-toggle mb-1 w-100 h-100" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" :aria-expanded="ariaExpended"
                             v-on:click="this.handleShowMenudropdown()">
@@ -67,10 +68,10 @@
                                     REVIEWS
                                 </div>
                             </router-link>
-                            <router-link class="dropdown-item" :to="{ name: 'profile' }">
+                            <router-link class="dropdown-item" :to="{ name: 'password' }">
                                 <font-awesome-icon :icon="['fas', 'rotate-right']" />
                                 <div class="content">
-                                    UPDATE PROFILE
+                                    CHANGE PASSWORD
                                 </div>
                             </router-link>
                             <button class="dropdown-item" to="/" type="button" @click="handleLogout">
@@ -141,7 +142,8 @@ export default {
         },
 
         async handleLogout() {
-            await this.$router.push('/');
+            // await this.$router.push('/');
+            window.location.href = "http://localhost:8000/"
             this.userStore.logout();
         }
     },

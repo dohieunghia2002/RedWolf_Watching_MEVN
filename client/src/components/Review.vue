@@ -13,9 +13,7 @@
 
             <div class="row evaluation-input" v-if="userStore.isLoggedin">
                 <div class="col-lg-1">
-                    <!-- <img :src="userStore.pathImageUser + userStore.account.image" alt="avatar user"
-                        class="avatar-user rounded-circle" /> -->
-                    <Avatar :name="userStore.account.fullName" />
+                    <Avatar :fullName="userStore.account.fullName" style="width: 60px; height: 60px; padding: 3px 2px;" />
                 </div>
 
                 <div class="col-lg-11">
@@ -51,9 +49,8 @@
             <div v-for="(review, index) in this.reviewStore.reviewsMedia" :key="index">
                 <div class="row evaluation" v-if="review.content">
                     <div class="col-lg-1">
-                        <!-- <img :src="userStore.pathImageUser + review.userImg" alt="avatar user"
-                            class="avatar-user rounded-circle" /> -->
-                        <Avatar :name="review.name" :key="review.name" />
+                        <Avatar :fullName="review.userFullName" :key="review.userFullName"
+                            style="width: 60px; height: 60px; padding: 3px 2px;" />
                     </div>
 
                     <div class="col-lg-11">

@@ -21,7 +21,11 @@ export const useUserStore = defineStore('user', {
                 password: ''
             },
 
-            updateForm: {}
+            formChangePwd: {
+                'oldPassword': '',
+                'newPassword': '',
+                'reEnterPassword': ''
+            },
         }
     },
 
@@ -72,33 +76,23 @@ export const useUserStore = defineStore('user', {
             }
         },
 
-        getNameFileImg() {
-            let file = document.getElementById('pathURL');
-            file.addEventListener('input', () => {
-                this.updateForm.image = file.files[0].name;
-                this.account.image = file.files[0].name;
-            });
-        },
-
-        async updateInfo() {
-            this.updateForm.userID = this.account._id;
-            this.updateForm.email = this.account.email;
-            this.updateForm.profession = this.account.profession;
-            this.updateForm.phone = this.account.phone;
-            this.updateForm.placeBirth = this.account.placeBirth;
-
-            const res = await userService.update(this.updateForm, this.account.token);
-
-            if (res.status == 200) {
-                window.alert('Update successfully')
-            }
-        },
-
         async logout() {
             sessionStorage.clear();
             this.account = null;
             this.isLoggedin = false;
         },
+
+        async changePassword() {
+            const res = await userService.changePwd(this.formChangePwd, this.account.token);
+            if (res.status == 200) {
+                alert('Updated successfully!');
+                window.location.href = "http://localhost:8000/"
+                await this.logout();
+            }
+            else if (res.status == 400) {
+                alert('Password is wrong!');
+            }
+        }
     },
 
     persist: {

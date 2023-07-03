@@ -1,7 +1,5 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-// import mongoose from 'mongoose';
-// mongoose.set('debug', true)
 import User from '../models/user.model.js';
 import responseHandler from '../handlers/response.handler.js';
 
@@ -63,29 +61,6 @@ const loginUser = async (req, res) => {
             ...user._doc,
             id: user._id
         })
-    } catch {
-        responseHandler.error(res);
-    }
-}
-
-const updateInfo = async (req, res) => {
-    const addedData = req.body;
-    const id = req.user._id;
-    try {
-        const user = await User.findOne(id);
-        if (!user) {
-            return responseHandler.notFound(res, 'User not exist');
-        }
-
-        user.email = addedData.email || user.email;
-        user.phone = addedData.phone || user.phone;
-        user.socialNetLink = addedData.socialNetLink || user.socialNetLink;
-        user.profession = addedData.profession || user.profession;
-        user.placeBirth = addedData.placeBirth || user.placeBirth;
-        user.image = addedData.image || user.image;
-
-        await user.save();
-        responseHandler.ok(res, user);
     } catch {
         responseHandler.error(res);
     }
@@ -156,9 +131,9 @@ const restoreUser = async (req, res) => {
     }
 }
 
-// Change user password, route PUT /users/password
+// Change user password, route PATCH /users/password
 const changePassword = async (req, res) => {
-    const { oldPassword, newPassword } = req.body;
+    const { oldPassword, newPassword, reEnterPassword } = req.body;
     try {
         const user = await User.findById(req.user._id);
 
@@ -166,17 +141,22 @@ const changePassword = async (req, res) => {
             return responseHandler.unauthorize(res);
         }
 
-        if (!bcrypt.compare(oldPassword, user.password)) {
+        if (newPassword !== reEnterPassword) {
+            return responseHandler.badRequest(res, 'Re-enter password is wrong');
+        }
+
+        const validate = await bcrypt.compare(oldPassword, user.password);
+        if (!validate) {
             return responseHandler.badRequest(res, 'Wrong password');
         }
 
         // Hash new password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(newPassword, salt);
-        user.password = hashedPassword;
+        const hash = await bcrypt.hash(newPassword, 10);
+
+        user.password = hash;
         await user.save();
 
-        responseHandler.ok(res);
+        responseHandler.ok(res, user);
     } catch {
         responseHandler.error(res);
     }
@@ -214,5 +194,7 @@ const getInfo = async (req, res) => {
 }
 
 export default {
-    registerUser, loginUser, stored, changePassword, getInfo, updateInfo, softDel, deletedUsers, restoreUser, forceDelete
+    registerUser, loginUser, changePassword,
+    stored, getInfo,
+    softDel, deletedUsers, restoreUser, forceDelete
 };
