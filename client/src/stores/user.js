@@ -84,14 +84,16 @@ export const useUserStore = defineStore('user', {
 
         async changePassword() {
             const res = await userService.changePwd(this.formChangePwd, this.account.token);
+            if (res.status == 400) {
+                window.alert('Password is wrong!');
+            }
+
             if (res.status == 200) {
                 alert('Updated successfully!');
                 window.location.href = "http://localhost:8000/"
                 await this.logout();
             }
-            else if (res.status == 400) {
-                alert('Password is wrong!');
-            }
+
         }
     },
 

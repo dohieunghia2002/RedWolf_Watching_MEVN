@@ -30,7 +30,7 @@ const create = async (req, res) => {
     }
 }
 
-// Remove review, route DELETE /reviews/:id
+// Soft delete review, route DELETE /reviews/:id
 const remove = async (req, res) => {
     try {
         const reviewID = await req.params.id;

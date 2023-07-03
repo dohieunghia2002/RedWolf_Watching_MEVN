@@ -1,17 +1,19 @@
 <template>
     <div class="watching my-4" v-if="mediaStore.media">
-        <div class="container-fluid">
+        <div class="container">
             <div class="player">
                 <div class="embed">
-                    <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen style="border:none;" v-if="!display">
-                    </iframe>
+                    <center>
+                        <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" height="520"
+                            width="1080" title="iframe video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen style="border:none;" v-if="!display">
+                        </iframe>
 
-                    <video class="video border-0" width="1280" height="720"
-                        :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" controls v-else>
-                    </video>
+                        <video class="video border-0" width="1080" height="520"
+                            :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" controls v-else>
+                        </video>
+                    </center>
                 </div>
             </div>
 
@@ -92,8 +94,6 @@ export default {
 <style lang="scss" scoped>
 .video {
     object-fit: contain;
-    min-width: 100%;
-    min-height: 600px;
 }
 
 .annotate {

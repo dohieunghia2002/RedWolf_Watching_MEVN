@@ -7,13 +7,18 @@ export default {
 
     computed: {
         getName() {
-            const name = this.fullName.split(' ');
+            const temp = this.removeAccents(this.fullName);
+            const name = temp.split(' ');
             return name[name.length - 1];
         }
     },
 
-    async created() {
-        console.log(this.fullName);
+    methods: {
+        removeAccents(str) {
+            return str.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+        }
     },
 }
 </script>
