@@ -3,17 +3,15 @@
         <div class="container">
             <div class="player">
                 <div class="embed">
-                    <center>
-                        <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" height="520"
-                            width="1080" title="iframe video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen style="border:none;" v-if="!display">
-                        </iframe>
+                    <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" height="520" width="1080"
+                        title="iframe video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen style="border:none;" v-if="!display">
+                    </iframe>
 
-                        <video class="video border-0" width="1080" height="520"
-                            :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" controls v-else>
-                        </video>
-                    </center>
+                    <video class="video border-0" width="1080" height="520"
+                        :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" controls v-else>
+                    </video>
                 </div>
             </div>
 
@@ -92,6 +90,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.embed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .video {
     object-fit: contain;
 }
