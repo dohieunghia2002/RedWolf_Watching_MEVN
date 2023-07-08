@@ -1,7 +1,11 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import User from '../models/user.model.js';
+
 import responseHandler from '../handlers/response.handler.js';
+
+import User from '../models/user.model.js';
+import Favorite from '../models/favorite.model.js';
+import Review from '../models/review.model.js';
 
 // Register user, route POST /users/auth/register
 const registerUser = async (req, res) => {
@@ -103,6 +107,8 @@ const forceDelete = async (req, res) => {
     try {
         const resDel = await User.deleteOne({ _id: req.params.id });
         if (resDel) {
+            const favorites = await Favorite.deleteOne({ userID: req.params.id });
+            const reviews = await Review.deleteMany({ userID: req.params.id });
             responseHandler.ok(res, resDel);
         }
         else {
