@@ -49,20 +49,20 @@
             <div v-for="(review, index) in this.reviewStore.reviewsMedia" :key="index">
                 <div class="row evaluation" v-if="review.content">
                     <div class="col-lg-1">
-                        <Avatar :fullName="review.userFullName" :key="review.userFullName"
+                        <Avatar :fullName="review.userID.fullName" :key="review.userID.fullName"
                             style="width: 60px; height: 60px; padding: 3px 2px;" />
                     </div>
 
                     <div class="col-lg-11">
                         <div class="comment ml-3 w-100">
                             <div class="comment-header w-100">
-                                <h5 class="name-user">{{ review.userFullName }}</h5>
+                                <h5 class="name-user">{{ review.userID.fullName }}</h5>
                                 <div class="d-flex align-items-center">
                                     <span class="date">{{ review.date.split('T')[0] }}</span>
                                     <button class="btn btn-danger btn-delete rounded-0 p-0" type="button"
                                         data-toggle="tooltip" data-placement="top" title="Delete"
                                         @click="removeComment(review._id)"
-                                        v-if="userStore.account != null && review.userID === userStore.account._id">
+                                        v-if="userStore.account != null && review.userID._id === userStore.account._id">
                                         <font-awesome-icon :icon="['fas', 'trash-alt']" class="text-danger" />
                                     </button>
                                 </div>

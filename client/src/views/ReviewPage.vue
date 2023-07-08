@@ -9,11 +9,11 @@
             </div>
             <span class="famille"></span>
 
-            <div class="row list-review" v-for="(review, index) in reviewStore.reviewsUser" :key="index">
+            <div class="my-4 list-review" v-for="(review, index) in reviewStore.reviewsUser" :key="index">
                 <div class="review-item">
-                    <img :src="review.poster" class="review-poster-media" alt="poster media">
+                    <img :src="review.mediaID.posters[1]" class="review-poster-media" alt="poster media">
                     <div class="review-detail flex-grow-1 text-light mx-3">
-                        <h4 class="my-2">{{ review.nameMedia }}</h4>
+                        <h4 class="my-2">{{ review.mediaID.name }}</h4>
                         <p>{{ review.date.split('T')[0] }}</p>
                         <p v-if="review.content">{{ review.content }}</p>
                         <span class="appreciate" v-if="review.rate > 0">

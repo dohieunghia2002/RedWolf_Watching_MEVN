@@ -19,8 +19,6 @@ router.get('/trash', tokenMiddleware.auth, mediaController.trashMedia);
 
 router.put('/restore', tokenMiddleware.auth, mediaController.restoreMedia);
 
-router.get('/rand', mediaController.randomMedia);
-
 router.get('/movies/intro', mediaController.getRandMovie);
 
 router.get('/movies/popular', mediaController.popularMovies);

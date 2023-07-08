@@ -1,5 +1,4 @@
 import Favorite from '../models/favorite.model.js';
-import Media from '../models/media.model.js';
 import responseHandler from '../handlers/response.handler.js';
 
 // Add favorite, route POST /favorites/add
@@ -27,14 +26,15 @@ const addFavorite = async (req, res) => {
                 { userID: req.user._id },
                 { $push: { mediaID: mediaId } },
                 { new: true }
-            );
+            ).populate('userID').populate('mediaID');
 
             return responseHandler.created(res, add);
         }
         else {
             const favorite = new Favorite({ mediaID: mediaId, userID: req.user._id });
             await favorite.save();
-            return responseHandler.created(res, favorite);
+            const result = await Favorite.findOne({ userID: req.user._id }).populate('userID').populate('mediaID');
+            return responseHandler.created(res, result);
         }
     } catch {
         responseHandler.error(res);
@@ -56,7 +56,8 @@ const removeFavorite = async (req, res) => {
                 return item != favoriteID
             })
             favorites.save();
-            return responseHandler.ok(res, favorites);
+            const result = await Favorite.findOne({ userID: req.user._id }).populate('userID').populate('mediaID');
+            return responseHandler.ok(res, result);
         }
         else {
             return responseHandler.notFound(res);
@@ -69,7 +70,7 @@ const removeFavorite = async (req, res) => {
 // Get favorites of user, route GET /favorites
 const getFavoritesOfUser = async (req, res) => {
     try {
-        const favorite = await Favorite.findOne({ userID: req.user._id })
+        const favorite = await Favorite.findOne({ userID: req.user._id }).populate('userID').populate('mediaID');
         responseHandler.ok(res, favorite);
     } catch {
         responseHandler.error(res);
@@ -79,7 +80,7 @@ const getFavoritesOfUser = async (req, res) => {
 // Admin get favorites of user, route GET /favorites/:id
 const adminTrackFavoritesUser = async (req, res) => {
     try {
-        const favorite = await Favorite.findOne({ userID: req.params.id })
+        const favorite = await Favorite.findOne({ userID: req.params.id }).populate('userID').populate('mediaID')
         responseHandler.ok(res, favorite);
     } catch {
         responseHandler.error(res);
@@ -89,23 +90,8 @@ const adminTrackFavoritesUser = async (req, res) => {
 // Admin get favorites all user, route GET /favorites/user
 const favoritesAllUser = async (req, res) => {
     try {
-        const favorite = await Favorite.find({});
+        const favorite = await Favorite.find({}).populate('userID').populate('mediaID');
         responseHandler.ok(res, favorite);
-    } catch {
-        responseHandler.error(res);
-    }
-}
-
-const details = async (req, res) => {
-    try {
-        const mediaID = await req.body.mediaID;
-
-        var list = [];
-        for (let index = 0; index < mediaID.length; index++) {
-            const element = await Media.findById(mediaID[index]);
-            list.push(element);
-        }
-        responseHandler.ok(res, list);
     } catch {
         responseHandler.error(res);
     }
@@ -113,5 +99,5 @@ const details = async (req, res) => {
 
 
 export default {
-    addFavorite, removeFavorite, getFavoritesOfUser, details, favoritesAllUser, adminTrackFavoritesUser
+    addFavorite, removeFavorite, getFavoritesOfUser, favoritesAllUser, adminTrackFavoritesUser
 };

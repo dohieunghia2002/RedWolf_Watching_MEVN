@@ -12,15 +12,7 @@ export const useFavoriteStore = defineStore('favorite', {
     actions: {
         async detailFavoritesUser(token, id) {
             const res = await favoriteService.detailFavoritesMember(token, id);
-            const result = [];
-
-            this.favorites = await res.mediaID;
-            for (let i = 0; i < this.favorites.length; i++) {
-                const element = await this.favorites[i];
-                const media = await mediaService.getDetail(element);
-                result.push(media);
-            }
-            return result;
+            return res;
         }
     }
 });

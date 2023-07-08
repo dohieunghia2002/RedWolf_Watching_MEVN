@@ -1,15 +1,15 @@
 <template>
-    <div class="detail-reviews d-flex flex-wrap container mt-4" v-if="list.length">
+    <div class="detail-reviews d-flex flex-wrap container mt-4" v-if="list !== null">
         <div class="card mb-3 mr-3" style="max-width: calc(50% - 1rem); max-height: 50%;" v-for="(item, index) in list"
             :key="index">
             <div class="row no-gutters h-100">
                 <div class="col-md-4">
-                    <img :src="item.poster" alt="poster" class="img-fluid">
+                    <img :src="item.mediaID.posters[1]" alt="poster" class="img-fluid">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <div>
-                            <h5 class="card-title">{{ item.nameMedia }}</h5>
+                            <h5 class="card-title">{{ item.mediaID.name }}</h5>
                             <p class="card-text">Review date: {{ item.date.split('T')[0] }}</p>
                             <p class="card-text">
                                 Rate:
@@ -47,7 +47,7 @@ export default {
 
     data() {
         return {
-            list: []
+            list: null
         }
     },
 
@@ -55,7 +55,6 @@ export default {
         const token = await this.userStore.admin.token;
         const userId = this.$route.params.id;
         this.list = await this.reviewStore.detailReviewsUser(token, userId);
-
     }
 }
 </script>
@@ -65,12 +64,4 @@ export default {
     margin-top: 8px;
     text-align: justify;
 }
-
-// .three-line-paragraph {
-//     cursor: pointer;
-//     display: -webkit-box;
-//     -webkit-line-clamp: 3;
-//     -webkit-box-orient: vertical;
-//     overflow: hidden;
-// }
 </style>

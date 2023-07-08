@@ -126,7 +126,7 @@ const storeMedia = async (req, res) => {
 // All movie popular, route GET /media/movies/popular
 const popularMovies = async (req, res) => {
     try {
-        const movies = await Media.find({ category: 'movie' }).sort({ numberRater: 'desc' })
+        const movies = await Media.find({ category: 'movie' }).populate('userID').sort({ numberRater: 'desc' });
         responseHandler.ok(res, movies);
     } catch {
         responseHandler.error(res);
@@ -136,7 +136,7 @@ const popularMovies = async (req, res) => {
 // All movie top rated, route GET /media/movies/rated
 const topRatedMovies = async (req, res) => {
     try {
-        const movies = await Media.find({ category: 'movie' }).sort({ rate: 'desc' })
+        const movies = await Media.find({ category: 'movie' }).populate('userID').sort({ rate: 'desc' })
         responseHandler.ok(res, movies);
     } catch {
         responseHandler.error(res);
@@ -146,7 +146,7 @@ const topRatedMovies = async (req, res) => {
 // All tv series popular, route GET /media/tv-series/popular
 const popularTVSeries = async (req, res) => {
     try {
-        const films = await Media.find({ category: 'tv series' }).sort({ numberRater: 'desc' });
+        const films = await Media.find({ category: 'tv series' }).populate('userID').sort({ numberRater: 'desc' });
         responseHandler.ok(res, films);
     } catch {
         responseHandler.error(res);
@@ -156,7 +156,7 @@ const popularTVSeries = async (req, res) => {
 // All movie top rated, route GET /media/movies/rated
 const topRatedSeries = async (req, res) => {
     try {
-        const series = await Media.find({ category: 'tv series' }).sort({ rate: 'desc' })
+        const series = await Media.find({ category: 'tv series' }).populate('userID').sort({ rate: 'desc' })
         responseHandler.ok(res, series);
     } catch {
         responseHandler.error(res);
@@ -164,25 +164,25 @@ const topRatedSeries = async (req, res) => {
 }
 
 // Get random a media, route GET /media/rand
-const randomMedia = async (req, res) => {
-    try {
-        const tempMovies = (await Media.find({}));
+// const randomMedia = async (req, res) => {
+//     try {
+//         const tempMovies = (await Media.find({}));
 
-        const quantity = tempMovies.length;
-        var random = Math.floor(Math.random() * quantity);
+//         const quantity = tempMovies.length;
+//         var random = Math.floor(Math.random() * quantity);
 
-        const film = tempMovies[random];
+//         const film = tempMovies[random];
 
-        responseHandler.ok(res, film);
-    } catch {
-        responseHandler.error(res);
-    }
-}
+//         responseHandler.ok(res, film);
+//     } catch {
+//         responseHandler.error(res);
+//     }
+// }
 
 // Get random a movie, route GET /media/movies/intro
 const getRandMovie = async (req, res) => {
     try {
-        const tempMovies = (await Media.find({ category: 'movie' }));
+        const tempMovies = (await Media.find({ category: 'movie' }).populate('userID'));
 
         const quantity = tempMovies.length;
         var random = Math.floor(Math.random() * quantity);
@@ -198,7 +198,7 @@ const getRandMovie = async (req, res) => {
 // Get random a tv series, route GET /media/tv-series/intro
 const getRandSeries = async (req, res) => {
     try {
-        const tempSeries = (await Media.find({ category: 'tv series' }));
+        const tempSeries = (await Media.find({ category: 'tv series' }).populate('userID'));
 
         const quantity = tempSeries.length;
         var random = Math.floor(Math.random() * quantity);
@@ -214,7 +214,7 @@ const getRandSeries = async (req, res) => {
 // Info detail of a media base on id, GET /media/:id/detail
 const show = async (req, res) => {
     try {
-        const result = await Media.findOne({ _id: req.params.id })
+        const result = await Media.findOne({ _id: req.params.id }).populate('userID')
 
         if (result) {
             responseHandler.ok(res, result);
@@ -231,7 +231,7 @@ export default {
     addMedia, updateMedia, delMedia,
     trashMedia, restoreMedia, forceDel,
     storeMedia,
-    randomMedia,
+    // randomMedia,
     popularMovies,
     topRatedMovies,
     popularTVSeries,

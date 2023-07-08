@@ -5,8 +5,7 @@ import favoritesService from '@/services/favorites.service.js';
 export const useFavoritesStore = defineStore('favorites', {
     state: () => {
         return {
-            favorites: null,
-            listMedia: [],
+            favorites: null
         }
     },
 
@@ -19,14 +18,6 @@ export const useFavoritesStore = defineStore('favorites', {
     actions: {
         getMediaIDRemove(media) {
             return media._id;
-        },
-
-        async detailMedia(token) {
-            const data = {
-                userID: this.favorites.userID,
-                mediaID: this.favorites.mediaID
-            }
-            this.listMedia = await favoritesService.details(data, token);
         },
 
         async markFavorited(id) {

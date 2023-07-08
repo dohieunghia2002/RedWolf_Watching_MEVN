@@ -13,8 +13,8 @@
                 <h2>You haven't favorited any media yet</h2>
             </div>
 
-            <div class="sections row list">
-                <template v-for="(media, index) in favoritesStore.listMedia" :key="index">
+            <div class="sections row list" v-else>
+                <template v-for="(media, index) in favoritesStore.favorites.mediaID" :key="index">
                     <div class="list-favorites-item">
                         <router-link :to="{ name: 'detail', params: { id: media._id } }">
                             <div class="card mt-2">
@@ -61,10 +61,6 @@ export default {
         async handleSetData() {
             const token = await this.userStore.account.token;
             this.favoritesStore.favorites = await favoritesService.getList(token);
-
-            if (this.favoritesStore.favorites) {
-                await this.favoritesStore.detailMedia(token);
-            }
         },
 
         async removeMedia(media) {

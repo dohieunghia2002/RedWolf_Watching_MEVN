@@ -13,8 +13,6 @@ router.post('/add',
     favoriteController.addFavorite
 );
 
-router.post('/detail-medias', tokenMiddleware.auth, favoriteController.details);
-
 router.delete('/:id', tokenMiddleware.auth, favoriteController.removeFavorite);
 
 router.get('/user', tokenMiddleware.auth, favoriteController.favoritesAllUser);

@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 
 import userService from '@/services/user.service.js';
 
-import { pathImgMember } from '@/assets/staticPath/index.js';
 
 
 export const useUserStore = defineStore('user', {
@@ -26,12 +25,6 @@ export const useUserStore = defineStore('user', {
                 'newPassword': '',
                 'reEnterPassword': ''
             },
-        }
-    },
-
-    getters: {
-        pathImageUser() {
-            return pathImgMember();
         }
     },
 

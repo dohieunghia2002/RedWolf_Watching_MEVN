@@ -1,6 +1,5 @@
 import responseHandler from '../handlers/response.handler.js';
 import Review from '../models/review.model.js';
-import User from '../models/user.model.js';
 import Media from '../models/media.model.js';
 
 // Create review, route POST /reviews/create
@@ -18,13 +17,9 @@ const create = async (req, res) => {
             media.rate = media.rate + review.rate;
         }
         await media.save();
+        const result = await Review.find({ userID: req.user._id, mediaID: req.body.mediaID }).populate('userID').populate('mediaID');
 
-        responseHandler.created(res, {
-            ...review._doc,
-            userID: req.user._id,
-            userFullName: req.user.fullName,
-            userImg: req.user.image
-        });
+        responseHandler.created(res, result);
     } catch {
         responseHandler.error(res);
     }
@@ -54,16 +49,11 @@ const remove = async (req, res) => {
 // Get reviews of user, route GET /reviews/user/:id
 const getReviewsOfUser = async (req, res) => {
     try {
-        const reviews = await Review.find({ userID: req.user._id });
+        const reviews = await Review.find({ userID: req.user._id }).populate('userID').populate('mediaID');
         const result = [];
         for (let i = 0; i < reviews.length; i++) {
             const element = reviews[i];
-            const infoMedia = await Media.findById(element.mediaID);
-            result.push({
-                ...element._doc,
-                nameMedia: infoMedia.name,
-                poster: infoMedia.posters[1],
-            });
+            result.push(element);
         }
         responseHandler.ok(res, result);
     } catch {
@@ -74,16 +64,11 @@ const getReviewsOfUser = async (req, res) => {
 // Admin track reviews of user, route GET /reviews/:id
 const adminTrackReviewsUser = async (req, res) => {
     try {
-        const reviews = await Review.find({ userID: req.params.id });
+        const reviews = await Review.find({ userID: req.params.id }).populate('userID').populate('mediaID');
         const result = [];
         for (let i = 0; i < reviews.length; i++) {
             const element = reviews[i];
-            const infoMedia = await Media.findById(element.mediaID);
-            result.push({
-                ...element._doc,
-                nameMedia: infoMedia.name,
-                poster: infoMedia.posters[1],
-            });
+            result.push(element);
         }
         responseHandler.ok(res, result);
     } catch {
@@ -113,20 +98,12 @@ const eachOfReviewUser = async (req, res) => {
 //Get reviews of media, route GET /reviews/media/:id
 const reviewsMedia = async (req, res) => {
     try {
-        var reviewsTemp = await Review.find({ mediaID: req.params.id });
-        var reviews = [];
-        for (let index = 0; index < reviewsTemp.length; index++) {
-            var element = reviewsTemp[index];
-            var user = await User.findOne({ _id: element.userID });
-            let sp = { ...element._doc, userFullName: user.fullName, userImg: user.image };
-            reviews.push(sp);
-        }
+        var reviews = await Review.find({ mediaID: req.params.id }).populate('userID').populate('mediaID');
         return responseHandler.ok(res, reviews);
     } catch {
         responseHandler.error(res);
     }
 }
-
 
 export default {
     create, remove, getReviewsOfUser, reviewsMedia, eachOfReviewUser, adminTrackReviewsUser
