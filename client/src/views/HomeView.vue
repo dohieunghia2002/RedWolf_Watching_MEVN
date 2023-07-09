@@ -167,4 +167,23 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/styles/home.scss';
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+    .container {
+        margin: 0 25px !important;
+        padding: 0;
+
+        .row {
+            margin: 12px 0;
+        }
+    }
+
+    .card {
+        width: 180px;
+
+        .card-img-top {
+            height: 300px;
+        }
+    }
+}
 </style>

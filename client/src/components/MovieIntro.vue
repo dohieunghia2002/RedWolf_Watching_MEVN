@@ -24,7 +24,7 @@
                             v-if="userStore.isLoggedin" />
                     </div>
 
-                    <router-link :to="{ name: 'watching', params: { id: mediaStore.media._id } }">
+                    <router-link :to="{ name: 'watching', params: { id: mediaStore.media._id } }" class="watch-media-btn">
                         <button>
                             <font-awesome-icon :icon="['fas', 'play']" />
                             <span class="mr-2"></span>
@@ -82,4 +82,24 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/styles/movieIntro.scss';
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+    .background-img-intro {
+        height: 390px;
+    }
+
+    .img-header-desc {
+        top: 23%;
+        left: 41%;
+    }
+
+    .watch-media-btn {
+        width: 174px;
+        height: 46px;
+
+        button {
+            height: 100%;
+        }
+    }
+}
 </style>

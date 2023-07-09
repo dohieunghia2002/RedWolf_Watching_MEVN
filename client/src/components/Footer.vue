@@ -22,7 +22,7 @@
                         <!-- <hr class="clearfix w-100 d-md-none pb-3"> -->
 
                         <div class="col-2 mb-3 about-categories text-center">
-                            <h5 class="text-uppercase">Top Genre</h5>
+                            <h5 class="title-item-advertise text-uppercase">Top Genre</h5>
                             <ul class="list-unstyled menu-categories">
                                 <li>
                                     <a href="#!">Action</a>
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="col-2 mb-3 about-categories text-center">
-                            <h5 class="text-uppercase">Nation</h5>
+                            <h5 class="title-item-advertise text-uppercase">Nation</h5>
                             <ul class="list-unstyled menu-categories">
                                 <li>
                                     <a href="#!">United States</a>
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="col-2 mb-3 about-company text-center">
-                            <h5 class="text-uppercase">Company</h5>
+                            <h5 class="title-item-advertise text-uppercase">Company</h5>
 
                             <ul class="list-unstyled menu-company">
                                 <li>
@@ -100,5 +100,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/footer.scss'
+@import '../assets/styles/footer.scss';
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+    .title-item-advertise {
+        font-size: .95rem;
+    }
+}
 </style>
