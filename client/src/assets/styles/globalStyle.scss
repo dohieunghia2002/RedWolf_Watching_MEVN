@@ -67,7 +67,6 @@ body {
 
 .list {
     display: flex;
-    width: 100%;
     justify-content: center;
 }
 
@@ -157,7 +156,6 @@ button {
     
     .card-img-top {
         border-radius: 0;
-        width: 100%;
     }
 
     &:hover {

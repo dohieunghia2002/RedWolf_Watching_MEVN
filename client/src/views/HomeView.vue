@@ -5,20 +5,22 @@
         <MovieIntro :key="generateKey(mediaStore.media._id, userStore.isLoggedin)" />
 
         <div class="container mt-4 pt-4">
-            <div class="row popular-movies">
-                <div class="categories">
-                    <h4 class="col-md-12 title-menu">
+            <div class="sections row popular-movies">
+                <div class="categories col-12">
+                    <h4 class="title-menu">
                         POPULAR MOVIES
                         <span class="separate"></span>
                     </h4>
                 </div>
-                <span class="famille"></span>
 
-                <div class="sections row list">
-                    <div v-for="(item, index) in  4 " :key="index">
+                <div class="w-100"></div>
+
+                <div class="list col-12 p-0">
+                    <div class="list-item col-3 p-0" v-for="(item, index) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.popularMovies[index]._id } }">
-                            <div class="card">
-                                <img class="card-img-top" :src="mediaStore.popularMovies[index].posters[1]" alt="Poster" />
+                            <div class="card h-100">
+                                <img class="card-img-top h-100" :src="mediaStore.popularMovies[index].posters[1]"
+                                    alt="Poster" />
 
                                 <div class="card-body">
                                     <div class="empty-space"></div>
@@ -33,20 +35,21 @@
                 </div>
             </div>
 
-            <div class="row popular-tv-series">
-                <div class="categories">
-                    <h4 class="col-md-12 title-menu">
+            <div class="sections row popular-tv-series">
+                <div class="categories  col-12">
+                    <h4 class="title-menu">
                         POPULAR SERIES
                         <span class="separate"></span>
                     </h4>
                 </div>
-                <span class="famille"></span>
 
-                <div class="sections row list">
-                    <div v-for="( item, index ) in  4 " :key="index">
+                <div class="w-100"></div>
+
+                <div class="list col-12  p-0">
+                    <div class="list-item  col-3 p-0" v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.popularTVSeries[index]._id } }">
-                            <div class="card">
-                                <img class="card-img-top" :src="mediaStore.popularTVSeries[index].posters[1]"
+                            <div class="card h-100">
+                                <img class="card-img-top h-100" :src="mediaStore.popularTVSeries[index].posters[1]"
                                     alt="Card image cap" />
 
                                 <div class="card-body">
@@ -62,20 +65,21 @@
                 </div>
             </div>
 
-            <div class="row rated-movies">
-                <div class="categories">
-                    <h4 class="col-md-12 title-menu">
+            <div class="sections row rated-movies">
+                <div class="categories col-12">
+                    <h4 class="title-menu">
                         TOP RATED MOVIES
                         <span class="separate"></span>
                     </h4>
                 </div>
-                <span class="famille"></span>
 
-                <div class="sections row list">
-                    <div v-for="( item, index ) in  4 " :key="index">
+                <div class="w-100"></div>
+
+                <div class="list col-12 p-0">
+                    <div class="list-item col-3 p-0" v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.ratedMovies[index]._id } }">
-                            <div class="card">
-                                <img class="card-img-top" :src="mediaStore.ratedMovies[index].posters[1]"
+                            <div class="card h-100">
+                                <img class="card-img-top h-100" :src="mediaStore.ratedMovies[index].posters[1]"
                                     alt="Card image cap" />
 
                                 <div class="card-body">
@@ -91,20 +95,21 @@
                 </div>
             </div>
 
-            <div class="row rated-series">
-                <div class="categories">
-                    <h4 class="col-md-12 title-menu">
+            <div class="sections row rated-series">
+                <div class="categories col-12">
+                    <h4 class="title-menu">
                         TOP RATED SERIES
                         <span class="separate"></span>
                     </h4>
                 </div>
-                <span class="famille"></span>
 
-                <div class="sections row list">
-                    <div v-for="( item, index ) in  4 " :key="index">
+                <div class="w-100"></div>
+
+                <div class="list col-12 p-0">
+                    <div class="list-item col-3 p-0" v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.ratedSeries[index]._id } }">
-                            <div class="card">
-                                <img class="card-img-top" :src="mediaStore.ratedSeries[index].posters[1]"
+                            <div class="card h-100">
+                                <img class="card-img-top h-100" :src="mediaStore.ratedSeries[index].posters[1]"
                                     alt="Card image cap" />
 
                                 <div class="card-body">
@@ -166,23 +171,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/home.scss';
+@import "@/assets/styles/globalStyle.scss";
 
 @media only screen and (min-width: 740px) and (max-width: 1024px) {
     .container {
-        margin: 0 25px !important;
         padding: 0;
 
         .row {
-            margin: 12px 0;
-        }
-    }
-
-    .card {
-        width: 180px;
-
-        .card-img-top {
-            height: 300px;
+            margin: 20px 0;
         }
     }
 }
