@@ -29,19 +29,21 @@
                     <div class="tab-pane active" id="popular">
                         <div class="sections row list">
                             <template v-for="(film, index) in mediaStore.popularTVSeries" :key="index">
-                                <router-link :to="{ name: 'detail', params: { id: film._id } }">
-                                    <div class="card">
-                                        <img class="card-img-top" :src="film.posters[1]" alt="Card image cap" />
+                                <div class="list-item col-2 p-0">
+                                    <router-link :to="{ name: 'detail', params: { id: film._id } }">
+                                        <div class="card h-100">
+                                            <img class="card-img-top h-100" :src="film.posters[1]" alt="Card image cap" />
 
-                                        <div class="card-body">
-                                            <div class="empty-space"></div>
-                                            <div>
-                                                <h4 class="card-title">{{ film.name }}</h4>
-                                                <p class="card-text">{{ film.year }}</p>
+                                            <div class="card-body">
+                                                <div class="empty-space"></div>
+                                                <div>
+                                                    <h4 class="card-title">{{ film.name }}</h4>
+                                                    <p class="card-text">{{ film.year }}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </router-link>
+                                    </router-link>
+                                </div>
                             </template>
                         </div>
                     </div>
@@ -49,19 +51,21 @@
                     <div class="tab-pane" id="rated">
                         <div class="sections row list">
                             <template v-for="(film, index) in mediaStore.ratedSeries" :key="index">
-                                <router-link :to="{ name: 'detail', params: { id: film._id } }">
-                                    <div class="card">
-                                        <img class="card-img-top" :src="film.posters[1]" alt="Card image cap" />
+                                <div class="list-item col-2 p-0">
+                                    <router-link :to="{ name: 'detail', params: { id: film._id } }">
+                                        <div class="card h-100">
+                                            <img class="card-img-top h-100" :src="film.posters[1]" alt="Card image cap" />
 
-                                        <div class="card-body">
-                                            <div class="empty-space"></div>
-                                            <div>
-                                                <h4 class="card-title">{{ film.name }}</h4>
-                                                <p class="card-text">{{ film.year }}</p>
+                                            <div class="card-body">
+                                                <div class="empty-space"></div>
+                                                <div>
+                                                    <h4 class="card-title">{{ film.name }}</h4>
+                                                    <p class="card-text">{{ film.year }}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </router-link>
+                                    </router-link>
+                                </div>
                             </template>
                         </div>
                     </div>
@@ -106,5 +110,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/movies.scss'
+.nav-tabs {
+    border: none;
+}
 </style>

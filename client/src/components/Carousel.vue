@@ -20,11 +20,13 @@
         <!--/.Slides-->
 
         <!--Controls-->
-        <button class="carousel-control-prev" data-target="#carousel-img-media" type="button" data-slide="prev">
+        <button class="carousel-control-prev" style="position: absolute;" data-target="#carousel-img-media" type="button"
+            data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </button>
-        <button class="carousel-control-next" data-target="#carousel-img-media" type="button" data-slide="next">
+        <button class="carousel-control-next" style="position: absolute;" data-target="#carousel-img-media" type="button"
+            data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </button>
@@ -76,6 +78,18 @@ export default {
     .carousel-item-slide {
         height: 600px;
         object-fit: cover;
+    }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+    .carousel-item {
+        height: 100%;
+        width: 100%;
+
+        .carousel-item-slide {
+            height: 400px;
+            object-fit: cover;
+        }
     }
 }
 </style>

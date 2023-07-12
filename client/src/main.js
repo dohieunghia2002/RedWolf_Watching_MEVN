@@ -16,8 +16,6 @@ import { dom } from '@fortawesome/fontawesome-svg-core'
 import App from './App.vue'
 import router from './router'
 
-import './assets/styles/globalStyle.scss'
-
 
 library.add(fas);
 library.add(fab);

@@ -13,21 +13,23 @@
 
             <div class="search-result">
                 <div class="sections row list" v-if="filtersMedia">
-                    <div v-for="(item, index) in filtersMedia" :key="index">
-                        <router-link :to="{ name: 'detail', params: { id: item._id } }">
-                            <div class="card">
-                                <img class="card-img-top" :src="item.posters[1]" alt="Poster" />
+                    <template v-for="(item, index) in filtersMedia" :key="index">
+                        <div class="list-item col-3 p-0">
+                            <router-link :to="{ name: 'detail', params: { id: item._id } }">
+                                <div class="card h-100">
+                                    <img class="card-img-top h-100" :src="item.posters[1]" alt="Poster" />
 
-                                <div class="card-body">
-                                    <div class="empty-space"></div>
-                                    <div>
-                                        <h4 class="card-title">{{ item.name }}</h4>
-                                        <p class="card-text">{{ item.year }}</p>
+                                    <div class="card-body">
+                                        <div class="empty-space"></div>
+                                        <div>
+                                            <h4 class="card-title">{{ item.name }}</h4>
+                                            <p class="card-text">{{ item.year }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </router-link>
-                    </div>
+                            </router-link>
+                        </div>
+                    </template>
 
                     <div>
                         <h1 class="text-white" v-if="filtersMedia.length === 0">No result</h1>
@@ -71,8 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/home.scss';
-
 .search {
     min-height: 600px;
 }

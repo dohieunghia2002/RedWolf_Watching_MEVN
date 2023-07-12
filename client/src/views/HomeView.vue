@@ -4,7 +4,7 @@
         mediaStore.popularTVSeries.length > 0 && mediaStore.ratedSeries.length > 0">
         <MovieIntro :key="generateKey(mediaStore.media._id, userStore.isLoggedin)" />
 
-        <div class="container mt-4 pt-4">
+        <div class="container">
             <div class="sections row popular-movies">
                 <div class="categories col-12">
                     <h4 class="title-menu">
@@ -171,15 +171,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/globalStyle.scss";
-
-@media only screen and (min-width: 740px) and (max-width: 1024px) {
-    .container {
-        padding: 0;
-
-        .row {
-            margin: 20px 0;
-        }
-    }
+.container {
+    margin-top: 32px;
 }
 </style>

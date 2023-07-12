@@ -3,7 +3,7 @@
         <div class="container-fluid m-0 p-0 media-intro">
             <div class="background-img-intro"></div>
 
-            <div class="media-desc">
+            <div class="media-desc w-100">
                 <img class="media-poster" :src="mediaStore.media.posters[1]" alt="poster media">
 
                 <div class="media-side-right">
@@ -42,16 +42,15 @@
         <div class="container mt-4">
             <div class="list-casts">
                 <div class="row">
-                    <div class="categories">
-                        <h4 class="col-md-12 title-menu">
+                    <div class="categories col-12">
+                        <h4 class="title-menu">
                             CASTS
                             <span class="separate"></span>
                         </h4>
                     </div>
-                    <span class="famille"></span>
 
-                    <div class="sections row casts-item">
-                        <div v-for="(cast, index) in mediaStore.media.casts" :key="index">
+                    <div class="sections row casts">
+                        <div class="cast-item col-2" v-for="(cast, index) in mediaStore.media.casts" :key="index">
                             <div class="card h-100">
                                 <div class="header-img">
                                     <img class="card-img-top" :src="cast.avatar" alt="casts-image" />
@@ -70,7 +69,7 @@
             <Carousel />
         </div>
 
-        <Review :key="reviewStore.reviewsMedia.length" />
+        <!-- <Review :key="reviewStore.reviewsMedia.length" /> -->
     </div>
 </template>
 

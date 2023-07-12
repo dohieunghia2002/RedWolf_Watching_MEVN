@@ -24,7 +24,7 @@
                         <router-link class="nav-link" :to="{ name: 'series' }">TV SERIES</router-link>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item navigate">
                         <router-link class="nav-link" :to="{ name: 'search' }">SEARCH</router-link>
                     </li>
                 </ul>
@@ -142,7 +142,6 @@ export default {
         },
 
         async handleLogout() {
-            // await this.$router.push('/');
             window.location.href = "http://localhost:8000/"
             this.userStore.logout();
         }
