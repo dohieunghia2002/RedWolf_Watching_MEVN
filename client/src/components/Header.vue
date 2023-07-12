@@ -1,91 +1,5 @@
 <template>
     <div class="header">
-        <!-- <nav class="navbar navbar-expand-lg navbar-dark">
-            <img src="@/assets/images/logo-red-wolf.png" class="logo" alt="logo">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" :key="active_curUrl">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item navigate">
-                        <router-link class="nav-link" :to="{ name: 'home' }">
-                            HOME
-                            <span class="sr-only">(current)</span>
-                        </router-link>
-                    </li>
-
-                    <li class="nav-item navigate">
-                        <router-link class="nav-link" :to="{ name: 'movies' }">MOVIES</router-link>
-                    </li>
-
-                    <li class="nav-item navigate">
-                        <router-link class="nav-link" :to="{ name: 'series' }">TV SERIES</router-link>
-                    </li>
-
-                    <li class="nav-item navigate">
-                        <router-link class="nav-link" :to="{ name: 'search' }">SEARCH</router-link>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ml-auto">
-                    <div class="btn-auth" v-if="userStore.isLoggedin == false">
-                        <li class="nav-item active">
-                            <button class="btn btn-link button text-uppercase" type="button" data-toggle="modal"
-                                data-target="#modal-signin-form">
-                                Sign in
-                            </button>
-                        </li>
-
-                        <li class="nav-item">
-                            <button class="btn btn-link button text-uppercase" type="button" data-toggle="modal"
-                                data-target="#modal-signup-form">
-                                Sign up
-                            </button>
-                        </li>
-                    </div>
-
-                    <li class="nav-item dropdown" v-else>
-                        <Avatar :fullName="userStore.account.fullName"
-                            style="width: 70px; height: 100%; padding: 3px 2px;" />
-                        <a class="nav-link dropdown-toggle mb-1 w-100 h-100" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" :aria-expanded="ariaExpended"
-                            v-on:click="this.handleShowMenudropdown()">
-                            {{ userStore.account.fullName }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
-                            <router-link class="dropdown-item" :to="{ name: 'favorites' }">
-                                <font-awesome-icon :icon="['fas', 'heart']" />
-                                <div class="content">
-                                    FAVORITES
-                                </div>
-                            </router-link>
-                            <router-link class="dropdown-item" :to="{ name: 'review' }">
-                                <font-awesome-icon :icon="['fas', 'feather']" />
-                                <div class="content">
-                                    REVIEWS
-                                </div>
-                            </router-link>
-                            <router-link class="dropdown-item" :to="{ name: 'password' }">
-                                <font-awesome-icon :icon="['fas', 'rotate-right']" />
-                                <div class="content">
-                                    CHANGE PASSWORD
-                                </div>
-                            </router-link>
-                            <button class="dropdown-item" to="/" type="button" @click="handleLogout">
-                                <font-awesome-icon :icon="['fas', 'right-from-bracket']" />
-                                <div class="content">
-                                    LOGOUT
-                                </div>
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav> -->
-
         <div class="logo">
             <img class="w-100" src="../assets/images/logo-red-wolf.png" alt="Logo Image">
         </div>
@@ -106,7 +20,7 @@
                 </li>
             </ul>
 
-            <ul class="nav-list nav-list-right">
+            <ul class="nav-list nav-list-right" v-if="!userStore.isLoggedin">
                 <li class="nav-auth active">
                     <button class="btn-auth text-uppercase" type="button" data-toggle="modal"
                         data-target="#modal-signin-form">
@@ -120,6 +34,34 @@
                     </button>
                 </li>
             </ul>
+
+            <div class="dropdown" v-else>
+                <Avatar :fullName="userStore.account.fullName" style="width: 46px; height: 100%; padding: 3px 2px;" />
+                <button class="dropbtn text-white" style="padding-left: 12px;" @click="handleShowMenudropdown()">
+                    {{ userStore.account.fullName }}
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <router-link class="dropdown-content-text" :to="{ name: 'favorites' }">
+                        <font-awesome-icon :icon="['fas', 'heart']" class="mr-1" />
+                        FAVORITES
+                    </router-link>
+                    <router-link class="dropdown-content-text" :to="{ name: 'review' }">
+                        <font-awesome-icon :icon="['fas', 'feather']" class="mr-1" />
+                        REVIEWS
+                    </router-link>
+                    <router-link class="dropdown-content-text" :to="{ name: 'password' }">
+                        <font-awesome-icon :icon="['fas', 'rotate-right']" class="mr-1" />
+                        CHANGE PASSWORD
+                    </router-link>
+                    <button class="dropdown-content-text m-0" type="button" @click="handleLogout">
+                        <div class="w-100">
+                            <font-awesome-icon :icon="['fas', 'right-from-bracket']" class="mr-1" />
+                            LOGOUT
+                        </div>
+                    </button>
+                </div>
+            </div>
         </nav>
 
         <!-- <nav class="nav-bars-btn" style="display: none;">
@@ -152,18 +94,15 @@ export default {
 
     methods: {
         handleShowMenudropdown() {
-            const dropdownEle = document.getElementsByClassName('dropdown')[0];
-            const dropdownMenuEle = document.getElementsByClassName('dropdown-menu')[0];
+            document.getElementById("myDropdown").classList.toggle("show");
 
-            if (dropdownEle.classList.contains('show')) {
-                dropdownEle.classList.remove('show');
-                this.ariaExpended = false;
-                dropdownMenuEle.classList.remove('show');
-            }
-            else {
-                dropdownEle.classList.add('show');
-                this.ariaExpended = true;
-                dropdownMenuEle.classList.add('show');
+            window.onclick = function (e) {
+                if (!e.target.matches('.dropbtn')) {
+                    var myDropdown = document.getElementById("myDropdown");
+                    if (myDropdown.classList.contains('show')) {
+                        myDropdown.classList.remove('show');
+                    }
+                }
             }
         },
 
@@ -203,7 +142,7 @@ export default {
 .header {
     display: flex;
     align-items: center;
-    height: 64px;
+    height: $height-header-bar;
     background-color: $black-color;
 
     .logo {
@@ -252,5 +191,62 @@ export default {
     text-align: center;
     color: $white-color;
     margin: 0;
+}
+
+.dropdown {
+    display: flex;
+
+    .dropbtn {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        color: $white-color;
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .dropdown-content {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        margin-top: $height-header-bar;
+        background-color: $background-color-dropdown-menu;
+        min-width: calc(100% - 22px);
+        border-radius: 4px;
+        text-align: right;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1051;
+
+        .dropdown-content-text {
+            font-size: 1.1rem;
+            color: $white-color;
+            line-height: 1.5;
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            padding: 10px;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $primary-color;
+            }
+        }
+
+        &.show {
+            display: flex;
+            animation: showDropdownContent ease-in-out .3s;
+        }
+
+    }
+}
+
+@keyframes showDropdownContent {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 </style>

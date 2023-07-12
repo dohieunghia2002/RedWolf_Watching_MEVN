@@ -41,28 +41,28 @@
 
         <div class="container mt-4">
             <div class="list-casts">
-                <div class="row">
+                <div class="row mb-0">
                     <div class="categories col-12">
                         <h4 class="title-menu">
                             CASTS
                             <span class="separate"></span>
                         </h4>
                     </div>
+                </div>
 
-                    <div class="sections row casts">
-                        <div class="cast-item col-2" v-for="(cast, index) in mediaStore.media.casts" :key="index">
-                            <div class="card h-100">
-                                <div class="header-img">
-                                    <img class="card-img-top" :src="cast.avatar" alt="casts-image" />
-                                </div>
+                <div class="sections row casts">
+                    <template v-for="(cast, index) in mediaStore.media.casts" :key="index">
+                        <div class="card cast-item col-lg-2 col-md-3">
+                            <div class="header-img h-100">
+                                <img class="card-img-top h-100" :src="cast.avatar" alt="casts-image" />
+                            </div>
 
-                                <div class="card-footer h-100">
-                                    <h6 class="card-title">{{ cast.name }}</h6>
-                                    <span class="card-text">{{ cast.character }}</span>
-                                </div>
+                            <div class="card-footer">
+                                <h6 class="card-title">{{ cast.name }}</h6>
+                                <span class="card-text">{{ cast.character }}</span>
                             </div>
                         </div>
-                    </div>
+                    </template>
                 </div>
             </div>
 
