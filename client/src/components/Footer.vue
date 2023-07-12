@@ -102,7 +102,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/footer.scss';
 
-@media only screen and (min-width: 740px) and (max-width: 1024px) {
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
     .title-item-advertise {
         font-size: .95rem;
     }

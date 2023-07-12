@@ -6,6 +6,7 @@ $dark-color: #000;
 $black-color: #131313;
 $black-color-lighter: #202020;
 $black-color-lighter-impress: #333;
+$black-text-color: #333;
 
 $background-color-dropdown-menu: rgb(19, 19, 19);
 
@@ -174,7 +175,7 @@ button {
     }
 }
 
-@media only screen and (min-width: 740px) and (max-width: 1024px) {
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
     .container {
         margin-top: 20px;
         padding: 0;

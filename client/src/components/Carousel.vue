@@ -81,7 +81,7 @@ export default {
     }
 }
 
-@media only screen and (min-width: 740px) and (max-width: 1024px) {
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
     .carousel-item {
         height: 100%;
         width: 100%;
