@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <nav class="navbar navbar-expand-lg navbar-dark">
             <img src="@/assets/images/logo-red-wolf.png" class="logo" alt="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,47 @@
                     </li>
                 </ul>
             </div>
+        </nav> -->
+
+        <div class="logo">
+            <img class="w-100" src="../assets/images/logo-red-wolf.png" alt="Logo Image">
+        </div>
+
+        <nav class="nav-pc">
+            <ul class="nav-list text-uppercase">
+                <li class="navigate">
+                    <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
+                </li>
+                <li class="navigate">
+                    <router-link :to="{ name: 'movies' }" class="nav-link">Movies</router-link>
+                </li>
+                <li class="navigate">
+                    <router-link :to="{ name: 'series' }" class="nav-link">Series</router-link>
+                </li>
+                <li class="navigate">
+                    <router-link :to="{ name: 'search' }" class="nav-link">Search</router-link>
+                </li>
+            </ul>
+
+            <ul class="nav-list nav-list-right">
+                <li class="nav-auth active">
+                    <button class="btn-auth text-uppercase" type="button" data-toggle="modal"
+                        data-target="#modal-signin-form">
+                        Sign in
+                    </button>
+                </li>
+                <li class="nav-auth">
+                    <button class="btn-auth text-uppercase" type="button" data-toggle="modal"
+                        data-target="#modal-signup-form">
+                        Sign up
+                    </button>
+                </li>
+            </ul>
         </nav>
+
+        <!-- <nav class="nav-bars-btn" style="display: none;">
+            <font-awesome-icon class="text-light" :icon="['fas', 'list-ul']" />
+        </nav> -->
     </div>
 </template>
 
@@ -158,5 +198,59 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/header.scss';
+// @import '../assets/styles/header.scss';
+
+.header {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    background-color: $black-color;
+
+    .logo {
+        width: $width-logo;
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+}
+
+.nav-pc {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .navigate,
+    .nav-auth {
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 5px;
+        overflow: hidden;
+
+        &.active {
+            background-color: $primary-color;
+        }
+    }
+
+    .navigate:not(.active):hover {
+        background-color: rgba(255, 0, 0, 0.08);
+    }
+
+    .nav-link {
+        text-decoration: none;
+        margin-right: 0 4px;
+        color: $white-color;
+    }
+}
+
+.btn-auth {
+    text-align: center;
+    color: $white-color;
+    margin: 0;
+}
 </style>
