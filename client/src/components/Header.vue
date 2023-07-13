@@ -37,7 +37,7 @@
             </ul>
 
             <div class="dropdown" v-else>
-                <Avatar :fullName="userStore.account.fullName" style="width: 46px; height: 100%; padding: 3px 2px;" />
+                <Avatar :fullName="userStore.account.fullName" style="width: 50px; padding: 3px 2px;" />
                 <button class="dropbtn text-white" style="padding-left: 12px;" @click="handleShowMenudropdown()">
                     {{ userStore.account.fullName }}
                     <i class="fa fa-caret-down"></i>

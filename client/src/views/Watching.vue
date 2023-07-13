@@ -2,7 +2,7 @@
     <div class="watching my-4" v-if="mediaStore.media">
         <div class="container">
             <div class="row player">
-                <div class="embed w-100 h-100">
+                <div class="embed">
                     <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl"
                         title="iframe video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -11,14 +11,15 @@
                 </div>
             </div>
 
-            <div class="row annotate my-4">
+            <div class="sections row annotate my-4">
                 <h4 class="annotate-name">{{ mediaStore.media.name }}</h4>
+                <div class="w-100"></div>
                 <span class="annotate-desc text-light small">
                     {{ mediaStore.media.description }}
                 </span>
             </div>
 
-            <ul class="row episodes p-0" v-if="mediaStore.media.eppisodes.length > 1">
+            <ul class="sections row episodes p-0" v-if="mediaStore.media.eppisodes.length > 1">
                 <li class="episodes-list" v-for="(ep, index) in mediaStore.media.eppisodes" :key="index">
                     <button class="episodes-list-btn" type="button" @click="choseEp(ep.number)"
                         :class="{ active: curNoEp == ep.number }">
@@ -81,6 +82,7 @@ export default {
 .embed {
     display: block;
     text-align: center;
+    width: 100%;
 
     .video {
         object-fit: contain;
@@ -102,16 +104,13 @@ export default {
     .episodes-list {
         display: inline-block;
         text-align: center;
-        padding: 5px !important;
-        margin: 0 !important;
-        width: 7%;
 
         .episodes-list-btn {
             background-color: rgba(4, 4, 141, 0.35);
-            padding: 8px 25px;
             color: #bbb;
             border: 0;
             border-radius: 20%;
+            margin: 4px;
 
             &:hover {
                 background-color: rgba(4, 4, 141, 0.8);
@@ -123,6 +122,4 @@ export default {
         }
     }
 }
-
-@media only screen and (min-width: 740px) and (max-width: 1023px) {}
 </style>

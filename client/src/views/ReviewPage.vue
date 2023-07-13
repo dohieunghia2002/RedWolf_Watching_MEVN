@@ -1,13 +1,12 @@
 <template>
     <div class="review">
         <div class="container mt-4">
-            <div class="categories">
-                <h4 class="col-md-12 title-menu text-uppercase">
+            <div class="categories col-12">
+                <h4 class="title-menu text-uppercase">
                     Your Review
                     <span class="separate"></span>
                 </h4>
             </div>
-            <span class="famille"></span>
 
             <div class="my-4 list-review" v-for="(review, index) in reviewStore.reviewsUser" :key="index">
                 <div class="review-item">

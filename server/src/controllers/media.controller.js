@@ -163,22 +163,6 @@ const topRatedSeries = async (req, res) => {
     }
 }
 
-// Get random a media, route GET /media/rand
-// const randomMedia = async (req, res) => {
-//     try {
-//         const tempMovies = (await Media.find({}));
-
-//         const quantity = tempMovies.length;
-//         var random = Math.floor(Math.random() * quantity);
-
-//         const film = tempMovies[random];
-
-//         responseHandler.ok(res, film);
-//     } catch {
-//         responseHandler.error(res);
-//     }
-// }
-
 // Get random a movie, route GET /media/movies/intro
 const getRandMovie = async (req, res) => {
     try {
@@ -231,7 +215,6 @@ export default {
     addMedia, updateMedia, delMedia,
     trashMedia, restoreMedia, forceDel,
     storeMedia,
-    // randomMedia,
     popularMovies,
     topRatedMovies,
     popularTVSeries,

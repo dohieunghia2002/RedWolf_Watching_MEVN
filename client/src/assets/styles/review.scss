@@ -8,7 +8,8 @@
     position: relative;
 
     .review-poster-media {
-        width: 13%;
+        width: 20%;
+        height: 25%;
     }
 
     .btn-remove {
@@ -17,8 +18,8 @@
         top: 0;
         right: 0;
         background-color: $primary-color;
-        width: 10%;
-        height: 12%;
+        width: 84px;
+        height: 28px;
         box-shadow: none;
         font-weight: lighter;
 

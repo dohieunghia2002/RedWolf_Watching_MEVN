@@ -11,11 +11,11 @@
             </div>
 
             <div class="row evaluation-input" v-if="userStore.isLoggedin">
-                <div class="col-lg-1">
-                    <Avatar :fullName="userStore.account.fullName" style="width: 60px; height: 60px; padding: 3px 2px;" />
+                <div class="col-2" style="width: 100px;">
+                    <Avatar :fullName="userStore.account.fullName" style="padding: 20px 36px;" />
                 </div>
 
-                <div class="col-lg-11">
+                <div class="col-10">
                     <div class="comment ml-3 w-100">
                         <div class="comment-header w-100">
                             <h5 class="name-user">{{ userStore.account.fullName }}</h5>
