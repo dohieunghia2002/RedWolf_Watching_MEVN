@@ -1,9 +1,9 @@
 <template>
     <div class="watching my-4" v-if="mediaStore.media">
         <div class="container">
-            <div class="player">
-                <div class="embed">
-                    <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl" height="520" width="1080"
+            <div class="row player">
+                <div class="embed w-100 h-100">
+                    <iframe class="video" :src="mediaStore.media.eppisodes[curNoEp - 1].videoUrl"
                         title="iframe video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen style="border:none;">
@@ -11,14 +11,14 @@
                 </div>
             </div>
 
-            <div class="annotate my-4">
+            <div class="row annotate my-4">
                 <h4 class="annotate-name">{{ mediaStore.media.name }}</h4>
                 <span class="annotate-desc text-light small">
                     {{ mediaStore.media.description }}
                 </span>
             </div>
 
-            <ul class="episodes p-0" v-if="mediaStore.media.eppisodes.length > 1">
+            <ul class="row episodes p-0" v-if="mediaStore.media.eppisodes.length > 1">
                 <li class="episodes-list" v-for="(ep, index) in mediaStore.media.eppisodes" :key="index">
                     <button class="episodes-list-btn" type="button" @click="choseEp(ep.number)"
                         :class="{ active: curNoEp == ep.number }">
@@ -80,13 +80,15 @@ export default {
 <style lang="scss" scoped>
 .embed {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
+
+    .video {
+        object-fit: contain;
+        width: 640px;
+        height: 360px;
+    }
 }
 
-.video {
-    object-fit: contain;
-}
 
 .annotate {
     .annotate-name {
@@ -121,4 +123,6 @@ export default {
         }
     }
 }
+
+@media only screen and (min-width: 740px) and (max-width: 1023px) {}
 </style>

@@ -184,6 +184,13 @@
     }
 }
 
+.vue-avatar {
+    width: 80% !important;
+    height: 80% !important;
+    padding: 18% 20%;
+    font-size: 1.53rem !important;
+}
+
 @media only screen and (min-width: 740px) and (max-width: 1023px) {
     .media-desc {
         left: 1%;
@@ -192,4 +199,18 @@
     .cast-item {
         margin: 0 8px 16px;
     }
+
+    .vue-avatar {
+        width: 80% !important;
+        height: 100% !important;
+        padding: 24% 20%;
+        font-size: 1.53rem !important;
+    }
+
+    .evaluation {
+        .evaluation-comment-right {
+            padding-left: 0;
+        }
+    }
+
 }

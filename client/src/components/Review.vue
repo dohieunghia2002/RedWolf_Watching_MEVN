@@ -2,13 +2,12 @@
     <div class="container-fluid mx-0 mt-4 py-1 media-review">
         <div class="container">
             <div class="row">
-                <div class="categories">
-                    <h4 class="col-md-12 title-menu">
+                <div class="categories col-12">
+                    <h4 class="title-menu">
                         REVIEWS
                         <span class="separate"></span>
                     </h4>
                 </div>
-                <span class="famille"></span>
             </div>
 
             <div class="row evaluation-input" v-if="userStore.isLoggedin">
@@ -48,12 +47,11 @@
 
             <div v-for="(review, index) in this.reviewStore.reviewsMedia" :key="index">
                 <div class="row evaluation" v-if="review.content">
-                    <div class="col-lg-1">
-                        <Avatar :fullName="review.userID.fullName" :key="review.userID.fullName"
-                            style="width: 60px; height: 60px; padding: 3px 2px;" />
+                    <div class="col-md-2 col-lg-1 p-0 text-center">
+                        <Avatar :fullName="review.userID.fullName" :key="review.userID.fullName" />
                     </div>
 
-                    <div class="col-lg-11">
+                    <div class="col-md-10 col-lg-11 evaluation-comment-right">
                         <div class="comment ml-3 w-100">
                             <div class="comment-header w-100">
                                 <h5 class="name-user">{{ review.userID.fullName }}</h5>

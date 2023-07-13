@@ -69,7 +69,7 @@
             <Carousel />
         </div>
 
-        <!-- <Review :key="reviewStore.reviewsMedia.length" /> -->
+        <Review :key="reviewStore.reviewsMedia.length" />
     </div>
 </template>
 
