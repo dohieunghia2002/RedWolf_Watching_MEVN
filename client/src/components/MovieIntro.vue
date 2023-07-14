@@ -3,7 +3,7 @@
         <div class="container-fluid m-0 p-0">
             <div class="background-img-intro"> </div>
             <div class="img-header-desc">
-                <h4>{{ mediaStore.media.name }}</h4>
+                <h4 class="movie-name">{{ mediaStore.media.name }}</h4>
 
                 <div class="media-rating">
                     <RatingCircle />

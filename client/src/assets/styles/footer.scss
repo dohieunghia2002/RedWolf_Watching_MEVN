@@ -11,14 +11,12 @@
     }
 
     .logo-footer {
-        width: 20%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 8px;
+        width: 25%;
+        margin: 0 0 8px 0;
     }
     
     .address-company {
-        width: 68%;
+        width: 100%;
     }
 
     p {
@@ -43,5 +41,32 @@
 
     .text-copyright {
         color: $primary-color;
+    }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
+    .title-item-advertise {
+        font-size: .95rem;
+    }
+}
+
+@media only screen and (max-width: 739px) {
+    .page-footer {
+        .logo-footer {
+            width: 50%;
+            height: 30%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .address-company {
+            width: 100%;
+            font-size: 1.2rem;
+        }
+    }
+
+    .about-categories,
+    .about-company {
+        display: none;
     }
 }

@@ -1,5 +1,7 @@
 $rating-size: 3.2rem;
+$rating-size-sm: 2.2rem;
 $bar-size: 0.3rem;
+$bar-size-sm: 0.2rem;
 $background-color: #e7f2fa;
 $rating-color-default: #2980b9;
 $rating-color-background: #c7e1f3;
@@ -75,4 +77,21 @@ $rating-color-bad: #e74c3c;
 .rating.bad {
     background: $rating-color-bad;
     color: $rating-color-bad;
+}
+
+@media only screen and (max-width: 739px) {
+    .rating {
+        width: $rating-size-sm;
+        height: $rating-size-sm;
+        font-size: calc($rating-size-sm / 2.5);
+        font-weight: 500;
+    }
+
+    .rating::after {
+        inset: $bar-size-sm;
+    }
+
+    .rating::before {
+        inset: $bar-size-sm;
+    }
 }

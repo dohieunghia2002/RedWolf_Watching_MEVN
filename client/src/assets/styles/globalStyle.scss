@@ -12,7 +12,7 @@ $background-color-dropdown-menu: rgb(19, 19, 19);
 
 $width-logo: 86px;
 
-$height-img-header: 700px;
+$height-img-header: 600px;
 $height-header-bar: 64px;
 
 html,
@@ -45,11 +45,6 @@ body {
     display: block;
     border-bottom: 5px solid $primary-color;
     padding-bottom: 4px;
-}
-
-.famille {
-    display: block;
-    margin-right: 650px;
 }
 
 .title-menu {
@@ -182,6 +177,35 @@ button {
 
         .row {
             margin: 20px 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 739px) {
+    .title-menu {
+        font-size: 1rem;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    .container {
+
+        .row {
+            margin: 12px 0;
+        }
+    }
+
+    .separate::after {
+        border-bottom: 3px solid $primary-color;
+        padding-bottom: 2px;
+    }
+
+    .card {
+
+        &:hover {
+            .card-body {
+                display: none;
+            }
         }
     }
 }
