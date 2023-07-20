@@ -172,8 +172,12 @@ export default {
         }
     },
 
-    async mounted() {
-        await this.handleReadMoreCmt();
+    updated() {
+        this.handleReadMoreCmt();
+    },
+
+    mounted() {
+        this.handleReadMoreCmt();
     }
 }
 </script>

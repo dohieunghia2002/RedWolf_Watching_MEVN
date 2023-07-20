@@ -122,4 +122,14 @@ export default {
         }
     }
 }
+
+@media only screen and (max-width: 739px) {
+    .embed {
+
+        .video {
+            width: 360px;
+            height: 280px;
+        }
+    }
+}
 </style>
