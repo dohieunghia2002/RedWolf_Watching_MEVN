@@ -123,7 +123,7 @@
         </nav>
 
         <!-- Menu side right -->
-        <nav class="nav-mobile-user-menu">
+        <nav class="nav-mobile-user-menu" v-if="widthScreen < 740 && userStore.isLoggedin">
             <label for="nav-mobile-user-menu-check" class="nav-mobile-user-menu-close">
                 <font-awesome-icon :icon="['fas', 'times']" />
             </label>

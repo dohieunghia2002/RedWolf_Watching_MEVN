@@ -92,4 +92,17 @@ export default {
         }
     }
 }
+
+@media only screen and (max-width: 739px) {
+    .carousel-inner {
+        height: 280px;
+    }
+
+    .carousel-item {
+        .carousel-item-slide {
+            height: 280px;
+            object-fit: cover;
+        }
+    }
+}
 </style>

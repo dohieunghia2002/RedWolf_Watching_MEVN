@@ -52,7 +52,7 @@
 
                 <div class="sections row casts">
                     <template v-for="(cast, index) in mediaStore.media.casts" :key="index">
-                        <div class="card cast-item col-lg-2 col-md-3">
+                        <div class="card cast-item col-3 col-lg-2">
                             <div class="header-img h-100">
                                 <img class="card-img-top h-100" :src="cast.avatar" alt="casts-image" />
                             </div>

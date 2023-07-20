@@ -26,7 +26,7 @@
                     <div class="tab-pane active" id="popular">
                         <div class="sections row list">
                             <template v-for="(movie, index) in mediaStore.popularMovies" :key="index">
-                                <div class="list-item col-2 p-0">
+                                <div class="list-item col-4 col-md-3 col-lg-2 p-0">
                                     <router-link :to="{ name: 'detail', params: { id: movie._id } }">
                                         <div class="card h-100">
                                             <img class="card-img-top h-100" :src="movie.posters[1]" alt="Card image cap" />
@@ -48,7 +48,7 @@
                     <div class="tab-pane" id="rated">
                         <div class="sections row list">
                             <template v-for="(movie, index) in mediaStore.ratedMovies" :key="index">
-                                <div class="list-item col-2 p-0">
+                                <div class="list-item col-4 col-md-3 col-lg-2 p-0">
                                     <router-link :to="{ name: 'detail', params: { id: movie._id } }">
                                         <div class="card h-100">
                                             <img class="card-img-top h-100" :src="movie.posters[1]" alt="Card image cap" />

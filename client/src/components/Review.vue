@@ -47,11 +47,11 @@
 
             <div v-for="(review, index) in this.reviewStore.reviewsMedia" :key="index">
                 <div class="row evaluation" v-if="review.content">
-                    <div class="col-md-2 col-lg-1 p-0 text-center">
+                    <div class="col-2 col-lg-1 p-0 text-center">
                         <Avatar :fullName="review.userID.fullName" :key="review.userID.fullName" />
                     </div>
 
-                    <div class="col-md-10 col-lg-11 evaluation-comment-right">
+                    <div class="col-10 col-lg-11 evaluation-comment-right">
                         <div class="comment ml-3 w-100">
                             <div class="comment-header w-100">
                                 <h5 class="name-user">{{ review.userID.fullName }}</h5>
@@ -65,7 +65,20 @@
                                     </button>
                                 </div>
                             </div>
-                            <p class="comment-content small text-justify">{{ review.content }}</p>
+                            <div class="comment-content-collapse">
+                                <p class="comment-content show small text-justify">{{ review.content }}</p>
+                                <div :id="'collapse' + review._id" class="collapse comment-content-fully">
+                                    <p class="small text-justify text-white" style="font-size: 1.2rem;">
+                                        {{ review.content }}
+                                    </p>
+                                </div>
+                                <button class="btn btn-link btn-toggle-collapse p-0 ml-0" type="button"
+                                    data-toggle="collapse" :data-target="'#collapse' + review._id" aria-expanded="false"
+                                    :aria-controls="'collapse' + review._id" @click="readFullyCmt(index)"
+                                    style="display: none;">
+                                    Read more
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,10 +128,47 @@ export default {
             const res = await reviewService.remove(id, this.userStore.account.token);
             this.mediaStore.media = await mediaService.getDetail(mediaId);
             this.reviewStore.reviewsMedia = await reviewService.getReviewsMedia(mediaId);
+        },
+
+        async handleReadMoreCmt() {
+            const cmtContentEle = document.getElementsByClassName('comment-content');
+            var text = [];
+            for (let i = 0; i < cmtContentEle.length; i++) {
+                if (cmtContentEle[i]) {
+                    text.push(cmtContentEle[i]);
+                }
+            }
+            for (let i = 0; i < text.length; i++) {
+                const element = text[i];
+                if (element.innerText.length > 200) {
+                    element.innerHTML = element.innerText.substr(0, 200);
+                    document.getElementsByClassName('btn-toggle-collapse')[i].style.display = 'flex';
+                }
+            }
+        },
+
+        async readFullyCmt(index) {
+            document.getElementsByClassName('comment-content')[index].classList.toggle("show");
         }
+    },
+
+    async mounted() {
+        await this.handleReadMoreCmt();
     }
 }
 </script>
 <style lang="scss" scoped>
 @import '@/assets/styles/detailMedia.scss';
+
+.comment-content {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+.btn-toggle-collapse:focus {
+    box-shadow: none;
+}
 </style>
