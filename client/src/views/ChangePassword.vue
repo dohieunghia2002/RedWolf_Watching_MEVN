@@ -62,4 +62,10 @@ export default {
         margin: 1rem auto;
     }
 }
+
+@media only screen and (max-width: 739px) {
+    .change-password {
+        width: 100%;
+    }
+}
 </style>

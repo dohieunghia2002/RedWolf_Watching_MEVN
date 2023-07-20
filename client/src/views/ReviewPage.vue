@@ -12,9 +12,21 @@
                 <div class="review-item">
                     <img :src="review.mediaID.posters[1]" class="review-poster-media" alt="poster media">
                     <div class="review-detail flex-grow-1 text-light mx-3">
-                        <h4 class="my-2">{{ review.mediaID.name }}</h4>
+                        <h4 class="media-name my-2">{{ review.mediaID.name }}</h4>
                         <p>{{ review.date.split('T')[0] }}</p>
-                        <p v-if="review.content">{{ review.content }}</p>
+
+                        <p v-if="review.content" class="comment-content-apart show">{{ review.content }}</p>
+                        <div :id="'collapse' + review._id" class="comment-content-fully">
+                            <p class="small text-justify text-white" style="font-size: 1rem;">
+                                {{ review.content }}
+                            </p>
+                        </div>
+
+                        <button class="btn btn-link btn-toggle-collapse p-0 ml-0" type="button" @click="readFullyCmt(index)"
+                            style="display: none;">
+                            Read more
+                        </button>
+
                         <span class="appreciate" v-if="review.rate > 0">
                             <font-awesome-icon :icon="['fas', 'trophy']" class="text-warning" />
                             {{ review.rate }}/100
@@ -57,15 +69,69 @@ export default {
         async removeCommet(id) {
             const res = await reviewService.remove(id, this.userStore.account.token);
             await this.handleSetValue();
+        },
+
+        async handleReadMoreCmt() {
+            const cmtContentApart = document.getElementsByClassName('comment-content-apart');
+            console.log(cmtContentApart.length);
+            var text = [];
+            for (let i = 0; i < cmtContentApart.length; i++) {
+                if (cmtContentApart[i]) {
+                    text.push(cmtContentApart[i]);
+                }
+            }
+            for (let i = 0; i < text.length; i++) {
+                const element = text[i];
+                if (element.innerText.length > 150) {
+                    element.innerHTML = element.innerText.substr(0, 150);
+                    document.getElementsByClassName('btn-toggle-collapse')[i].style.display = 'flex';
+                }
+            }
+        },
+
+        async readFullyCmt(index) {
+            var cmtContentApart = document.getElementsByClassName('comment-content-apart')[index];
+            cmtContentApart.classList.toggle("show");
+            var cmtContentFully = document.getElementsByClassName("comment-content-fully")[index];
+            cmtContentFully.classList.toggle("show");
+
+            var btnToggleCollapse = document.getElementsByClassName('btn-toggle-collapse')[index];
+            if (cmtContentApart.classList.contains("show")) {
+                btnToggleCollapse.innerHTML = "Read more";
+            }
+            else {
+                btnToggleCollapse.innerHTML = "Collapse";
+            }
         }
     },
 
     async created() {
         await this.handleSetValue();
+        await this.handleReadMoreCmt();
     },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/review.scss';
+
+.comment-content-apart {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+.comment-content-fully {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+.btn-toggle-collapse:focus {
+    box-shadow: none;
+}
 </style>

@@ -11,8 +11,12 @@
             </div>
 
             <div class="row evaluation-input" v-if="userStore.isLoggedin">
-                <div class="col-2" style="width: 100px;">
-                    <Avatar :fullName="userStore.account.fullName" style="padding: 20px 36px;" />
+                <div class="col-2" v-if="widthScreen < 740">
+                    <Avatar :fullName="userStore.account.fullName" style="padding: 28% 100%;" />
+                </div>
+
+                <div class="col-2" v-else>
+                    <Avatar :fullName="userStore.account.fullName" style="padding: 10% 0; width: 50% !important;" />
                 </div>
 
                 <div class="col-10">
@@ -24,8 +28,8 @@
                             <textarea class="comment-input small text-justify w-100" rows="3"
                                 v-model="reviewStore.formComment.content">
                                 </textarea>
-                            <div class="form-group row my-2">
-                                <div class="col-9 p-0">
+                            <div class="form-group sections row my-2">
+                                <div class="col-12 p-0">
                                     <label class="col-form-label form-control-label text-light mr-2">
                                         <font-awesome-icon :icon="['fas', 'trophy']" class="text-warning" />
                                         Appreciate
@@ -33,7 +37,8 @@
                                     <input type="number" placeholder="?/100" id="appreciate" min="0" max="100"
                                         v-model="reviewStore.formComment.rate">
                                 </div>
-                                <div class="col-3 p-0">
+                                <div class="w-100 my-2"></div>
+                                <div class="col-12 p-0">
                                     <div class="d-flex justify-content-end w-100">
                                         <input type="reset" class="btn btn-secondary mr-2" value="Cancel">
                                         <input type="submit" class="btn btn-primary" value="Save Changes">
@@ -67,15 +72,13 @@
                             </div>
                             <div class="comment-content-collapse">
                                 <p class="comment-content-apart show small text-justify">{{ review.content }}</p>
-                                <div :id="'collapse' + review._id" class="collapse comment-content-fully">
+                                <div :id="'collapse' + review._id" class="comment-content-fully">
                                     <p class="small text-justify text-white" style="font-size: 1.2rem;">
                                         {{ review.content }}
                                     </p>
                                 </div>
                                 <button class="btn btn-link btn-toggle-collapse p-0 ml-0" type="button"
-                                    data-toggle="collapse" :data-target="'#collapse' + review._id" aria-expanded="false"
-                                    :aria-controls="'collapse' + review._id" @click="readFullyCmt(index)"
-                                    style="display: none;">
+                                    @click="readFullyCmt(index)" style="display: none;">
                                     Read more
                                 </button>
                             </div>
@@ -110,6 +113,12 @@ export default {
 
     components: { Avatar },
 
+    computed: {
+        widthScreen() {
+            return window.innerWidth;
+        }
+    },
+
     methods: {
         async postComment() {
             const userId = this.userStore.account._id;
@@ -131,7 +140,7 @@ export default {
         },
 
         async handleReadMoreCmt() {
-            const cmtContentApart = document.getElementsByClassName('comment-content-apart');
+            const cmtContentApart = document.getElementsByClassName("comment-content-apart");
             var text = [];
             for (let i = 0; i < cmtContentApart.length; i++) {
                 if (cmtContentApart[i]) {
@@ -148,10 +157,12 @@ export default {
         },
 
         async readFullyCmt(index) {
-            const cmtContentApart = document.getElementsByClassName('comment-content-apart')[index];
+            var cmtContentApart = document.getElementsByClassName("comment-content-apart")[index];
             cmtContentApart.classList.toggle("show");
+            var cmtContentFully = document.getElementsByClassName("comment-content-fully")[index];
+            cmtContentFully.classList.toggle("show");
 
-            const btnToggleCollapse = document.getElementsByClassName('btn-toggle-collapse')[index];
+            var btnToggleCollapse = document.getElementsByClassName('btn-toggle-collapse')[index];
             if (cmtContentApart.classList.contains("show")) {
                 btnToggleCollapse.innerHTML = "Read more";
             }
@@ -170,6 +181,14 @@ export default {
 @import '@/assets/styles/detailMedia.scss';
 
 .comment-content-apart {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+.comment-content-fully {
     display: none;
 
     &.show {
