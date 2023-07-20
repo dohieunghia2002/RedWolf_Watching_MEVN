@@ -1,5 +1,5 @@
 <template>
-    <Header :key="$route.path" />
+    <Header :key="generateKey($route.path, screenWidth)" />
     <router-view />
     <SigninForm />
     <SignupForm />
@@ -28,6 +28,19 @@ export default {
         return {
             mediaStore
         }
+    },
+
+    computed: {
+        screenWidth() {
+            return screen.width;
+        }
+    },
+
+    methods: {
+        generateKey(item, index) {
+            const uniqueKey = `${item}-${index}`;
+            return uniqueKey;
+        },
     },
 
     async created() {
