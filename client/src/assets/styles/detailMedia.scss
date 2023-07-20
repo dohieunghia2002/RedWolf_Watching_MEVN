@@ -96,6 +96,11 @@
     cursor: default;
     pointer-events: none;
 
+    .header-img {
+        height: $height-avatar-cast-lg;
+        min-height: calc($height-avatar-cast-lg - 20px);
+    }
+
     .card-img-top {
         object-fit: cover;
     }
@@ -110,6 +115,7 @@
         background-color: $black-color-lighter;
         color: $white-color;
         font-size: 0.9rem;
+        height: 100%;
 
         .card-title {
             font-weight: 650;
@@ -164,7 +170,7 @@
             }
         }
 
-        .comment-content {
+        .comment-content-apart {
             font-size: 1.2rem;
             color: #e1e1e1;
         }
@@ -198,6 +204,10 @@
 
     .cast-item {
         margin: 0 8px 16px;
+
+        .header-img {
+            height: $height-avatar-cast-md;
+        }
     }
 
     .vue-avatar {
@@ -241,6 +251,14 @@
 
     .cast-item {
         margin: 0 8px 16px;
+
+        .header-img {
+            height: $height-avatar-cast-sm;
+        }
+
+        .card-footer {
+            padding: 0.25rem 1rem;
+        }
     }
 
     .vue-avatar {

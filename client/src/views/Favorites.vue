@@ -17,7 +17,7 @@
 
             <div class="sections row list mt-0" v-else>
                 <template v-for="(media, index) in favoritesStore.favorites.mediaID" :key="index">
-                    <div class="list-favorites-item col-3 mb-2">
+                    <div class="list-favorites-item col-4 col-md-3 mb-2">
                         <router-link :to="{ name: 'detail', params: { id: media._id } }">
                             <div class="card mt-2">
                                 <img class="card-img-top h-100" :src="media.posters[1]" alt="Poster" />

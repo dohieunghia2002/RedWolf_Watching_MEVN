@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="comment-content-collapse">
-                                <p class="comment-content show small text-justify">{{ review.content }}</p>
+                                <p class="comment-content-apart show small text-justify">{{ review.content }}</p>
                                 <div :id="'collapse' + review._id" class="collapse comment-content-fully">
                                     <p class="small text-justify text-white" style="font-size: 1.2rem;">
                                         {{ review.content }}
@@ -131,24 +131,33 @@ export default {
         },
 
         async handleReadMoreCmt() {
-            const cmtContentEle = document.getElementsByClassName('comment-content');
+            const cmtContentApart = document.getElementsByClassName('comment-content-apart');
             var text = [];
-            for (let i = 0; i < cmtContentEle.length; i++) {
-                if (cmtContentEle[i]) {
-                    text.push(cmtContentEle[i]);
+            for (let i = 0; i < cmtContentApart.length; i++) {
+                if (cmtContentApart[i]) {
+                    text.push(cmtContentApart[i]);
                 }
             }
             for (let i = 0; i < text.length; i++) {
                 const element = text[i];
-                if (element.innerText.length > 200) {
-                    element.innerHTML = element.innerText.substr(0, 200);
+                if (element.innerText.length > 150) {
+                    element.innerHTML = element.innerText.substr(0, 150);
                     document.getElementsByClassName('btn-toggle-collapse')[i].style.display = 'flex';
                 }
             }
         },
 
         async readFullyCmt(index) {
-            document.getElementsByClassName('comment-content')[index].classList.toggle("show");
+            const cmtContentApart = document.getElementsByClassName('comment-content-apart')[index];
+            cmtContentApart.classList.toggle("show");
+
+            const btnToggleCollapse = document.getElementsByClassName('btn-toggle-collapse')[index];
+            if (cmtContentApart.classList.contains("show")) {
+                btnToggleCollapse.innerHTML = "Read more";
+            }
+            else {
+                btnToggleCollapse.innerHTML = "Collapse";
+            }
         }
     },
 
@@ -160,7 +169,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/detailMedia.scss';
 
-.comment-content {
+.comment-content-apart {
     display: none;
 
     &.show {

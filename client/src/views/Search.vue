@@ -13,17 +13,17 @@
 
             <div class="search-result">
                 <div class="sections row list" v-if="filtersMedia">
-                    <template v-for="(item, index) in filtersMedia" :key="index">
-                        <div class="list-item col-3 p-0">
-                            <router-link :to="{ name: 'detail', params: { id: item._id } }">
+                    <template v-for="(item, index) in filtersMedia.slice(16).length" :key="index">
+                        <div class="list-item col-4 col-md-3 p-0">
+                            <router-link :to="{ name: 'detail', params: { id: filtersMedia[index]._id } }">
                                 <div class="card h-100">
-                                    <img class="card-img-top h-100" :src="item.posters[1]" alt="Poster" />
+                                    <img class="card-img-top h-100" :src="filtersMedia[index].posters[1]" alt="Poster" />
 
                                     <div class="card-body">
                                         <div class="empty-space"></div>
                                         <div>
-                                            <h4 class="card-title">{{ item.name }}</h4>
-                                            <p class="card-text">{{ item.year }}</p>
+                                            <h4 class="card-title">{{ filtersMedia[index].name }}</h4>
+                                            <p class="card-text">{{ filtersMedia[index].year }}</p>
                                         </div>
                                     </div>
                                 </div>
