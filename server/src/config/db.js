@@ -7,7 +7,9 @@ export const connectDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        console.log('Connected Database');
+        if (conn) {
+            console.log('Connected Database');
+        }
     } catch (error) {
         console.log('Connect Fail!!!!!');
         process.exit(1);
