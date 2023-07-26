@@ -1,7 +1,7 @@
 import createApiClient from './api.server.js';
 
 class FavoritesService {
-    constructor(baseUrl = '/favorites') {
+    constructor(baseUrl = 'https://redwolf-cine-server.onrender.com/media/favorites') {
         this.api = createApiClient(baseUrl);
     }
 

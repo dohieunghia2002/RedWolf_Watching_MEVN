@@ -1,7 +1,7 @@
 import createApiClient from './api.server.js';
 
 class UserService {
-    constructor(baseUrl = '/users') {
+    constructor(baseUrl = 'https://redwolf-cine-server.onrender.com/media/users') {
         this.api = createApiClient(baseUrl);
     }
 
