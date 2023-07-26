@@ -8,7 +8,7 @@
                 </div>
                 <ul class="nav-list text-uppercase">
                     <li class="navigate">
-                        <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
+                        <router-link :to="{ name: 'home' }" class="nav-link">Homeaa</router-link>
                     </li>
                     <li class="navigate">
                         <router-link :to="{ name: 'movies' }" class="nav-link">Movies</router-link>
