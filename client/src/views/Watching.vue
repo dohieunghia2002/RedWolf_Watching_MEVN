@@ -20,7 +20,7 @@
             </div>
 
             <ul class="sections row episodes p-0" v-if="mediaStore.media.eppisodes.length > 1">
-                <li class="episodes-list" v-for="(ep, index) in mediaStore.media.eppisodes" :key="index">
+                <li class="episodes-list col-2 col-md-1" v-for="(ep, index) in mediaStore.media.eppisodes" :key="index">
                     <button class="episodes-list-btn" type="button" @click="choseEp(ep.number)"
                         :class="{ active: curNoEp == ep.number }">
                         {{ index + 1 }}
@@ -86,8 +86,8 @@ export default {
 
     .video {
         object-fit: contain;
-        width: 640px;
-        height: 360px;
+        width: 80%;
+        height: 400px;
     }
 }
 
@@ -100,17 +100,22 @@ export default {
 
 .episodes {
     list-style: none;
+    // justify-content: space-evenly;
 
     .episodes-list {
         display: inline-block;
         text-align: center;
+        margin: 5px;
+        padding: 0;
 
         .episodes-list-btn {
+            margin: 5px;
+            padding: 10px 30px;
             background-color: rgba(4, 4, 141, 0.35);
             color: #bbb;
             border: 0;
             border-radius: 20%;
-            margin: 4px;
+            width: 100%;
 
             &:hover {
                 background-color: rgba(4, 4, 141, 0.8);
@@ -127,8 +132,18 @@ export default {
     .embed {
 
         .video {
-            width: 360px;
+            width: 320px;
             height: 280px;
+        }
+    }
+
+    .episodes {
+
+        .episodes-list {
+
+            .episodes-list-btn {
+                margin: 8px;
+            }
         }
     }
 }
