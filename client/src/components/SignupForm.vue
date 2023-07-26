@@ -68,13 +68,13 @@ export default {
         async register() {
             try {
 
-                const data = {}
+                var data = {}
                 data.fullName = this.fullName;
                 data.username = this.username;
                 data.password = this.password;
 
-                console.log(this.fullName, this.username, this.password, data)
-                await this.userStore.register(data)
+                console.log(data)
+                await this.userStore.register(data);
             } catch (e) { console.log(e) }
         }
     }

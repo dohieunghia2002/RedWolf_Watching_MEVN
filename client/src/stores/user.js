@@ -33,9 +33,11 @@ export const useUserStore = defineStore('user', {
             try {
                 const res = await userService.register(form)
                 if (res.status === 201) {
-                    $("#modal-signup-form").on('hide.bs.modal', function () {
-                        alert('Đăng ký thành công');
-                    });
+                    $('#modal-signup-form').modal({
+                        keyboard: false
+                    })
+                    $('#modal-signup-form').modal('toggle');
+                    $('.modal-backdrop').remove();
                 }
                 else if (res.status === 400) {
                     window.alert("Đăng ký thất bại");
