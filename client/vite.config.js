@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-const url_local = 'http://localhost:5000';
+const url_local = 'https://redwolf-cine-server.onrender.com';
 
 // https://vitejs.dev/config/
 export default defineConfig({
