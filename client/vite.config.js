@@ -19,7 +19,7 @@ export default defineConfig({
         }
     },
     server: {
-        origin: 'redwolf-cinema.netlify.app',
+        origin: 'https://redwolf-cinema.netlify.app/',
         // port: 8000,
         proxy: {
             '/media': {
