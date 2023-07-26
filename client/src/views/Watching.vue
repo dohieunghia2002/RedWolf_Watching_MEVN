@@ -100,13 +100,13 @@ export default {
 
 .episodes {
     list-style: none;
-    // justify-content: space-evenly;
 
     .episodes-list {
-        display: inline-block;
-        text-align: center;
-        margin: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 0;
+        margin: 0 12px 8px 0;
 
         .episodes-list-btn {
             margin: 5px;
