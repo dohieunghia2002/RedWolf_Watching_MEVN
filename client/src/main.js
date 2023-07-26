@@ -12,9 +12,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { dom } from '@fortawesome/fontawesome-svg-core'
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://redwolf-cine-server.onrender.com';
 
 import App from './App.vue'
 import router from './router'

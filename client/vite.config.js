@@ -18,26 +18,25 @@ export default defineConfig({
             }
         }
     },
-    server: {
-        origin: 'https://redwolf-cinema.netlify.app/',
-        // port: 8000,
-        proxy: {
-            '/media': {
-                target: url_local,
-                changeOrigin: true,
-            },
-            '/users': {
-                target: url_local,
-                changeOrigin: true,
-            },
-            '/favorites': {
-                target: url_local,
-                changeOrigin: true,
-            },
-            '/reviews': {
-                target: url_local,
-                changeOrigin: true,
-            }
-        },
-    },
+    // server: {
+    //     port: 8000,
+    //     proxy: {
+    //         '/media': {
+    //             target: url_local,
+    //             changeOrigin: true,
+    //         },
+    //         '/users': {
+    //             target: url_local,
+    //             changeOrigin: true,
+    //         },
+    //         '/favorites': {
+    //             target: url_local,
+    //             changeOrigin: true,
+    //         },
+    //         '/reviews': {
+    //             target: url_local,
+    //             changeOrigin: true,
+    //         }
+    //     },
+    // },
 })
