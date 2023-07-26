@@ -18,7 +18,7 @@
         flex-direction: column;
         align-items: baseline;
         justify-content: space-between;
-        width: 50%;
+        width: 60%;
 
         .genre {
             background-color: $primary-color;
@@ -101,7 +101,7 @@
     }
 
     .card-img-top {
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .card-footer {
@@ -197,8 +197,17 @@
 }
 
 @media only screen and (min-width: 740px) and (max-width: 1023px) {
+    .background-img-intro {
+        height: 500px;
+        background-position: center;
+    }
+
     .media-desc {
-        left: 1%;
+        .media-poster {
+            width: 260px;
+            height: 450px;
+            z-index: 1;
+        }
     }
 
     .cast-item {
@@ -225,15 +234,15 @@
 
 @media only screen and (max-width: 739px) {
     .background-img-intro {
-        height: 200px;
+        height: 220px;
         background-position: center;
     }
 
     .media-desc {
-        height: 200px;
+        height: 220px;
 
         .media-poster {
-            width: 110px;
+            width: 100px;
             height: 170px;
         }
 

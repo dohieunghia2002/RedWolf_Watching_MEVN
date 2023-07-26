@@ -7,12 +7,12 @@
                 <img class="media-poster" :src="mediaStore.media.posters[1]" alt="poster media">
 
                 <div class="media-side-right">
-                    <h1 class="media-name text-uppercase">{{ mediaStore.media.name }}</h1>
+                    <h2 class="media-name text-uppercase">{{ mediaStore.media.name }}</h2>
 
-                    <div class="media-rating my-3">
+                    <div class="media-rating my-2">
                         <RatingCircle :key="generateKey(mediaStore.media._id, mediaStore.media.rate)" />
-                        <span class="mr-4"></span>
-                        <span class="genre mr-4" v-for="(gen, index) in mediaStore.media.genre" :key="index">
+                        <span class="mr-2"></span>
+                        <span class="genre mr-1" v-for="(gen, index) in mediaStore.media.genre" :key="index">
                             {{ gen }}
                         </span>
                     </div>
@@ -52,7 +52,7 @@
 
                 <div class="sections row casts">
                     <template v-for="(cast, index) in mediaStore.media.casts" :key="index">
-                        <div class="card cast-item col-3 col-lg-2">
+                        <div class="card cast-item col-5 col-lg-2">
                             <div class="header-img">
                                 <img class="card-img-top h-100" :src="cast.avatar" alt="casts-image" />
                             </div>

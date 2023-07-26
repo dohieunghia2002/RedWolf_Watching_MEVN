@@ -58,6 +58,7 @@
 
                     <div class="col-10 col-lg-11 evaluation-comment-right">
                         <div class="comment ml-3 w-100">
+
                             <div class="comment-header w-100">
                                 <h5 class="name-user">{{ review.userID.fullName }}</h5>
                                 <div class="d-flex align-items-center">
@@ -70,6 +71,7 @@
                                     </button>
                                 </div>
                             </div>
+
                             <div class="comment-content-collapse">
                                 <p class="comment-content-apart show small text-justify">{{ review.content }}</p>
                                 <div :id="'collapse' + review._id" class="comment-content-fully">
@@ -184,14 +186,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/detailMedia.scss';
 
-.comment-content-apart {
-    display: none;
-
-    &.show {
-        display: block;
-    }
-}
-
+.comment-content-apart,
 .comment-content-fully {
     display: none;
 

@@ -9,21 +9,25 @@
             </div>
 
             <div class="my-4 list-review" v-for="(review, index) in reviewStore.reviewsUser" :key="index">
-                <div class="review-item">
+                <div class="review-item" :class="review._id">
                     <img :src="review.mediaID.posters[1]" class="review-poster-media" alt="poster media">
                     <div class="review-detail flex-grow-1 text-light mx-3">
-                        <h4 class="media-name my-2">{{ review.mediaID.name }}</h4>
+                        <h4 class="media-name mb-2">{{ review.mediaID.name }}</h4>
                         <p>{{ review.date.split('T')[0] }}</p>
 
-                        <p v-if="review.content" class="comment-content-apart show">{{ review.content }}</p>
-                        <div :id="'collapse' + review._id" class="comment-content-fully">
+                        <p :class="'collapse' + review._id" v-if="review.content" class="comment-content-apart show">
+                            {{ review.content }}
+                        </p>
+                        <div :class="'collapse' + review._id" :id="'collapse' + review._id" class="comment-content-fully"
+                            v-if="review.content">
                             <p class="small text-justify text-white" style="font-size: 1rem;">
                                 {{ review.content }}
                             </p>
                         </div>
 
-                        <button class="btn btn-link btn-toggle-collapse p-0 ml-0" type="button" @click="readFullyCmt(index)"
-                            style="display: none;">
+                        <button v-if="review.content" :class="'collapse' + review._id"
+                            class="btn btn-link btn-toggle-collapse p-0 ml-0" type="button"
+                            @click="readFullyCmt(review._id)" style="display: none;">
                             Read more
                         </button>
 
@@ -73,7 +77,6 @@ export default {
 
         async handleReadMoreCmt() {
             const cmtContentApart = document.getElementsByClassName('comment-content-apart');
-            console.log(cmtContentApart.length);
             var text = [];
             for (let i = 0; i < cmtContentApart.length; i++) {
                 if (cmtContentApart[i]) {
@@ -82,20 +85,28 @@ export default {
             }
             for (let i = 0; i < text.length; i++) {
                 const element = text[i];
-                if (element.innerText.length > 150) {
-                    element.innerHTML = element.innerText.substr(0, 150);
+                if (element.innerText.length > 140) {
+                    element.innerHTML = element.innerText.substr(0, 140);
                     document.getElementsByClassName('btn-toggle-collapse')[i].style.display = 'flex';
                 }
             }
         },
 
-        async readFullyCmt(index) {
-            var cmtContentApart = document.getElementsByClassName('comment-content-apart')[index];
+        async readFullyCmt(idInput) {
+            // var cmtContentApart = document.getElementsByClassName('comment-content-apart')[index];
+            // cmtContentApart.classList.toggle("show");
+            // var cmtContentFully = document.getElementsByClassName("comment-content-fully")[index];
+            // cmtContentFully.classList.toggle("show");
+
+            // var btnToggleCollapse = document.getElementsByClassName('btn-toggle-collapse')[index];
+            var cmtContentApart = document.getElementsByClassName(`comment-content-apart collapse${idInput}`)[0];
             cmtContentApart.classList.toggle("show");
-            var cmtContentFully = document.getElementsByClassName("comment-content-fully")[index];
+            var cmtContentFully = document.getElementsByClassName(`comment-content-fully collapse${idInput}`)[0];
             cmtContentFully.classList.toggle("show");
 
-            var btnToggleCollapse = document.getElementsByClassName('btn-toggle-collapse')[index];
+            var btnToggleCollapse = document.getElementsByClassName(`btn-toggle-collapse collapse${idInput}`)[0];
+            console.log(btnToggleCollapse);
+            console.log(cmtContentApart.classList.contains("show"));
             if (cmtContentApart.classList.contains("show")) {
                 btnToggleCollapse.innerHTML = "Read more";
             }
@@ -115,20 +126,22 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/review.scss';
 
-.comment-content-apart {
+.media-name {
+    margin-top: 30px;
+}
+
+.comment-content-apart,
+.comment-content-fully {
     display: none;
+    margin-bottom: 30px;
 
     &.show {
         display: block;
     }
 }
 
-.comment-content-fully {
-    display: none;
-
-    &.show {
-        display: block;
-    }
+.btn-toggle-collapse {
+    margin-top: -26px;
 }
 
 .btn-toggle-collapse:focus {

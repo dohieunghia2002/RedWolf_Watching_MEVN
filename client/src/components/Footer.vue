@@ -5,7 +5,10 @@
                 <div class="page-footer">
                     <div class="row m-0">
                         <div class="col-12 col-sm-6 mt-md-0 company-communication">
-                            <img class="logo-footer" src="@/assets/images/logo-red-wolf.png" alt="logo">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="logo-footer" src="@/assets/images/logo-red-wolf.png" alt="logo">
+                                <h2 class="ml-4 text-danger">REDWOLF CINEMA</h2>
+                            </div>
                             <p class="address-company">
                                 Toyota Ninh Kieu Building 3rd Floor, 57 Cach Mang Thang Tam Str., Ninh Kieu, Dist, Can Tho
                             </p>
