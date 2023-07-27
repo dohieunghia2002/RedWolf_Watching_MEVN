@@ -12,6 +12,7 @@ const registerUser = async (req, res) => {
     const { fullName, username, password } = req.body;
     try {
         const userExist = await User.findOne({ username });
+        console.log(userExist);
 
         if (userExist) {
             return responseHandler.badRequest(res, 'Username already exist');

@@ -16,7 +16,7 @@
                 <div class="w-100"></div>
 
                 <div class="list col-12 p-0">
-                    <div class="list-item col-3 p-0" v-for="(item, index) in  4 " :key="index">
+                    <div class="list-item col-3" v-for="(item, index) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.popularMovies[index]._id } }">
                             <div class="card h-100">
                                 <img class="card-img-top h-100" :src="mediaStore.popularMovies[index].posters[1]"
@@ -46,7 +46,7 @@
                 <div class="w-100"></div>
 
                 <div class="list col-12  p-0">
-                    <div class="list-item  col-3 p-0" v-for="( item, index ) in  4 " :key="index">
+                    <div class="list-item  col-3" v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.popularTVSeries[index]._id } }">
                             <div class="card h-100">
                                 <img class="card-img-top h-100" :src="mediaStore.popularTVSeries[index].posters[1]"
@@ -76,7 +76,7 @@
                 <div class="w-100"></div>
 
                 <div class="list col-12 p-0">
-                    <div class="list-item col-3 p-0" v-for="( item, index ) in  4 " :key="index">
+                    <div class="list-item col-3" v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.ratedMovies[index]._id } }">
                             <div class="card h-100">
                                 <img class="card-img-top h-100" :src="mediaStore.ratedMovies[index].posters[1]"
@@ -106,7 +106,7 @@
                 <div class="w-100"></div>
 
                 <div class="list col-12 p-0">
-                    <div class="list-item col-3 p-0" v-for="( item, index ) in  4 " :key="index">
+                    <div class="list-item col-3" v-for="( item, index ) in  4 " :key="index">
                         <router-link :to="{ name: 'detail', params: { id: mediaStore.ratedSeries[index]._id } }">
                             <div class="card h-100">
                                 <img class="card-img-top h-100" :src="mediaStore.ratedSeries[index].posters[1]"

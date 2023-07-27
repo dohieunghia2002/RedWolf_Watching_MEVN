@@ -14,7 +14,7 @@
             <div class="search-result">
                 <div class="sections row list" v-if="filtersMedia">
                     <template v-for="(item, index) in filtersMedia.slice(16).length" :key="index">
-                        <div class="list-item col-4 col-md-3 p-0">
+                        <div class="list-item col-4 col-md-3 p-1 mb-1">
                             <router-link :to="{ name: 'detail', params: { id: filtersMedia[index]._id } }">
                                 <div class="card h-100">
                                     <img class="card-img-top h-100" :src="filtersMedia[index].posters[1]" alt="Poster" />

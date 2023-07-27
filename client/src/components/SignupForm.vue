@@ -16,24 +16,35 @@
                         <div class="md-form mb-4">
                             <font-awesome-icon :icon="['fas', 'user']" /> <span class="ml-2"></span>
                             <label data-error="wrong" data-success="right" for="fullname">Your fullname</label>
-                            <input type="text" id="fullname" class="form-control validate" v-model="fullName">
+                            <input type="text" id="fullname" class="form-control validate" placeholder="Nguyen Van A"
+                                v-model="fullName">
                         </div>
 
                         <div class="md-form mb-4">
                             <font-awesome-icon :icon="['fas', 'user']" /> <span class="ml-2"></span>
                             <label data-error="wrong" data-success="right" for="username2">Your username</label>
-                            <input type="text" id="username2" class="form-control validate" v-model="username">
+                            <input type="text" id="username2" class="form-control input-username validate"
+                                v-model="username">
+                            <span class="text-secondary">* username minimum 8 characters</span>
                         </div>
 
                         <div class="md-form mb-4">
                             <font-awesome-icon :icon="['fas', 'key']" /> <span class="ml-2"></span>
                             <label data-error="wrong" data-success="right" for="password2">Your password</label>
-                            <input type="password" id="password2" class="form-control validate" v-model="password">
+                            <input type="password" id="password2" class="form-control input-pwd validate"
+                                v-model="password">
+                            <span class="text-secondary">* password minimum 8 characters</span>
                         </div>
 
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-default btn-submit-form">Sign up</button>
+                        <button type="submit" class="btn btn-default btn-submit-form" disabled
+                            v-if="username.length < 8 || password.length < 8">
+                            Sign up
+                        </button>
+                        <button type="submit" class="btn btn-default btn-submit-form" v-else>
+                            Sign up
+                        </button>
                     </div>
                 </div>
             </form>
@@ -58,16 +69,8 @@ export default {
         }
     },
     methods: {
-        async createForm() {
-            var form = new FormData()
-            form.append('fullName', this.fullName)
-            form.append('username', this.username)
-            form.append('password', this.password)
-            return form;
-        },
         async register() {
             try {
-
                 var data = {}
                 data.fullName = this.fullName;
                 data.username = this.username;
@@ -77,7 +80,7 @@ export default {
                 await this.userStore.register(data);
             } catch (e) { console.log(e) }
         }
-    }
+    },
 }
 </script>
 
