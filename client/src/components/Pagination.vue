@@ -82,7 +82,7 @@ export default {
 
 @media only screen and (max-width: 739px) {
     .page-item {
-        padding: 2px 4px;
+        padding: 3px 4px;
     }
 
     .page-link {
