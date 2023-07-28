@@ -25,51 +25,33 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="popular">
                         <div class="sections row list">
-                            <!-- <template v-for="(movie, index) in mediaStore.popularMovies" :key="index">
+                            <template
+                                v-for="(film, idx) in mediaStore.popularMovies.slice(paginationStore.indexFirstFilmOfPage(paginationStore.idxCurPage), paginationStore.indexLastFilmOfPage(paginationStore.idxCurPage) + 1)"
+                                :key="idx">
                                 <div class="list-item col-4 col-md-3 col-lg-2 p-2 mb-2">
-                                    <router-link :to="{ name: 'detail', params: { id: movie._id } }">
+                                    <router-link :to="{ name: 'detail', params: { id: film._id } }">
                                         <div class="card h-100">
-                                            <img class="card-img-top h-100" :src="movie.posters[1]" alt="Card image cap" />
+                                            <img class="card-img-top h-100" :src="film.posters[1]" alt="Card image cap" />
 
                                             <div class="card-body">
                                                 <div class="empty-space"></div>
                                                 <div>
-                                                    <h4 class="card-title">{{ movie.name }}</h4>
-                                                    <p class="card-text">{{ movie.year }}</p>
+                                                    <h4 class="card-title">{{ film.name }}</h4>
+                                                    <p class="card-text">{{ film.year }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </router-link>
                                 </div>
-                            </template> -->
-                            <template v-for="(page, index) in pagesNumber()" :key="index">
-                                <template
-                                    v-for="(film, idx) in mediaStore.popularMovies.slice(indexFirstFilmOfPage(index), indexLastFilmOfPage(index) + 1)"
-                                    :key="idx">
-                                    <div class="list-item col-4 col-md-3 col-lg-2 p-2 mb-2">
-                                        <router-link :to="{ name: 'detail', params: { id: film._id } }">
-                                            <div class="card h-100">
-                                                <img class="card-img-top h-100" :src="film.posters[1]"
-                                                    alt="Card image cap" />
-
-                                                <div class="card-body">
-                                                    <div class="empty-space"></div>
-                                                    <div>
-                                                        <h4 class="card-title">{{ film.name }}</h4>
-                                                        <p class="card-text">{{ film.year }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </router-link>
-                                    </div>
-                                </template>
                             </template>
                         </div>
                     </div>
 
                     <div class="tab-pane" id="rated">
                         <div class="sections row list">
-                            <template v-for="(movie, index) in mediaStore.ratedMovies" :key="index">
+                            <template
+                                v-for="(movie, idx) in mediaStore.ratedMovies.slice(paginationStore.indexFirstFilmOfPage(paginationStore.idxCurPage), paginationStore.indexLastFilmOfPage(paginationStore.idxCurPage) + 1)"
+                                :key="idx">
                                 <div class="list-item col-4 col-md-3 col-lg-2  p-2 mb-2">
                                     <router-link :to="{ name: 'detail', params: { id: movie._id } }">
                                         <div class="card h-100">
@@ -90,37 +72,29 @@
                     </div>
                 </div>
             </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><button type="button" @click="" class="page-link" href="#">Previous</button></li>
-                    <li v-for="(page) in pagesNumber()" class="page-item"><button type="button" @click="" class="page-link"
-                            href="#">{{ page }}</button>
-                    </li>
-                    <li class="page-item"><button type="button" @click="" class="page-link" href="#">Next</button></li>
-                </ul>
-            </nav>
         </div>
     </div>
+
+    <Pagination :totalQuantityMovies="mediaStore.popularMovies.length" />
 </template>
 
 <script>
 import MovieIntro from '@/components/MovieIntro.vue';
+import Pagination from '@/components/Pagination.vue';
 
 import mediaService from '@/services/media.service.js';
 import { useMediaStore } from '@/stores/media.js';
-const QUANTITY_FILM_PAGE = 10;
+import { usePaginationStore } from '@/stores/pagination.js';
 
 export default {
-    components: { MovieIntro },
+    components: { MovieIntro, Pagination },
     setup() {
         const mediaStore = useMediaStore();
+        const paginationStore = usePaginationStore();
         return {
-            mediaStore
+            mediaStore,
+            paginationStore
         }
-    },
-
-    computed: {
-
     },
 
     methods: {
@@ -131,23 +105,10 @@ export default {
             }
             else this.mediaStore.media = await mediaService.getRandMovie(reqId);
         },
-
-        pagesNumber() { //2
-            return Math.ceil(this.mediaStore.popularMovies.length / QUANTITY_FILM_PAGE);
-        },
-
-        indexFirstFilmOfPage(idxPage) {
-            return idxPage * QUANTITY_FILM_PAGE;
-        },
-
-        indexLastFilmOfPage(idxPage) {
-            return idxPage * QUANTITY_FILM_PAGE + (QUANTITY_FILM_PAGE - 1);
-        },
     },
 
     async created() {
         await this.handleSetData();
-        console.log('pagesNumer', this.pagesNumber(), 'first', this.indexFirstFilmOfPage(0), 'last', this.indexLastFilmOfPage(0));
     },
 }
 </script>
