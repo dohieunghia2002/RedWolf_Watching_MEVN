@@ -79,4 +79,14 @@ export default {
     text-align: center;
     font-size: 1.3rem;
 }
+
+@media only screen and (max-width: 739px) {
+    .page-item {
+        padding: 2px 4px;
+    }
+
+    .page-link {
+        font-size: 1rem;
+    }
+}
 </style>
