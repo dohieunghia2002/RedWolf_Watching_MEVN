@@ -8,7 +8,8 @@
                         <div class="modal-title w-100 font-weight-bold">
                             <img src="@/assets/images/logo-red-wolf.png" class="w-50" alt="logo">
                         </div>
-                        <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="btn-signup" class="close btn-close" data-dismiss="modal"
+                            aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -38,7 +39,7 @@
 
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-default btn-submit-form" disabled
+                        <button type="submit" class="btn btn-default btn-submit-form" style="pointer-events: none;" disabled
                             v-if="username.length < 8 || password.length < 8">
                             Sign up
                         </button>
@@ -70,15 +71,16 @@ export default {
     },
     methods: {
         async register() {
-            try {
-                var data = {}
-                data.fullName = this.fullName;
-                data.username = this.username;
-                data.password = this.password;
+            var data = {}
+            data.fullName = this.fullName;
+            data.username = this.username;
+            data.password = this.password;
 
-                console.log(data)
-                await this.userStore.register(data);
-            } catch (e) { console.log(e) }
+            console.log(data)
+            await this.userStore.register(data);
+            this.fullName = '';
+            this.username = '';
+            this.password = '';
         }
     },
 }

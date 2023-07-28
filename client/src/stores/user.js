@@ -31,19 +31,19 @@ export const useUserStore = defineStore('user', {
     actions: {
         async register(form) {
             try {
+                $(".toast").toast('show');
                 const res = await userService.register(form)
+
                 if (res.status === 201) {
-                    $('#modal-signup-form').modal({
-                        keyboard: false
-                    })
-                    $('#modal-signup-form').modal('toggle');
-                    $('.modal-backdrop').remove();
+                    const btnSignup = document.getElementById('btn-signup');
+                    btnSignup.click();
+
                 }
                 else if (res.status === 400) {
                     window.alert("Đăng ký thất bại");
                 }
-            } catch (e) {
-                console.log(e);
+            } catch (err) {
+                window.alert("Đăng ký thất bại");
             }
 
         },

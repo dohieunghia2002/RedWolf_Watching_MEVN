@@ -1,8 +1,12 @@
 <template>
     <Header :key="generateKey($route.path, screenWidth)" />
+    <div class="toast-list">
+        <Toast />
+    </div>
     <router-view />
     <SigninForm />
     <SignupForm />
+
     <Footer />
 </template>
 
@@ -11,6 +15,7 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import SignupForm from '@/components/SignupForm.vue';
 import SigninForm from '@/components/SigninForm.vue';
+import Toast from '@/components/Toast.vue';
 
 import { useMediaStore } from './stores/media.js';
 import mediaService from './services/media.service.js';
@@ -20,7 +25,8 @@ export default {
         Header,
         Footer,
         SignupForm,
-        SigninForm
+        SigninForm,
+        Toast
     },
 
     setup() {
@@ -48,9 +54,16 @@ export default {
         this.mediaStore.ratedMovies = await mediaService.ratedMovies();
         this.mediaStore.popularTVSeries = await mediaService.popularTVSeries();
         this.mediaStore.ratedSeries = await mediaService.ratedTVSeries();
-    }
+    },
 }
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.toast-list {
+    position: absolute;
+    top: calc($height-header-bar + 10px);
+    right: 16px;
+    z-index: 9999;
+}
+</style>
