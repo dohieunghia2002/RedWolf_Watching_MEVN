@@ -28,7 +28,7 @@
                             <template
                                 v-for="(film, idx) in mediaStore.popularMovies.slice(paginationStore.indexFirstFilmOfPage(paginationStore.idxCurPage), paginationStore.indexLastFilmOfPage(paginationStore.idxCurPage) + 1)"
                                 :key="idx">
-                                <div class="list-item col-4 col-md-3 col-lg-2 p-2 mb-2">
+                                <div class="list-item col-4 col-md-3 p-2 mb-2">
                                     <router-link :to="{ name: 'detail', params: { id: film._id } }">
                                         <div class="card h-100">
                                             <img class="card-img-top h-100" :src="film.posters[1]" alt="Card image cap" />
@@ -52,7 +52,7 @@
                             <template
                                 v-for="(movie, idx) in mediaStore.ratedMovies.slice(paginationStore.indexFirstFilmOfPage(paginationStore.idxCurPage), paginationStore.indexLastFilmOfPage(paginationStore.idxCurPage) + 1)"
                                 :key="idx">
-                                <div class="list-item col-4 col-md-3 col-lg-2  p-2 mb-2">
+                                <div class="list-item col-4 col-md-3  p-2 mb-2">
                                     <router-link :to="{ name: 'detail', params: { id: movie._id } }">
                                         <div class="card h-100">
                                             <img class="card-img-top h-100" :src="movie.posters[1]" alt="Card image cap" />
@@ -72,10 +72,9 @@
                     </div>
                 </div>
             </div>
+            <Pagination :totalQuantityMovies="mediaStore.popularMovies.length" :key="paginationStore.idxCurPage" />
         </div>
     </div>
-
-    <Pagination :totalQuantityMovies="mediaStore.popularMovies.length" />
 </template>
 
 <script>

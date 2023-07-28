@@ -1,16 +1,18 @@
-const QUANTITY_FILM_PAGE = 10;
+const QUANTITY_FILM_PAGE = 12;
 import { defineStore } from 'pinia';
 
 export const usePaginationStore = defineStore('pagination', {
     state: () => {
         return {
-            idxCurPage: 0
+            idxCurPage: 0,
+            pagesNum: 0
         }
     },
 
     actions: {
         pagesNumber(totalQuantityMovies) {
-            return Math.ceil(totalQuantityMovies / QUANTITY_FILM_PAGE);
+            this.pagesNum = Math.ceil(totalQuantityMovies / QUANTITY_FILM_PAGE);
+            return this.pagesNum;
         },
 
         indexFirstFilmOfPage(idxPage) {
@@ -23,6 +25,18 @@ export const usePaginationStore = defineStore('pagination', {
 
         indexCurrentPage(idxPage) {
             this.idxCurPage = idxPage;
-        }
+        },
+
+        indexPrevPage() {
+            if (this.idxCurPage > 0) {
+                this.idxCurPage = this.idxCurPage - 1;
+            }
+        },
+
+        indexNextPage() {
+            if (this.idxCurPage < (this.pagesNum - 1)) {
+                this.idxCurPage = this.idxCurPage + 1;
+            }
+        },
     },
 });
