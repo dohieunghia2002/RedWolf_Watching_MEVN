@@ -97,7 +97,7 @@
     pointer-events: none;
 
     .header-img {
-        height: $height-avatar-cast-lg;
+        min-height: $height-avatar-cast-lg;
     }
 
     .card-img-top {
@@ -108,6 +108,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         text-align: center;
         color: $white-color;
         border-radius: 0;
@@ -214,7 +215,7 @@
         margin: 0 8px 16px;
 
         .header-img {
-            height: $height-avatar-cast-md;
+            min-height: $height-avatar-cast-md;
         }
     }
 

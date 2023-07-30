@@ -8,7 +8,8 @@
                         <div class="modal-title w-100 font-weight-bold">
                             <img src="@/assets/images/logo-red-wolf.png" class="w-50" alt="logo">
                         </div>
-                        <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="btn-signin" class="close btn-close" data-dismiss="modal"
+                            aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -47,12 +48,6 @@ export default {
         return {
             userStore
         }
-    },
-
-    methods: {
-        gotoSignup() {
-            $('#modal-signin-form').modal('hide');
-        },
     },
 }
 </script>

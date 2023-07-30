@@ -76,7 +76,6 @@ export default {
             data.username = this.username;
             data.password = this.password;
 
-            console.log(data)
             await this.userStore.register(data);
             this.fullName = '';
             this.username = '';

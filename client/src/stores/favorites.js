@@ -22,10 +22,12 @@ export const useFavoritesStore = defineStore('favorites', {
 
         async markFavorited(id) {
             if (this.favorites && this.medias.length > 0) {
-                const check = await this.medias.includes(id);
-
-                if (check) {
-                    document.getElementsByClassName('font-favorites')[0].classList.add('active-favorites');
+                for (let i = 0; i < this.medias.length; i++) {
+                    var check = await this.medias[i]._id == id;
+                    if (check) {
+                        document.getElementsByClassName('font-favorites')[0].classList.add('active-favorites');
+                        break;
+                    }
                 }
             }
         },

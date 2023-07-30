@@ -40,34 +40,32 @@ export const useUserStore = defineStore('user', {
 
                 }
                 else if (res.status === 400) {
-                    window.alert("Đăng ký thất bại");
+                    window.alert("Sign up failure!!! username already exists");
                 }
             } catch (err) {
-                window.alert("Đăng ký thất bại");
+                window.alert("Sign up failure!!! username already exists");
             }
 
         },
 
         async loginUser() {
             try {
+                $(".toast").toast('show');
                 const res = await userService.login(this.formLogin);
                 if (res.status === 201) {
                     this.account = res.data;
                     this.isLoggedin = true;
-                    this.formLogin = {}
-                    $('#modal-signin-form').modal({
-                        keyboard: false
-                    })
-                    $('#modal-signin-form').modal('toggle');
-                    $('.modal-backdrop').remove();
+                    this.formLogin = {};
+                    const btnSignin = document.getElementById('btn-signin');
+                    btnSignin.click();
                 }
 
                 else if (res.data.status === 400) {
-                    alert("Sai tài khoản hoặc mật khẩu");
+                    alert("Wrong username or pasword");
                 }
             } catch (error) {
                 console.log(error);
-                alert("Sai tài khoản hoặc mật khẩu");
+                alert("Wrong username or pasword");
             }
         },
 
