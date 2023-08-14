@@ -98,17 +98,19 @@
 
     .header-img {
         min-height: $height-avatar-cast-lg;
+        max-height: calc($height-avatar-cast-lg + 40px);
     }
 
     .card-img-top {
-        object-fit: contain;
+        object-fit: cover;
     }
 
     .card-footer {
         display: flex;
         flex-direction: column;
+        padding: 8px 0;
         align-items: center;
-        justify-content: center;
+        justify-content: stretch;
         text-align: center;
         color: $white-color;
         border-radius: 0;
@@ -211,11 +213,16 @@
         }
     }
 
+    .list-casts {
+        margin-left: 8%;
+    }
+
     .cast-item {
         margin: 0 8px 16px;
 
         .header-img {
             min-height: $height-avatar-cast-md;
+            max-height: calc($height-avatar-cast-md + 40px);
         }
     }
 
@@ -263,6 +270,7 @@
 
         .header-img {
             height: $height-avatar-cast-sm;
+            max-height: calc($height-avatar-cast-sm + 40px);
         }
 
         .card-footer {
